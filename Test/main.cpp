@@ -118,7 +118,7 @@ struct DAWG {
 };
 //AC Automaton
 //include: queue, cstring
-//usage: obj.Init->obj.Link->(obj.$(others))*
+//usage: obj.Init->(obj.Insert)*->obj.Link->(obj.$(others))*
 struct ACA {
 	const static int n = maxn,  //Total of nodes
 		  m = 26,               //Size of charator set
@@ -131,6 +131,8 @@ struct ACA {
 		int  a;                 //Accpet state or not
 	};
 	typedef Node *PNode;
+	//Extern
+	//Baisc
 	Node t[n];                  //Storage pool
 	PNode top,                  //t's iterator
 		  rt;                   //Initial State
@@ -143,6 +145,8 @@ struct ACA {
 	//Init
 	//usage: obj.Init()
 	void Init() {
+		//Extern
+		//Basic
 		top = t;
 		rt = New();
 	}
@@ -190,7 +194,7 @@ struct ACA {
 		PNode x = rt;
 		for (int i = 0; i < sl; i++) {
 			int k = s[i] - shift;
-			for ( ; x && !x->s[k]; x = x->p) {
+			for ( ; x && (k < 0 || m <= k || !x->s[k]); x = x->p) {
 			}	
 			if (!x) {
 				x = rt;

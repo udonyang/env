@@ -1,6 +1,3 @@
-//AC Automaton
-//include: queue, cstring
-//usage: obj.Init->(obj.Insert)*->obj.Link->(obj.$(others))*
 struct ACA {
 	const static int n = maxn,  //Total of nodes
 		  m = 26,               //Size of charator set
