@@ -1,10 +1,9 @@
 //AC Automaton
 //include: queue, cstring
-//usage: obj.Init->(obj.Insert)*->obj.Link->(obj.$(others))*
+//usage: obj.Init->obj.Link->(obj.$(others))*->obj.Free
 struct ACA {
-	const static int n = maxn,  //Total of nodes
-		  m = 26,               //Size of charator set
-		  shift = 'a';          //Charactor shift
+	const static int m = 256,  //Size of charator set
+		  shift = 0;           //Charactor shift
 	struct Node {
 		//Extern
 		//Basic
@@ -14,27 +13,29 @@ struct ACA {
 	};
 	typedef Node *PNode;
 	//Extern
-	//Baisc
-	Node t[n];                  //Storage pool
-	PNode top,                  //t's iterator
-		  rt;                   //Initial State
+	//Basic
+	stack<PNode> ct;
+	PNode   rt;                   //Initial State
 	//Init a node
 	//usage: obj.New([length], [Failure Link])
 	PNode New() {
-		memset(top, 0, sizeof(Node));
-		return top++;
+		PNode x = (PNode)malloc(sizeof(Node));
+		memset(x, 0, sizeof(Node));
+		ct.push(x);
+		return x;
 	}
 	//Init
 	//usage: obj.Init()
 	void Init() {
 		//Extern
 		//Basic
-		top = t;
+		for ( ; !ct.empty(); ct.pop()) {
+		}
 		rt = New();
 	}
 	//Append a string
 	//usage: obj.Insert(charactor)
-	void Insert(char *s, int sl) {
+	void Insert(int a, int *s, int sl) {
 		PNode x = rt;
 		for (int i = 0; i < sl; i++) {
 			int k = s[i] - shift;
@@ -48,10 +49,10 @@ struct ACA {
 	//Failure Linking
 	//usage: obj.Link()
 	void Link() {
-		static PNode Q[n];
-		Q[0] = rt;
-		for (int f = 0, t = 1; f < t; ) {
-			PNode x = Q[f++];
+		queue<PNode> Q;
+		for (Q.push(rt); !Q.empty(); ) {
+			PNode x = Q.front();
+			Q.pop();
 			for (int i = 0; i < m; i++) {
 				if (x->s[i]) {
 					if (x == rt) {
@@ -66,28 +67,41 @@ struct ACA {
 							x->s[i]->p = y->s[i];
 						}
 					}
-					Q[t++] = x->s[i];
+					Q.push(x->s[i]);
 				}
 			}
 		}
 	}
-	int Search(char *s, int sl) {
+	//statistic work
+	//usage: obj.Search(key array, array length)
+	int Search(int *s, int sl) {
 		int total = 0;
 		PNode x = rt;
+		map<PNode, bool> h;
+		h.clear();
 		for (int i = 0; i < sl; i++) {
 			int k = s[i] - shift;
-			for ( ; x && (k < 0 || m <= k || !x->s[k]); x = x->p) {
+			for ( ; x && (k < 0 ||  m <= k || !x->s[k]); x = x->p) {
 			}	
 			if (!x) {
 				x = rt;
 				continue;
 			}
 			for (PNode y = x->s[k]; y; y = y->p) {
-				total += y->a;
-				y->a = 0;
+				if (h.find(y) == h.end()) {
+					total += y->a;
+					h[y] = 1;
+				}
 			}
 			x = x->s[k];
 		}
 		return total;
+	}
+	//Free spaces
+	//usage: obj.Free()
+	void Free(PNode x = 0) {
+		for ( ; !ct.empty(); ct.pop()) {
+			free(ct.top());
+		}
 	}
 };

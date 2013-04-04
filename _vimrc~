@@ -28,7 +28,7 @@ set sb
 set noswapfile
 set nobackup
 set makeprg=%mysys%\bin\make.exe
-let g:netrw_liststyle=3
+let g:netrw_liststyle=4
 
 "Function
 func Compile()
