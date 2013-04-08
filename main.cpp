@@ -11,6 +11,7 @@
 #include <queue>
 #include <string>
 #include <cstring>
+#include <cmath>
 //namespaces
 using namespace std;
 //constants

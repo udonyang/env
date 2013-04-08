@@ -15,7 +15,7 @@
 using namespace std;
 //constants
 const char input[] = "input.in",
-	  output[] = "input.in";
+	  output[] = "output.out";
 const int inf32 = 0x7fffffff,
 	  maxn = 1e5 + 10;
 const long long inf64 = 0x7fffffffffffffffLL; 
