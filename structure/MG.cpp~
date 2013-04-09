@@ -11,7 +11,7 @@ template<long long m> struct MG {
 		return (p.x + q.x) % m;
 	}
 	friend MG operator - (MG p, MG q) {
-		return MG((p.x - q.x + m) % m);
+		return MG((p.x + q.x + m) % m);
 	}
 	friend MG operator * (MG p, MG q) {
 		return MG((p.x * q.x) % m);

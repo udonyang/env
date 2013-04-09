@@ -11,8 +11,8 @@ struct LLG {
     };
 	const static int n = maxn;
 	vector<Edge> E;    //Aarry in which Edges store
-	int  L[n],         //Head of linking list of nodes
-		 V;            //Total of nodes
+	int  L[n],    //Head of linking list of nodes
+		 V;          //Total of nodes
     //Init
     //usage: obj.Init(int TotalOfNode)
     void Init(int _V = 0) {
