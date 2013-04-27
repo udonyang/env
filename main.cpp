@@ -20,16 +20,17 @@ const char input[] = "input.in",
 const int inf32 = 0x7fffffff,
 	  maxn = 1e5 + 10;
 const long long inf64 = 0x7fffffffffffffffLL; 
-//structure
 //type definition
+typedef int AB[maxn];
+typedef int AI[maxn];
+typedef char AC[maxn];
 typedef long long LL;
-//global variable
-//access and mutator
+//Extern
 //main
 int main() {
 #if 1
 	freopen(input, "r", stdin);
-	freopen(output, "w", stdout);
+	//freopen(output, "w", stdout);
 #endif
 	while (0) {
 	}
