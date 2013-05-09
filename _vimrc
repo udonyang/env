@@ -40,13 +40,7 @@ func ErrorList()
 endfunc
 func Run()
 	exec "w"
-	if &filetype == 'c' || &filetype =='cpp'
-		exec "!%<.exe"
-	elseif &filetype == 'java'
-		exec "!java %<"
-	elseif &filetype == 'plaintex'
-		exec "!texworks %<.pdf"
-	endif
+	exec "make run"
 endfunc
 func Test()
 	if &filetype == 'c' || &filetype =='cpp'

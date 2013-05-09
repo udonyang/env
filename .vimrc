@@ -37,18 +37,7 @@ func ErrorList()
 endfunc
 func Run()
 	exec "w"
-	if &filetype == 'c' || &filetype =='cpp'
-		exec "!'./%<'"
-		"exec "call Output()"
-	elseif &filetype == 'html'
-		exec "!gnome-open %"
-	elseif &filetype == 'plaintex'
-		exec "!gnome-open %<.pdf"
-	elseif &filetype == 'java'
-		exec "!java '%<'"
-	elseif &filetype == 'sh'
-		exec "!./'%'"
-	endif
+	exec "make run"
 endfunc
 func Test()
 	if &filetype == 'c' || &filetype =='cpp'
