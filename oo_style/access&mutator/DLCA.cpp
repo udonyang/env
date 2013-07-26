@@ -1,6 +1,7 @@
 //Doubling LCA
 //usage: LCAInit()->LCA();
-void LCAInit(int u, int d = 0, int p = -1) { dep[u] = d;
+void LCAInit(int u, int d = 0, int p = -1) {
+  dep[u] = d;
 	if (p != -1) {
 		anc[u][0] = p;
 		for (int i = 1; i < 20; i++) {
