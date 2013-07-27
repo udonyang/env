@@ -41,7 +41,9 @@ set runtimepath+=$GOROOT/misc/vim
 "Function
 func TypeCheck()
   if &filetype == 'i' || &filetype == 'c' || &filetype == 'cpp'
-    set filetype=c
+	if &filetype != 'cpp'
+		set filetype=c
+	endif
     set tabstop=2
     set shiftwidth=2
     set expandtab
@@ -55,12 +57,24 @@ func Compile()
 	exec "w"
 	exec "make"
 endfunc
+func DebugCompile()
+	exec "w"
+	exec "make make_debug"
+endfunc
+func Debug()
+	exec "w"
+	exec "make debug"
+endfunc
 func ErrorList()
 	exec "clist"
 endfunc
 func Run()
 	exec "w"
 	exec "make run"
+endfunc
+func Clean()
+	exec "w"
+	exec "make clean"
 endfunc
 func Test()
 	exec "15vs ."
@@ -78,9 +92,12 @@ map <F4> :tabp<CR>
 map <F5> :tabn<CR>
 map <C-a> ggVG
 map <C-p> "+p
+map <F8> <ESC>:call ErrorList()<CR>
+map <C-F8> <ESC>:call Debug()<CR>
 map <F9> <ESC>:call Compile()<CR>
 map <C-F9> <ESC>:call Run()<CR>
-map <F8> <ESC>:call ErrorList()<CR>
+map <F10> <ESC>:call DebugCompile()<CR>
+map <C-F10> <ESC>:call Clean()<CR>
 map <silent><F6> :s#^#// #g<CR>
 map <silent><F7> :s#^// ##g<CR>
 cmap <C-j> <Left>

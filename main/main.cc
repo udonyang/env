@@ -33,7 +33,7 @@ typedef pair<int, int> II;
 
 //macro
 #define WHERE	puts(__func__);
-#define PA(H, A, I, S, E, F,...) {\
+#define PA(H, I, S, E, F,...) {\
 	puts(H);\
 	for (int I = (S); I < (E); I++) {\
 		printf(F,##__VA_ARGS__);\

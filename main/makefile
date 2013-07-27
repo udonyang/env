@@ -1,4 +1,7 @@
-main: *.cc
-.PHONY: clean run
+main: main.cc
+	gcc main.cc -o main -lstdc++ -g
+.PHONY: debug clean run
+debug:
+	gdb main
 run:
-	./$(basename $(wildcard *.cpp))
+	./main
