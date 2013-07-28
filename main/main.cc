@@ -44,7 +44,8 @@ typedef pair<int, int> II;
 #endif
 
 //main
-int main() {
+int main()
+{
 #if 1
 	freopen(input, "r", stdin);
 	//freopen(output, "w", stdout);
