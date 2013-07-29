@@ -1,4 +1,4 @@
-#pragma comment(linker, "\STACK:65535000")
+// #pragma comment(linker, "\STACK:65535000")
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -6,7 +6,7 @@
 int main(void)
 {
 #if 1
-	freopen(input, "r", stdin);
+	freopen("input.in", "r", stdin);
 #endif
 	for ( ; ; ) {
 	}
