@@ -1,7 +1,6 @@
 "Global Value
 
 "Setting
-colorscheme desert
 set langmenu=en_US.UTF-8
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
