@@ -9,9 +9,9 @@ typedef long long LL;
 int main()
 {
 #if 1
-	freopen("input.in", "r", stdin);
+  freopen("input.in", "r", stdin);
 #endif
-	for ( ; ; ) {
-	}
-	return 0;
+  for ( ; ; ) {
+  }
+  return 0;
 }
