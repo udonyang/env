@@ -43,15 +43,10 @@ struct splay {
   {
     splay_node *y = x->push()->s[!lr]->push();
     x->s[!lr] = y->s[lr];
-    if (y->s[lr]) {
-      y->s[lr]->p = x;
-    }
+    if (y->s[lr]) y->s[lr]->p = x;
     y->p = x->p;
-    if (!x->p) {
-      rt = y;
-    } else {
-      x->p->s[x->p->s[0] != x] = y;
-    }
+    if (!x->p) rt = y;
+    else x->p->s[x->p->s[0] != x] = y;
     x->p = y;
     y->s[lr] = x;
     return x->update();
@@ -65,11 +60,8 @@ struct splay {
         break;
       }
       bool lrg = x->p->p->s[0] != x->p;
-      if (lrp ^ lrg) {
-        roate(x->p, lrg);
-      } else {
-        roate(x->p->p, !lrg);
-      }
+      if (lrp ^ lrg) roate(x->p, lrg);
+      else roate(x->p->p, !lrg);
       roate(x->p, !lrg);
     }
     return x->update();
