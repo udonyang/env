@@ -1,4 +1,4 @@
-#if 1|dwylkz
+#if 1|include
 #include <algorithm>
 #include <cassert>
 #include <cctype>
@@ -14,12 +14,13 @@
 #include <stack>
 #include <string>
 #include <vector>
+#endif
+using namespace std;
+namespace dwylkz {
 #define _fl(c, a, b) for (int c = (a); c < (b); c++)
 #define _fln(c, a, b, n) for (int c = (a); c < (b); c += (n))
 #define _rfl(c, a, b) for (int c = (a)-1; (b) <= c; c--)
 #define _rfln(c, a, b, n) for (int c = (a)-1; (b) <= c; c -= (n))
-#define _efl(c, a, L, E) for (int c = (L)[a]; c != -1; c = (E)[c].to)
-#define _refl(c, a, L, E) for (int &c = (L)[a]; c != -1; c = (E)[c].to)
 #define _ms(c, a) memset((c), (a), sizeof(c))
 #define _mc(c, a) memcpy((c), (a), sizeof(a))
 #define _sl(c) strlen(c)
@@ -35,25 +36,25 @@
 #define _upb upper_bound
 #define _uni(c, a) unique((c), (a))
 #define _pt(x...) fprintf(stderr,""x)
-#define _flpt(c, a, b, x...) {\
+#define _flpt(h, c, a, b, x...) {\
+  _pt(h);\
   _fl(c, (a), (b)) _pt(x);\
   _pt("\n");\
 }
-#define _itflpt(c, a, b, x...) {\
+#define _itflpt(h, c, a, b, x...) {\
+  _pt(h);\
   _itfl(c, (a), (b)) _pt(x);\
   _pt("\n");\
 }
 #define _wait(x...) for( ; x; )
-#define _ls(x, y) ((x)<<(y))
-#define _rs(x, y) ((x)>>(y))
-#define _gb(x, y) (_rs((x), (y))&1)
-#define _sb(x, y) ((x)|_ls(1, (y)))
+#define _bw (1)
+#define _bm ((1<<_bw)-1)
+#define _ls(x, y) ((x)<<((y)*_bw))
+#define _rs(x, y) ((x)>>((y)*_bw))
+#define _gb(x, y) (_rs((x), (y))&_bm)
 #define _cb(x, y) ((x)&~_ls(1, (y)))
 #define _lb(x) (-x&x)
-#endif
-using namespace std;
-namespace dwylkz {
-  const int N = 1e6+10;
+  const int N = 5e4+10;
   const int MOD = 1e9+7;
   const double EPS = 1e-8;
   typedef long long LL;
@@ -65,13 +66,40 @@ namespace dwylkz {
   typedef map<int, int> MII;
   typedef map<string, int> MSI;
   typedef vector<int> VI;
+  typedef vector<LL> VLL;
   typedef vector<string> VS;
 }
 using namespace dwylkz;
+namespace graph {
+#define _efl(c, a, L, E) for (int c = (L)[a]; c != -1; c = (E)[c].to)
+#define _refl(c, a, L, E) for (int &c = (L)[a]; c != -1; c = (E)[c].to)
+  struct edge {
+    int v, to;
+  };
+  struct vertice {
+  };
+  typedef vector<vertice> VV;
+  typedef vector<edge> VE;
+  VV V;
+  VE E;
+  VI L;
+  void init(int n)
+  {
+    E.clear();
+    L = VI(n, -1);
+    V = VV(n);
+  }
+  void add(int u, int v)
+  {
+    edge t = {v, L[u]};
+    L[u] = _sz(E);
+    E._pub(t);
+  }
+}
+using namespace graph;
 
 int main()
 {
-  _itflpt(VI, i, v, "%d\n", *i);
 #if 1
   freopen("input.in", "r", stdin);
 #endif
