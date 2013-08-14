@@ -1,11 +1,15 @@
 #if 1|include
 #include <algorithm>
+#include <bitset>
 #include <cassert>
 #include <cctype>
+#include <climits>
 #include <cmath>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <ctime>
+#include <deque>
 #include <iostream>
 #include <list>
 #include <map>
@@ -52,8 +56,9 @@ namespace dwylkz {
 #define _ls(x, y) ((x)<<((y)*_bw))
 #define _rs(x, y) ((x)>>((y)*_bw))
 #define _gb(x, y) (_rs((x), (y))&_bm)
-#define _cb(x, y) ((x)&~_ls(1, (y)))
+#define _sb(x, y, z) ((x)&~_ls(_bm, (y))|_ls((z), (y)))
 #define _lb(x) (-x&x)
+#define _mp make_pair
   const int N = 5e4+10;
   const int MOD = 1e9+7;
   const double EPS = 1e-8;
@@ -64,10 +69,32 @@ namespace dwylkz {
   typedef char CA[N];
   typedef LL LLA[N];
   typedef map<int, int> MII;
+  typedef map<LL, int> MLLI;
   typedef map<string, int> MSI;
   typedef vector<int> VI;
   typedef vector<LL> VLL;
   typedef vector<string> VS;
+  typedef pair<int, LL> ILL;
+int logn(LL x, LL n, LL o = 1, int rv = 0)
+{
+  for ( ; o <= x; o *= n) rv++;
+  return rv-1;
+}
+int bitnum(LL x, int rv = 0)
+{
+  for ( ; x; x -= _lb(x)) rv++;
+  return rv;
+}
+char *lltoa(LL x)
+{
+  static char ib[20];
+  char s = x < 0? (x *= -1, 1): 0, *i = ib;
+  for ( ; x; x /= 10) *i++ = x%10+'0';
+  if (s) *i++ = '-';
+  for (int j = 0, l = _sl(ib); j < l/2; j++)
+    swap(ib[j], ib[l-j-1]);
+  return ib;
+}
 }
 using namespace dwylkz;
 namespace graph {
