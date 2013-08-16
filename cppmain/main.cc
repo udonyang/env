@@ -1,4 +1,4 @@
-#if 1|include
+#if 1006100106
 #include <algorithm>
 #include <bitset>
 #include <cassert>
@@ -75,6 +75,7 @@ namespace dwylkz {
   typedef vector<LL> VLL;
   typedef vector<string> VS;
   typedef pair<int, LL> ILL;
+  typedef pair<int, int> II;
 int logn(LL x, LL n, LL o = 1, int rv = 0)
 {
   for ( ; o <= x; o *= n) rv++;
