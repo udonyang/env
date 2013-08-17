@@ -1,6 +1,7 @@
 "Global Value
 
 "Setting
+colorscheme desert
 set langmenu=en_US.UTF-8
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
@@ -13,10 +14,7 @@ set go-=m
 set smartindent
 set autochdir
 set autoindent
-set smartindent
 set backspace=2
-set guifont=Courier\ New
-set cindent
 set columns=120
 set foldmethod=syntax
 set nohlsearch
@@ -25,8 +23,8 @@ set lines=40
 set nocompatible
 set noswapfile
 set number
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 let g:netrw_liststyle=3
 
 "autocmd
@@ -43,12 +41,13 @@ func TypeCheck()
 	if &filetype != 'cpp'
 		set filetype=c
 	endif
+	set cindent
     set tabstop=2
     set shiftwidth=2
     set expandtab
   else
-    set tabstop=4
-    set shiftwidth=4
+    set tabstop=2
+    set shiftwidth=2
     set noexpandtab
   endif
 endfunc
@@ -89,6 +88,7 @@ map <F2> :call Test()<CR>
 map <F3> :call Output()<CR>
 map <F4> :tabp<CR>
 map <F5> :tabn<CR>
+map <C-s> :w<CR>
 map <C-a> ggVG
 map <C-p> "+p
 map <F8> <ESC>:call ErrorList()<CR>
