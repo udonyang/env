@@ -2,16 +2,15 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-const int maxn = 1e5;
+const int N = 1e5;
 
 #if 1
-void sa_da(int *s, int n, int *sa, int m)
-{
+void sa_da(int *s, int n, int *sa, int m) {
 #define da_F(c, a, b) for (int c = (a); i < (b); i++)
 #define da_C(s, a, b, l) (s[a] == s[b] && s[a+l] == s[b+l])
 #define da_R(x, y, z) da_F(i, 0, m) ws[i] = 0; da_F(i, 0, n) ws[x]++;\
   da_F(i, 1, m) ws[i] += ws[i-1]; da_F(i, 0, n) sa[--ws[y]] = z;
-  static int wa[maxn], wb[maxn], wv[maxn], ws[maxn];
+  static int wa[N], wb[N], wv[N], ws[N];
   int *x = wa, *y = wb;
   da_R(x[i] = s[i], x[n-i-1], n-i-1);
   for(int j = 1,  p = 1; p < n; j *= 2, m = p) {
@@ -39,7 +38,7 @@ void sa_dc3(int *s, int n, int *sa, int m)
   dc3_F(i, 0, m) ws[i] = 0; dc3_F(i, 0, n) ws[wv[i]]++;\
   dc3_F(i, 1, m) ws[i] += ws[i-1];\
   dc3_F(i, 0, n) (b)[--ws[wv[n-i-1]]] = a[n-i-1];
-  static int wa[maxn], wb[maxn], wv[maxn], ws[maxn];
+  static int wa[N], wb[N], wv[N], ws[N];
   int i, j, *rn = s+n, *san = sa+n, ta = 0, tb = (n+1)/3, tbc = 0, p;
   dc3_F(i, s[n] = s[n+1] = 0, n) if(i%3) wa[tbc++] = i;
   dc3_sort(s+2, wa, wb, tbc, m);
@@ -59,45 +58,25 @@ void sa_dc3(int *s, int n, int *sa, int m)
   for( ; j < tbc; p++) sa[p] = wb[j++];
 }
 #endif
-void sa_ch(int *s, int n, int *sa, int *h)
-{
-  static int r[maxn];
+void sa_ch(int *s, int n, int *sa, int *h) {
+  static int r[N];
   for (int i = 1; i < n; i++) r[sa[i]] = i;
   for (int i = 0, j, k = 0; i < n-1; h[r[i++]] = k)
     for (k? k--: 0, j = sa[r[i]-1]; s[i+k] == s[j+k]; k++);
 }
-void icats(int *b, int *l, char *s)
-{
+void icats(int *b, int *l, char *s) {
   static int delim = 'z'+1;
   for (*l += strlen(s)+1; *s; s++) *b++ = *s;
   *b++ = delim++;
 }
-struct mono_stack {
-  int *s, *t;
-  void init(int *_s)
-  { 
-    t = &(*(s = _s) = 0x7fffffff);
-  }
-  void push(int x)
-  {
-    for ( ; *t <= x; t--);
-    *++t = x;
-  }
-  int top()
-  {
-    return *t;
-  }
-};
-void rmq_init(int (*s)[N], int l, int *k)
-{
+void rmq_init(int (*s)[N], int l, int *k) {
   for (int i = 0; i < l; i++) s[0][i] = i;
   for (int i = 1; i < 20; i++)
-    if ((1<<i) < l) for (int j = 0; j < l; j++)
+    if ((1<<i) <= l) for (int j = 0; j < l; j++)
       if (k[s[i-1][j]] < k[s[i-1][j+(1<<(i-1))]]) s[i][j] = s[i-1][j];
       else s[i][j] = s[i-1][j+(1<<(i-1))];
 }
-int rmq_ask(int (*s)[N], int l, int r, int *k)
-{
+int rmq_ask(int (*s)[N], int l, int r, int *k) {
   if (l > r) swap(l ,r);
   int i = r-l+1, o = 1, j = 0;
   for (int o = 1 ; o <= i; o <<= 1) j++;
