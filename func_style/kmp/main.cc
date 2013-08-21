@@ -1,7 +1,6 @@
 #include <cstdio>
 
-int kmp(char *s, char *p, int *f, int o)
-{
+int kmp(char *s, char *p, int *f, int o) {
   int sl = strlen(s), pl = strlen(p);
   for (int i = 0, j = -1; (o&1) && i<pl; i++) {
     for (j -= (j>=0); j!=-1 && p[i]!=p[j+1]; j = f[j]);

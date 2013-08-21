@@ -1,52 +1,42 @@
 #include <cstdio>
 
-struct segment_node {
-  segment_node *ls, *rs;
+struct seg_t {
+  seg_t *ls, *rs;
   int l, r;
-  void set()
-  {
+  void set() {
   }
-  void push()
-  {
+  void push() {
   }
-  void update()
-  {
+  void update() {
   }
-  int len()
-  {
+  int len() {
   }
-  int mid()
-  {
+  int mid() {
     return l + r >> 1;
   }
   static const int pool_size = 1e6+10;
-  static segment_node pool[pool_size], *pool_top;
-  static void init()
-  {
+  static seg_t pool[pool_size], *pool_top;
+  static void init() {
     pool_top = pool;
   }
-  static segment_node *make()
-  {
+  static seg_t *make() {
     return pool_top++;
   }
-} segment_node::pool[], *segment_node::pool_top;
-struct segment {
-  segment_node *rt;
-  void init(int l, int r)
-  {
-    build(rt = segment_node::make(), l, r);
+} seg_t::pool[], *seg_t::pool_top;
+struct seg {
+  seg_t *rt;
+  void init(int l, int r) {
+    build(rt = seg_t::make(), l, r);
   }
-  void build(segment_node *x, int l, int r)
-  {
-    *x = (segment_node){0, 0, l, r};
+  void build(seg_t *x, int l, int r) {
+    *x = (seg_t){0, 0, l, r};
     if (l < r) {
       int m = l + r >> 1;
-      build(x->ls = segment_node::make(), l, m);
-      build(x->rs = segment_node::make(), m + 1, r);
+      build(x->ls = seg_t::make(), l, m);
+      build(x->rs = seg_t::make(), m + 1, r);
     }
   }
-  void cover(segment_node *x, int l, int r)
-  {
+  void cover(seg_t *x, int l, int r) {
     if (l <= x->l && x->r <= r) {
       x->set();
     } else {
