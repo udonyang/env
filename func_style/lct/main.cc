@@ -41,7 +41,7 @@ namespace lct {
       }
       return this;
     }
-    node *update() {
+    node *pull() {
       sz = 1;
       mx = w;
       for (int i = 0; i < 2; i++)
@@ -51,23 +51,23 @@ namespace lct {
         }
       return this;
     }
-    node *rotate() {
+    node *spin() {
       node *y = p->push();
       int b = push()->which();
-      y->sets(b, s[!b])->update();
+      y->sets(b, s[!b])->pull();
       if (y->root()) p = y->p;
       else y->p->sets(y->which(), this);
       return sets(!b, y);
     }
     node *splay() {
       for ( ; !root(); ) 
-        if (p->root()) rotate();
+        if (p->root()) spin();
         else {
-          if (which() == p->which()) p->rotate();
-          else rotate();
-          rotate();
+          if (which() == p->which()) p->spin();
+          else spin();
+          spin();
         }
-      return update();
+      return pull();
     }
     node *end(int b) {
       node *x = this;
@@ -99,7 +99,7 @@ namespace lct {
           return &rv;
         }
       }
-      y->sets(1, z)->update();
+      y->sets(1, z)->pull();
     }
     return x->splay();
   }
