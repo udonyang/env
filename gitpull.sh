@@ -1,6 +1,6 @@
 #!
-tsocks git pull -v
+git pull -v
 cd ..
 cd ACMPS
-tsocks git pull -v
+git pull -v
 exit
