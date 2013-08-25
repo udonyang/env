@@ -31,12 +31,9 @@ int CTEC(int l, int *t) {
 	int res = 0;
 	for (int i = 0; i < l; i++) {
 		int cnt = 0;
-		for (int j = i + 1; j < l; j++) {
-			if (t[j] < t[i]) {
-				cnt++;
-			}
-		}
-		res += cnt * fac[l - i - 1];
+		for (int j = i + 1; j < l; j++)
+			if (t[j] < t[i]) cnt++;
+		res += cnt * fac[l-i-1];
 	}
 	return res;
 }
