@@ -3,7 +3,7 @@
 using namespace std;
 const int N = 1e5+10;
 
-struct rmq_t {
+namespace rmq {
   void init(int (*s)[N], int l, int *k) {
     for (int i = 0; i < l; i++) s[0][i] = i;
     for (int i = 1; i < 20; i++)
