@@ -1,6 +1,6 @@
 struct sap_t {
   int dis[N], gap[N], _L[N], se[N];
-  int operator () (edge_t *E, int *L, int V, int src, int snk) {
+  int operator () (vector<edge_t> &E, int *L, int V, int src, int snk) {
     int mxf = 0, te = 0;
     memcpy(_L, L, sizeof(L));  
     memset(dis, -1, sizeof(dis));
@@ -19,7 +19,7 @@ struct sap_t {
       if (_L[u] != -1) {
         u = E[se[te++] = _L[u]].v;
         if (u == snk) {
-          int _i = 0, mf = inf;
+          int _i = 0, mf = 0x7fffffff;
           for (int i = 0; i < te; i++)
             if (E[se[i]].w < mf) {
               mf = E[se[i]].w;
