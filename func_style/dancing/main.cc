@@ -159,52 +159,6 @@ struct dancing {
 #endif
 
 // exact
-#if 0
-#if 1 //Header
-#include <cstdio>
-#include <cstdlib>
-#include <iostream>
-#include <cstring>
-#include <string>
-#include <vector>
-#include <map>
-#include <algorithm>
-#include <cctype>
-#include <queue>
-#include <stack>
-#include <cmath>
-using namespace std;
-#endif
-#if 1 //Macro
-//STL-Alias
-#define UN(c, a) unique(c, a)
-#define MS(c, a) memset(c, a, sizeof c)
-#define FLC(c, a ,b) fill(c, c + a, b)
-#define LOS(c, a, b) lower_bound(c, a, b)
-#define UPS(c, a, b) upper_bound(c, a, b)
-//Syntax-Alias
-#define Rep(c, a, b) for (int c = (a); c < (b); c++)
-#define Nre(c, a, b) for (int c = (a); c > (b); c--)
-//DEBUG
-#define FK puts("Fu*k here!")
-#define PA(s, c, a, b, p, f){\
-	printf(s);\
-	Rep(c, a, b) printf(p, (f));\
-	puts("");}
-//Constant
-#define INFI (0x7fffffff)
-#define MOD ()
-#define MAXN (10)
-//Type-Alias
-typedef long long LL;
-typedef long double LD;
-typedef int AI[MAXN];
-typedef bool AB[MAXN];
-typedef double AD[MAXN];
-typedef LL ALL[MAXN];
-typedef LD ALD[MAXN];
-#endif
-
 struct dancing {
 #define dfor(c, a, b) for (int c = a[b]; c != b; c = a[c])
   static const int row_size = 729+10, column_size = 324+10,
@@ -294,45 +248,7 @@ struct dancing {
     return 0;
   }
 #undef dfor
-};
-dancing dlx;
-
-char B[MAXN * MAXN];
-
-int main()
-{
-#if 1
-	freopen("input.in", "r", stdin);
-#endif
-	while (scanf("%s", B), strcmp(B, "end"))
-	{
-		//Initialize
-		dlx.init(324);
-		Rep(p, 0, 81)
-		{
-			int h = 0, o = B[p] - '0',
-				r = p / 9, c = p % 9;
-			if (B[p] == '.') o = 9;
-			else h = o - 1;
-			Rep(i, h, o)
-			{
-				int u = p * 9 + i;
-				dlx.push(u, r * 9 + i);
-				dlx.push(u, c * 9 + i + 81);
-				dlx.push(u, ((r / 3) * 3 + (c / 3)) * 9 + i + 162);
-				dlx.push(u, p + 243);
-			}
-		}
-		//Solve
-		dlx.exactly_dance();
-		Rep(i, 0, 729) if (dlx.use[i + 1])
-			printf("%d", i % 9 + 1);
-		puts("");
-	}
-	return 0;
-}
-
-#endif
+} dlx;
 
 // duplicate
 #if 0
