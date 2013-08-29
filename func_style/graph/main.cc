@@ -7,15 +7,17 @@ const int N = 10;
 namespace graph {
   struct edge_t {
     int v, to;
-  } E[N<<2];
+  };
+  vector<edge_t> E;
   int L[N];
   void init() {
-    E[0] = 0
+    E.clear();
     memset(L, -1, sizeof(L));
   }
   void add(int u, int v) {
     edge_t t = {v, L[u]};
-    E[L[u] = ++E[0]] = t;
+    L[u] = E.size();
+    E.push_back(t);
   }
 }
 
