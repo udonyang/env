@@ -2,8 +2,8 @@
 const int N = 1e5;
 
 struct spfa_t {
-  int d[N], b[N], c[N], s[N];
-  int operator () (edge_t *E, int *L, int n, int u) {
+  int d[N], b[N], c[N], s[N], mx[N];
+  int operator () (vector<edge_t> &E, int *L, int n, int u) {
     memset(d, 0x7f, sizeof(d));
     memset(b, 0, sizeof(b));
     memset(c, 0, sizeof(c));

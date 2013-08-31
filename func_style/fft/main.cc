@@ -16,9 +16,9 @@ struct b2_fft_t {
     }
   }
   void fft(int on) {
-    double dpi = 2.0*acos(-1.)*on;
+    double dpi = acos(-1.)*on;
     for (int m = 1; m < c.size(); m <<= 1) {
-      cd_t wn(cos(dpi/(m<<1)), sin(dpi/(m<<1)));
+      cd_t wn(cos(dpi/m), sin(dpi/m));
       for (int j = 0; j < c.size(); j += m<<1) {
         cd_t w = 1.;
         for (int k = j; k < j+m; k++, w *= wn) {
