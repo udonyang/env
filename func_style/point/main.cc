@@ -6,7 +6,7 @@ struct pt_t {
     x = _x, y = _y;
   }
   double operator [] (int b) {
-    return b? x*x+y*y: sqrt(x*x+y*y);
+    return b? b < 2? abs(x)+abs(y): x*x+y*y: sqrt(x*x+y*y);
   }
   friend pt_t operator + (const pt_t &lhs, const pt_t &rhs) {
     return pt_t(lhs.x+rhs.x, lhs.y+rhs.y);
