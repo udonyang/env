@@ -26,7 +26,7 @@ int crt() {
 	int x = 0, n = 1, i, bi;
 	for (i = 0; i < N.size(); i++) n *= N[i];
 	for (i = 0; i < A.size(); i++) {
-		bi = MLE(n / N[i], 1, N[i]);
+		bi = mle(n / N[i], 1, N[i]);
 		x = (x+A[i]*bi*(n/N[i]))%n;
 	}
 	return x;

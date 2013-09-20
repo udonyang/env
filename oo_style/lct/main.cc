@@ -1,9 +1,8 @@
 #include <cstdio>
 #include <iostream>
 using namespace std;
-const int N = 1e4+10;
 
-namespace lct {
+template<int N> struct lct_t {
   struct node {
     node *s[2], *p;
     int sz, rev, w, mx, at;
@@ -126,8 +125,7 @@ namespace lct {
     access(x);
     return access(y, 2)->mx;
   }
-}
-using namespace lct;
+};
 
 //main
 int main() {

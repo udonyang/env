@@ -1,3 +1,6 @@
+/* Contor coding.
+ * Notice that x in [1, l!] in array->integer mapping
+ * while x in [0, l!) in integer->array mapping. */
 struct contor_t {
   int f[N];
   contor_t() {

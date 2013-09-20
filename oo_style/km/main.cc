@@ -1,5 +1,9 @@
 #include <cstdio>
 
+/* Notice that we could use this, when left side has the same amount
+ * as right side. (perfect match)
+ * If the situation above doesn't be hold, Cost-Flow algorithm is recommanded.
+ * */
 struct km_t {
   vector<edge_t> E;
   typedef int kmia_t[N];

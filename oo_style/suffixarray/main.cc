@@ -2,9 +2,10 @@
 #include <cstring>
 #include <iostream>
 using namespace std;
-const int N = 1e5;
 
-struct sa_t {
+/* Notice that the input array should end with 0 (s[s's length-1] = 0)
+ * and then invoke dc3, remember to expand N to 3 times of it. */
+template<int N> struct sa_t {
   int wa[N], wb[N], wv[N], ws[N], r[N];
   void da(int *s, int n, int *sa, int m) {
 #define da_F(c, a, b) for (int c = (a); i < (b); i++)
@@ -63,7 +64,7 @@ struct sa_t {
     for (*l += strlen(s)+1; *s; s++) *b++ = *s;
     *b++ = delim++;
   }
-} sa;
+};
 
 //main
 int main() {
