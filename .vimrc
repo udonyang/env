@@ -25,6 +25,7 @@ set noswapfile
 set number
 set shiftwidth=2
 set tabstop=2
+set expandtab
 let g:netrw_liststyle=3
 
 "autocmd
@@ -44,11 +45,9 @@ func TypeCheck()
 	set cindent
     set tabstop=2
     set shiftwidth=2
-    set expandtab
   else
     set tabstop=2
     set shiftwidth=2
-    set noexpandtab
   endif
 endfunc
 func Compile()
