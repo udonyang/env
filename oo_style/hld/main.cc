@@ -1,15 +1,14 @@
 #include <cstdio>
 
-struct hld_t {
+template<int N> struct hld_t {
   typedef int ai_t[N];
   int n;
-  ai_t d, sz, fa, hv, in, cl, id, w;
+  ai_t d, sz, fa, hv, in, cl, id;
   void operator () (vector<edge_t> &E, int *L, int V, int u) {
     vector<int> q(1, u);
     n = V;
     d[u] = 0;
     fa[u] = -1;
-    w[u] = -1;
     for (int h = 0; h < q.size(); h++) {
       u = q[h];
       for (int e = L[u]; ~e; e = E[e].to) {
@@ -17,7 +16,6 @@ struct hld_t {
         if (v == fa[u]) continue;
         fa[v] = u;
         d[v] = d[u]+1;
-        w[v] = E[e].w;
         q.push_back(v);
       }
     }
@@ -54,7 +52,19 @@ struct hld_t {
       }
     }
   }
-} hld;
+  void make() {
+  }
+  void put(int v, int w) {
+  }
+  int ask(int u, int v) {
+    int rv = 0;
+    for ( ; in[u]^in[v]; u = fa[in[u]]) {
+      if (d[in[u]] > d[in[v]]) swap(u, v);
+    }
+    if (id[u] > id[v]) swap(u, v);
+    return rv;
+  }
+};
 
 //main
 int main() {
