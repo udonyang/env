@@ -89,3 +89,9 @@ w `fits` _ | w < 0 = False
 w `fits` "" = True
 w `fits` ('\n':_) = True
 w `fits` (c:cs) = (w-1) `fits` cs
+
+fill::Int->Doc->Doc
+fill width xs = undefined;
+
+nest::Int->Doc->Doc
+nest width xs = undefined;
