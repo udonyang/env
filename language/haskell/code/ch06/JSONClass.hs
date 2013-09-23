@@ -1,9 +1,6 @@
 module JSONClass where
 
-data JValue = JString [Char]
-  | JBool Bool
-  | JNull
-  deriving (Show)
+import SimpleJSON
 
 type JSONError = String
 
@@ -17,5 +14,10 @@ instance JSON JValue where
 
 instance JSON Bool where
   toJValue = JBool
-  fromJValue (JBool b) = Right b
+  fromJValue (JBool a) = Right a
   fromJValue _ = Left "not a JSON boolean"
+
+instance JSON [a] where
+  toJValue = JString
+  fromJValue (JString a) = Right a
+  fromJValue _ = Left "not a JSON string"
