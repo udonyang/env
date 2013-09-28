@@ -14,6 +14,7 @@ set go-=m
 set smartindent
 set autochdir
 set autoindent
+set smartindent
 set backspace=2
 set columns=120
 set foldmethod=syntax

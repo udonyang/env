@@ -1,9 +1,8 @@
 module MyShow where
 
 class MyShow a where
+  myShowsPrec :: Int -> a -> myShowS
   myShow :: a -> String
-  myShow a = a
-  myShowList :: [a] -> String
-  myShowList [a] = "[" ++ helpper [a] where
-    helpper [] = "]"
-    helpper (a:as) = a ++ ", " ++ helpper as
+  myShowList :: [a] -> myShowS
+
+instance MyShow [a] where
