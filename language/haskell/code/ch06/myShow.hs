@@ -1,8 +1,14 @@
 module MyShow where
 
 class MyShow a where
-  myShowsPrec :: Int -> a -> myShowS
   myShow :: a -> String
-  myShowList :: [a] -> myShowS
+  myShowList :: [a] -> String
+  myShow _ = ""
+  myShowList _ = ""
 
-instance MyShow [a] where
+instance MyShow Char where
+  myShow a = a:[]
+  myShowList a = a
+
+instance MyShow a => MyShow [a] where
+  myShow = myShowList
