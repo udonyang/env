@@ -157,41 +157,45 @@ namespace dal {
       }
     };
 
-    /* Chinese Remind Theory
-     * */
-    template<int N> struct crt_t {
-      int a[N], b[N];
-      int gcd(int a, int b, int &x, int &y) {
-        int d, tx, ty;
-        if (b == 0) {
-          x = 1;
-          y = 0;
-          return a;
-        }
-        d = gcd(b, a%b, tx, ty);
-        x = ty;
-        y = tx-(a/b)*ty;
-        return d;
-      }
-      int mle(int a, int b, int n) {
-        int d, x, y;
-        d = gcd(a, n, x, y);
-        if (b%d == 0) {
-          x = x*b/d%n;
-          return x;
-        }
-        return 0;
-      }
-      int crt() {
-        int x = 0, n = 1, i, bi;
-        for (i = 0; i < b.size(); i++) n *= b[i];
-        for (i = 0; i < a.size(); i++) {
-          bi = mle(n / b[i], 1, b[i]);
-          x = (x+a[i]*bi*(n/b[i]))%n;
-        }
-        return x;
-      }
-    };
+/* Chinese Remind Theory
+ * */
+template<int N> struct crt_t {
+  vector<int> a, b;
+  int gcd(int a, int b, int &x, int &y) {
+    int d, tx, ty;
+    if (b == 0) {
+      x = 1;
+      y = 0;
+      return a;
+    }
+    d = gcd(b, a%b, tx, ty);
+    x = ty;
+    y = tx-(a/b)*ty;
+    return d;
+  }
+  int mle(int a, int b, int n) {
+    int d, x, y;
+    d = gcd(a, n, x, y);
+    if (b%d == 0) {
+      x = 1ll*x*b/d%n;
+      return x;
+    }
+    return 0;
+  }
+  int init() {
+    a.clear();
+    b.clear();
+  }
+  int operator () () {
+    int x = 0, n = 1, i, bi;
+    for (i = 0; i < b.size(); i++) n *= b[i];
+    for (i = 0; i < a.size(); i++) {
+      bi = mle(n/b[i], 1, b[i]);
+      x = (x+1ll*a[i]*bi*(n/b[i]))%n;
+    }
+    return x;
+  }
+};
 
     /* Base 2 Fast Fourier Transfrom
      * (): transfrom
