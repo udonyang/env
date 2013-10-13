@@ -157,45 +157,45 @@ namespace dal {
       }
     };
 
-/* Chinese Remind Theory
- * */
-template<int N> struct crt_t {
-  vector<int> a, b;
-  int gcd(int a, int b, int &x, int &y) {
-    int d, tx, ty;
-    if (b == 0) {
-      x = 1;
-      y = 0;
-      return a;
-    }
-    d = gcd(b, a%b, tx, ty);
-    x = ty;
-    y = tx-(a/b)*ty;
-    return d;
-  }
-  int mle(int a, int b, int n) {
-    int d, x, y;
-    d = gcd(a, n, x, y);
-    if (b%d == 0) {
-      x = 1ll*x*b/d%n;
-      return x;
-    }
-    return 0;
-  }
-  int init() {
-    a.clear();
-    b.clear();
-  }
-  int operator () () {
-    int x = 0, n = 1, i, bi;
-    for (i = 0; i < b.size(); i++) n *= b[i];
-    for (i = 0; i < a.size(); i++) {
-      bi = mle(n/b[i], 1, b[i]);
-      x = (x+1ll*a[i]*bi*(n/b[i]))%n;
-    }
-    return x;
-  }
-};
+    /* Chinese Remind Theory
+     * */
+    template<int N> struct crt_t {
+      vector<int> a, b;
+      int gcd(int a, int b, int &x, int &y) {
+        int d, tx, ty;
+        if (b == 0) {
+          x = 1;
+          y = 0;
+          return a;
+        }
+        d = gcd(b, a%b, tx, ty);
+        x = ty;
+        y = tx-(a/b)*ty;
+        return d;
+      }
+      int mle(int a, int b, int n) {
+        int d, x, y;
+        d = gcd(a, n, x, y);
+        if (b%d == 0) {
+          x = 1ll*x*b/d%n;
+          return x;
+        }
+        return 0;
+      }
+      int init() {
+        a.clear();
+        b.clear();
+      }
+      int operator () () {
+        int x = 0, n = 1, i, bi;
+        for (i = 0; i < b.size(); i++) n *= b[i];
+        for (i = 0; i < a.size(); i++) {
+          bi = mle(n/b[i], 1, b[i]);
+          x = (x+1ll*a[i]*bi*(n/b[i]))%n;
+        }
+        return x;
+      }
+    };
 
     /* Base 2 Fast Fourier Transfrom
      * (): transfrom
@@ -724,6 +724,36 @@ template<int N> struct crt_t {
           if (x->m() < r) rv += ask(l, r, x->rs, y->rs);
         }
         return rv;
+      }
+    };
+
+    /* Functional Trie */
+    template<int N, int D> struct ftrie_t {
+      struct node {
+        node *s[2];
+        int c[2];
+      } s[D*N+D], *top, *phi;
+      void init() {
+        top = s;
+        phi = top++;
+        phi->c[0] = phi->c[1] = 0;
+        phi->s[0] = phi->s[1] = phi;
+      }
+      node *put(int k, node *y, int d = D) {
+        if (!d) return 0;
+        node *x = top++;
+        *x = *y;
+        int i = k>>(d-1)&1;
+        x->c[i]++;
+        x->s[i] = put(k, y->s[i], d-1);
+        return x;
+      }
+      int ask(int k, node *x, node *y, int d = D) {
+        if (!d) return 0;
+        int i = k>>(d-1)&1;
+        if (x->c[!i]-y->c[!i])
+          return (1<<d-1)+ask(k, x->s[!i], y->s[!i], d-1);
+        return ask(k, x->s[i], y->s[i], d-1);
       }
     };
   }
@@ -1562,6 +1592,134 @@ template<int N> struct crt_t {
         return mc;
       }
     };
+  }
+  namespace graph_theory_test {
+
+    struct graph_t {
+      struct edge_t {
+        int v, to, w, id;
+      };
+      vector<edge_t> e;
+      vector<int> h;
+      edge_t &operator [] (int x) {
+        return e[x];
+      }
+      int &operator () (int x) {
+        return h[x];
+      }
+      int size() {
+        return h.size();
+      }
+      void init(int n) {
+        e.clear(), h.resize(n);
+        fill(h.begin(), h.end(), -1);
+      }
+      void add(int u, int v, int w = 0, int id = -1) {
+        edge_t t = {v, h[u], w, id};
+        h[u] = e.size();
+        e.push_back(t);
+      }
+      void badd(int u, int v, int w = 0, int id = -1) {
+        add(u, v, w, id);
+        add(v, u, 0, id);
+      }
+    };
+
+    template<class graph_t> struct sap_t {
+      vector<int> dis, gap;
+      int dfs(graph_t &g, int src, int snk, int u, int f = ~1u>>1) {
+        if (u == snk) return f;
+        int rf = f, md = g.size()-1;
+        for (int e = g(u); ~e; e = g[e].to) {
+          int v = g[e].v, w = g[e].w;
+          if (!w) continue;
+          md = min(md, dis[v]);
+          if (dis[u] != dis[v]+1) continue;
+          int df = dfs(g, src, snk, v, min(w, f));
+          g[e].w -= df, g[e^1].w += df;
+          if (gap[src] == g.size() || !(rf -= df)) return f;
+        }
+        if (!--gap[dis[u]]) gap[src] = g.size();
+        else gap[dis[u] = md+1]++;
+        return f-rf;
+      }
+      int operator () (graph_t &g, int src, int snk) {
+        dis.clear(), gap.clear();
+        for (int i = g.size()<<1; i; i--)
+          dis.push_back(-1), gap.push_back(0);
+        vector<int> q(gap[dis[snk] = 0] = 1, snk);
+        for (int h = 0; h < q.size(); h++)
+          for (int e = g(q[h]); ~e; e = g[e].to)
+            if (g[e^1].w && !~dis[g[e].v])
+              gap[dis[g[e].v] = dis[q[h]]+1]++, q.push_back(g[e].v);
+        int result = 0;
+        for ( ; gap[src] < g.size(); ) result += dfs(g, src, snk, src);
+        return result;
+      }
+    };
+
+    template<class graph_t> struct scc_t {
+      int time, cc;
+      vector<int> dfn, low, in, pushed, st;
+      void dfs(graph_t &g, int u) {
+        st.push_back(u), pushed[u] = 1;
+        dfn[u] = low[u] = time++;
+        for (int e = g(u); ~e; e = g[e].to) {
+          int v = g[e].v;
+          if (!~dfn[v]) dfs(g, v), low[u] = min(low[u], low[v]);
+          else if (pushed[v]) low[u] = min(low[u], dfn[v]);
+        }
+        if (dfn[u] == low[u]) {
+          for ( ; ; ) {
+            in[u = st.back()] = cc;
+            st.pop_back(), pushed[u] = 0;
+            if (dfn[u] == low[u]) break;
+          }
+          cc++;
+        }
+      }
+      void operator () (graph_t &g) {
+        dfn.clear(), low.clear(), in.clear(), pushed.clear(), st.clear();
+        for (int i = 0; i < g.size(); i++)
+          dfn.push_back(-1), low.push_back(-1), in.push_back(-1), pushed.push_back(0);
+        for (int u = time = cc = 0; u < g.size(); u++)
+          if (!~dfn[u]) dfs(g, u);
+      }
+    };
+
+    template<class graph_t, int N> struct hld_t {
+      typedef int ai_t[N];
+      ai_t d, sz, hb, fa, cl, in, id;
+      void link(int h) {
+        cl[h] = 1, in[h] = h, id[h] = 0;
+        for (int v = h; ~hb[v]; )
+          in[v = hb[v]] = h, id[v] = cl[h]++;
+      }
+      void go(graph_t &g, int u, int p = -1, int l = 0) {
+        d[u] = l, sz[u] = 1, hb[u] = -1, fa[u] = p;
+        for (int e = g(u); ~e; e = g[e].to) {
+          int v = g[e].v;
+          if (v == p) continue;
+          go(g, v, u, l+1);
+          sz[u] += sz[v];
+          if (!~hb[u] || sz[hb[u]] < sz[v]) hb[u] = v;
+        }
+        for (int e = g(u); ~e; e = g[e].to)
+          if (g[e].v != p && g[e].v != hb[u]) link(g[e].v);
+        if (!~p) link(u);
+      }
+      void make(int *w, int n) {
+      }
+      int ask(int u, int v) {
+        int result;
+        for ( ; in[u]^in[v]; u = fa[in[u]]) {
+          if (d[in[u]] < d[in[v]]) swap(u, v);
+        }
+        if (id[u] > id[v]) swap(u, v);
+        return result;
+      }
+    };
+
   }
 }
 
