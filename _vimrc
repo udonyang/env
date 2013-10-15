@@ -1,5 +1,4 @@
 "Dwylkz
-"Global Value
 "Setting
 language message en_US.UTF-8
 colorscheme desert
