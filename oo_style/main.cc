@@ -1597,7 +1597,7 @@ namespace dal {
 
     struct graph_t {
       struct edge_t {
-        int v, to, w, id;
+        int v, to;
       };
       vector<edge_t> e;
       vector<int> h;
@@ -1614,14 +1614,13 @@ namespace dal {
         e.clear(), h.resize(n);
         fill(h.begin(), h.end(), -1);
       }
-      void add(int u, int v, int w = 0, int id = -1) {
-        edge_t t = {v, h[u], w, id};
+      void add(int u, int v) {
+        edge_t t = {v, h[u]};
         h[u] = e.size();
         e.push_back(t);
       }
-      void badd(int u, int v, int w = 0, int id = -1) {
-        add(u, v, w, id);
-        add(v, u, 0, id);
+      void badd(int u, int v) {
+        add(u, v), add(v, u);
       }
     };
 
