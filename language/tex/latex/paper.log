@@ -1,11 +1,11 @@
-This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013) (format=xelatex 2013.6.22)  27 JUN 2013 16:53
+This is XeTeX, Version 3.1415926-2.5-0.9999.3 (TeX Live 2013) (format=xelatex 2013.10.12)  16 OCT 2013 14:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **paper.tex
 (./paper.tex
 LaTeX2e <2011/06/27>
-Babel <3.9f> and hyphenation patterns for 5 languages loaded.
+Babel <3.9f> and hyphenation patterns for 78 languages loaded.
 (/usr/local/texlive/2013/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/local/texlive/2013/texmf-dist/tex/latex/base/size10.clo
@@ -140,24 +140,20 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
  [1
 
-] [1]
+] (./paper.toc)
+\tf@toc=\write3
+\openout3 = `paper.toc'.
 
-! LaTeX Error: Environment thm undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.53 \begin{thm}
-                
-? X
- 
+ [1] [1]
+\c@thm=\count105
+ [1] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 1262 strings out of 495618
- 14902 string characters out of 6185890
- 67298 words of memory out of 5000000
- 4486 multiletter control sequences out of 15000+600000
- 9255 words of font info for 34 fonts, out of 8000000 for 9000
- 36 hyphenation exceptions out of 8191
+ 1277 strings out of 493934
+ 14906 string characters out of 6148802
+ 71600 words of memory out of 5000000
+ 4614 multiletter control sequences out of 15000+600000
+ 10206 words of font info for 37 fonts, out of 8000000 for 9000
+ 1144 hyphenation exceptions out of 8191
  27i,8n,20p,222b,212s stack positions out of 5000i,500n,10000p,200000b,80000s
-Output written on paper.pdf (2 pages).
+
+Output written on paper.pdf (4 pages).
