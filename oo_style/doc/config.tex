@@ -1,4 +1,4 @@
-\documentclass[10pt,a4paper,titlepage]{article}
+\documentclass[10pt,a4paper]{article}
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{longtable}
@@ -6,9 +6,13 @@
 \usepackage{listings}
 \usepackage{natbib}
 \usepackage{geometry}
+\usepackage{color}
 
 %geometry
-\setlength{\textwidth}{15cm}
+\setlength{\textwidth}{18.5cm}
+\setlength{\textheight}{25.5cm}
+\setlength{\hoffset}{-.75in}
+\setlength{\voffset}{-.8in}
 
 % itemize
 \renewcommand{\labelitemi}{$\bullet$}
@@ -18,14 +22,15 @@
 \citestyle{nature}
 
 % code
-\lstset{numbers=left, numberstyle=\tiny, frame=shadowbox}
-% \begin{lstlisting}[language=C]
-%   /* hhohoho */
-%   int main() {
-%     printf("hello world");
-%     return 0;
-%   }
-% \end{lstlisting}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{ 
+frame=single,
+language=C++,
+numbers=left,
+commentstyle=\color{mygreen},
+keywordstyle=\color{blue}
+}
 
 % figure
 % h embed

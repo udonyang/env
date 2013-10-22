@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.12)  22 OCT 2013 12:34
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.10.12)  23 OCT 2013 00:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -192,6 +192,23 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 \Gm@layouthoffset=\dimen126
 \Gm@layoutvoffset=\dimen127
 \Gm@dimlist=\toks22
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2013/08/26 1.5b listings language file
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2013/08/26 1.5b listings language file
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
 ))
 (./main.aux)
 \openout1 = `main.aux'.
@@ -279,8 +296,8 @@ e
 * v-part:(T,H,B)=(101.40665pt, 591.5302pt, 152.11pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=426.79134pt
-* \textheight=591.5302pt
+* \textwidth=526.37598pt
+* \textheight=725.54527pt
 * \oddsidemargin=17.3571pt
 * \evensidemargin=17.3571pt
 * \topmargin=-7.86334pt
@@ -292,8 +309,8 @@ e
 * \marginparsep=11.0pt
 * \columnsep=10.0pt
 * \skip\footins=9.0pt plus 4.0pt minus 2.0pt
-* \hoffset=0.0pt
-* \voffset=0.0pt
+* \hoffset=-54.2025pt
+* \voffset=-57.81621pt
 * \mag=1000
 * \@twocolumnfalse
 * \@twosidefalse
@@ -301,50 +318,50 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-[1
+(./main.toc [1
 
-{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[1] (./main.toc)
+{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
 \tf@toc=\write3
 \openout3 = `main.toc'.
 
- [1]
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 21.
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/base/omlcmr.fd
+ [2]
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 59.
+ (/usr/local/texlive/2013/texmf-dist/tex/latex/base/omlcmr.fd
 File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 21.
- [1])
-Runaway argument?
-{^^M  hoho^^M}^^M\newpage^^M^^M\end{document}^^M
-! File ended while scanning use of \lst@next.
-<inserted text> 
-                \par 
-<*> main.tex
-            
-? X
- 
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 59.
+
+[1]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 79.
+ (/usr/local/texlive/2013/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 79.
+ (./body.tex
+[2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17]
+[18] [19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30]) [31]
+(./main.aux) ) 
 Here is how much of TeX's memory you used:
- 4204 strings out of 493311
- 58390 string characters out of 6137855
- 135066 words of memory out of 5000000
- 7612 multiletter control sequences out of 15000+600000
- 8262 words of font info for 30 fonts, out of 8000000 for 9000
+ 5206 strings out of 493311
+ 69089 string characters out of 6137855
+ 210761 words of memory out of 5000000
+ 8594 multiletter control sequences out of 15000+600000
+ 9330 words of font info for 34 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,6n,32p,256b,1093s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
-/usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></
-usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></u
-sr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
-/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/l
-ocal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loc
-al/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb>
-Output written on main.pdf (4 pages, 73362 bytes).
+ 38i,7n,58p,256b,1451s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmbx10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmbx12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmi10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr10.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+12.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
+0.pfb>
+Output written on main.pdf (33 pages, 208422 bytes).
 PDF statistics:
- 45 PDF objects out of 1000 (max. 8388607)
- 31 compressed objects within 1 object stream
+ 134 PDF objects out of 1000 (max. 8388607)
+ 92 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

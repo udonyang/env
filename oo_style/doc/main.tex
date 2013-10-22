@@ -2,38 +2,97 @@
 
 \begin{document}
 
-\title{Dwylkz's Algorithm Library}
-\author{Dwylkz}
+\title{\bf Dwylkz's Algorithm Library}
+\author{GuangZhou University\\Team Kimady\\{Dwylkz(W\=ud\=ong Y\'ang)}}
 \maketitle
-
-\begin{abstract}
-  This is a handy Algorithm Library(I thought).
-\end{abstract}
 
 \pagenumbering{roman}
 \tableofcontents
 \newpage
 \pagenumbering{arabic}
-\def\cpp#1#{\begin{lstlisting}{language=C++}#1\end{lstlisting}}
 
-\section{header}
-\begin{lstlisting}{language=C++}
-#include <cstdio>
-#include <queue>
-#include <algorithm>
-#include <cstring>
-#include <cstring>
-#include <vector>
-#include <complex>
-#include <deque>
-using namespace std;
+\section{Perface}
+  The content enclosed by '$<$' and '$>$' beside template, is
+  just a note which remind us to define something before
+  we use this template.
+
+\section{vimrc}
+\begin{lstlisting}{language=Bash}
+colorscheme desert
+set langmenu=en_US.UTF-8
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+language messages en_US.UTF-8
+syntax on
+filetype on
+filetype plugin indent on
+set smartindent
+set autochdir
+set autoindent
+set smartindent
+set backspace=2
+set columns=120
+set foldmethod=syntax
+set nohlsearch
+set incsearch
+set lines=40
+set nocompatible
+set noswapfile
+set number
+set shiftwidth=2
+set tabstop=2
+set expandtab
+
+func Compile()
+	exec "w"
+	exec "make"
+endfunc
+func Debug()
+	exec "w"
+	exec "make debug"
+endfunc
+func Run()
+	exec "w"
+	exec "make run"
+endfunc
+
+map <F4> :tabp<CR>
+map <F5> :tabn<CR>
+map <C-a> ggVG
+map <C-p> "+p
+map <F8> <ESC>:clist<CR>
+map <C-F8> <ESC>:call Debug()<CR>
+map <F9> <ESC>:call Compile()<CR>
+map <C-F9> <ESC>:call Run()<CR>
+map <silent><F6> :s#^#// #g<CR>
+map <silent><F7> :s#^// ##g<CR>
+vmap <C-y> "+y
 \end{lstlisting}
-\newpage
 
-\section{numberic\_theory}
-\cpp{
-  hoho
+\section{main}
+\begin{lstlisting}
+#include <cstdio>
+#include <cstdlib>
+#include <iostream>
+using namespace std;
+
+int main() {
+#if 1
+  freopen("input.in", "r", stdin);
+#endif
+  return 0;
 }
-\newpage
+\end{lstlisting}
+\section{makefile}
+\begin{lstlisting}{language=make}
+main: main.cc
+	gcc main.cc -o main -lstdc++ -g
+.PHONY: debug clean run
+debug:
+	gdb main
+run:
+	./main
+\end{lstlisting}
+\input body.tex
 
 \end{document}

@@ -8,9 +8,12 @@
 #include <deque>
 using namespace std;
 
+////
 namespace dal {
-  namespace numeric_theory {
-    /* High Precision Integer
+  ////
+  namespace numeric {
+    ////
+    /* High_Precision_Integer
      * */
     struct int_t {
       string d;
@@ -74,8 +77,8 @@ namespace dal {
         return d.data();
       }
     };
-
-    /* Minimum Prime Factor Sieve
+    //=
+    /* Minimum_Prime_Factor_Sieve
      * N  : upper bound
      * p[]: primes
      * n  : primes number
@@ -119,8 +122,8 @@ namespace dal {
         }
       }
     };
-
-    /* Contor coding.
+    //=
+    /* Contor_coding.
      * Notice that x in [1, l!] in array->integer mapping
      * while x in [0, l!) in integer->array mapping. */
     template<int N> struct contor_t {
@@ -156,8 +159,8 @@ namespace dal {
         return rv;
       }
     };
-
-    /* Chinese Remind Theory
+    //=
+    /* Chinese_Remind_Theory
      * */
     template<int N> struct crt_t {
       vector<int> a, b;
@@ -196,8 +199,8 @@ namespace dal {
         return x;
       }
     };
-
-    /* Base 2 Fast Fourier Transfrom
+    //=
+    /* Base_2_Fast_Fourier_Transfrom
      * (): transfrom
      * []: inversion */
     struct b2_fft_t {
@@ -238,8 +241,11 @@ namespace dal {
         brc(x), fft(-1), x = c;
       }
     };
+    //=
   }
-  namespace pattern_match {
+  //=
+  namespace pattern {
+    ////
     /* KMP
      * */
     template<class T> struct kmp_t {
@@ -259,8 +265,8 @@ namespace dal {
         return j;
       }
     };
-
-    /* Extend KMP
+    //=
+    /* Extend_KMP
      * */
     template<class T> struct exkmp_t {
       void operator () (T *p, int pl, int *g) {
@@ -275,7 +281,7 @@ namespace dal {
             if (i+f[i] >= sl || f[i] >= pl || s[i+f[i]] != p[f[i]]) break;
       }
     };
-
+    //=
     /* Manacher
      * */
     template<class T> struct mana_t {
@@ -289,8 +295,8 @@ namespace dal {
         }
       }
     };
-
-    /* Minimum Notation
+    //=
+    /* Minimum_Notation
      * */
     template<class T, class C> struct mnn_t {
       int operator () (T *s, int n) {
@@ -302,8 +308,8 @@ namespace dal {
         return i;
       }
     };
-
-    /* AC automaton
+    //=
+    /* AC_automaton
      * */
     template<class T, int n, int m> struct aca_t {
       struct node {
@@ -340,8 +346,8 @@ namespace dal {
             if (!x->s[i]->ac) mt[x-s][x->s[i]-s] = 1;
       }
     };
-
-    /* Suffix Array
+    //=
+    /* Suffix_Array
      * Notice that the input array should end with 0 (s[s's length-1] = 0)
      * and then invoke dc3, remember to expand N to 3 times of it. */
     template<int N> struct sa_t {
@@ -404,8 +410,8 @@ namespace dal {
         *b++ = delim++;
       }
     };
-
-    /* Suffix Automaton
+    //=
+    /* Suffix_Automaton
      * */
     template<int N, int M> struct sam_t {
       static const int n = N*3;
@@ -442,9 +448,12 @@ namespace dal {
         }
       }
     };
+    //=
   }
-  namespace data_structure {
-    /* RMQ Sparse Table
+  //=
+  namespace data {
+    ////
+    /* RMQ_Sparse_Table
      * */
     template<int N> struct rmq_t {
       int s[20][N], *k;
@@ -464,7 +473,7 @@ namespace dal {
         return k[s[j][l]] < k[s[j][r]]? s[j][l]: s[j][r];
       }
     };
-
+    //=
     /* Splay
      * */
     template<int N> struct splay_t {
@@ -556,8 +565,8 @@ namespace dal {
         return x;
       }
     };
-
-    /* Link-Cut Tree
+    //=
+    /* Link-Cut_Tree
      * */
     template<int N> struct lct_t {
       struct node {
@@ -683,8 +692,8 @@ namespace dal {
         return access(y, 2)->mx;
       }
     };
-
-    /* Functional Segment
+    //=
+    /* Functional_Segment
      * */
     template<int N> struct fs_t {
       struct node {
@@ -726,8 +735,9 @@ namespace dal {
         return rv;
       }
     };
-
-    /* Functional Trie */
+    //=
+    /* Functional_Trie
+     * */
     template<int N, int D> struct ftrie_t {
       struct node {
         node *s[2];
@@ -756,9 +766,12 @@ namespace dal {
         return ask(k, x->s[i], y->s[i], d-1);
       }
     };
+    //=
   }
+  //=
   namespace geometry {
-    /* Float Compare Functions
+    ////
+    /* Float_Compare_Functions
      * */
     struct fc_t {
       double eps;
@@ -775,8 +788,8 @@ namespace dal {
         return lhs-eps > rhs;
       }
     } fc;
-
-    /* 2D point
+    //=
+    /* 2D_point
      * */
     struct pt_t {
       double x, y;
@@ -803,8 +816,8 @@ namespace dal {
         return *this;
       }
     };
-
-    /* Angle Sort
+    //=
+    /* Angle_Sort
      * */
     struct asort_t {
       bool cmpl(pt_t lhs, pt_t rhs) {
@@ -826,8 +839,8 @@ namespace dal {
       }
     } asort;
     pt_t asort_t::o;
-
-    /* Graham Scan
+    //=
+    /* Graham_Scan
      * */
     struct graham_t {
       vector<pt_t> p;
@@ -846,8 +859,11 @@ namespace dal {
           l += (p[(i+1)%p.size()]-p[i])[0];
       }
     };
+    //=
   }
-  namespace graph_theory {
+  //=
+  namespace graph {
+    ////
     /* Graph
      * */
     template<int N> struct graph_t {
@@ -866,8 +882,8 @@ namespace dal {
         E.push_back(t);
       }
     };
-
-    /* Shortest Path Fast Algorithm && Heap Dijkstra
+    //=
+    /* Shortest_Path_Algorithm
      * */
     template<class edge_t, int N> struct spfa_t {
       int d[N], b[N], c[N], s[N], mx[N];
@@ -914,8 +930,8 @@ namespace dal {
         }
       }
     };
-
-    /* Bipartite Graph match
+    //=
+    /* Bipartite_Graph_match
      * */
     template<class edge_t, int N> struct bgm_t {
       int vis[N], pre[N], lma[N], rma[N];
@@ -954,8 +970,8 @@ namespace dal {
         return mmat;
       }
     };
-
-    /* General Graph match
+    //=
+    /* General_Graph_match
      * */
     template<int N> struct blossom_t {
       deque<int> Q;  
@@ -1049,8 +1065,8 @@ namespace dal {
         return ans;
       }
     };
-
-    /* Dancing Link
+    //=
+    /* Dancing_Link
      * */
     template<int N, int M> struct dancing {
 #define dfor(c, a, b) for (int c = a[b]; c != b; c = a[c])
@@ -1203,8 +1219,8 @@ namespace dal {
       }
 #undef dfor
     };
-
-    /* Directed Minimum Spanning Tree
+    //=
+    /* Directed_Minimum_Spanning_Tree
      * */
     template<int N> struct dmst_t {
       struct edge_t {
@@ -1267,8 +1283,8 @@ namespace dal {
         return rv;
       }
     };
-
-    /* Spfa Cost Stream
+    //=
+    /* Spfa_Cost_Stream
      * */
     template<class edge_t, int N> struct ek_t {
       vector<edge_t> E;
@@ -1311,8 +1327,8 @@ namespace dal {
         return mmf;
       }
     };
-
-    /* KM Maximum perfect match
+    //=
+    /* KM_Maximum_perfect_match
      * Notice that we could use this, when left side has the same amount
      * as right side. (perfect match)
      * If the situation above doesn't be hold, Cost-Flow algorithm is recommanded.
@@ -1374,8 +1390,8 @@ namespace dal {
         return rv;
       }
     };
-
-    /* Doubling LCA
+    //=
+    /* Doubling_LCA
      * */
     template<class edge_t, int N> struct lca_t {
       static const int M = 16;
@@ -1411,8 +1427,8 @@ namespace dal {
         return a[u][0];
       }
     };
-
-    /* Shortest Augment Path
+    //=
+    /* Shortest_Augment_Path
      * */
     template<class edge_t, int N> struct sap_t {
       int dis[N], gap[N], _L[N], se[N];
@@ -1464,82 +1480,8 @@ namespace dal {
         return mxf;
       }
     };
-
-    /* Heavy Light Division
-     * d[u]: node u's depth
-     * sz[u]: tree u's size
-     * fa[u]: u's father
-     * hv[u]: u's heavy son
-     * in[u]: The chain which u is in 
-     * cl[u]: chain u's length 
-     * id[u]: u's ID in chain */
-    template<class edge_t, int N> struct hld_t {
-      typedef int ai_t[N];
-      int n;
-      ai_t d, sz, fa, hv, in, cl, id;
-      void operator () (vector<edge_t> &E, int *L, int V, int u) {
-        vector<int> q(1, u);
-        n = V;
-        d[u] = 0;
-        fa[u] = -1;
-        for (int h = 0; h < q.size(); h++) {
-          u = q[h];
-          for (int e = L[u]; ~e; e = E[e].to) {
-            int v = E[e].v;
-            if (v == fa[u]) continue;
-            fa[v] = u;
-            d[v] = d[u]+1;
-            q.push_back(v);
-          }
-        }
-        for (int h = q.size()-1; ~h; h--) {
-          u = q[h];
-          sz[u] = 1;
-          hv[u] = -1;
-          for (int e = L[u]; ~e; e = E[e].to) {
-            int v = E[e].v;
-            if (v == fa[u]) continue;
-            if (!~hv[u] || sz[v] > sz[hv[u]]) hv[u] = v;
-            sz[u] += sz[v];
-          }
-        }
-        q.resize(1);
-        in[q[0]] = q[0];
-        id[q[0]] = 0;
-        cl[q[0]] = 1;
-        for (int h = 0; h < q.size(); h++) {
-          u = q[h];
-          for (int e = L[u]; ~e; e = E[e].to) {
-            int v = E[e].v;
-            if (v == fa[u]) continue;
-            if (v == hv[u]) {
-              in[v] = in[u];
-              id[v] = id[u]+1;
-              cl[in[v]]++;
-            } else {
-              in[v] = v;
-              cl[v] = 1;
-              id[v] = 0;
-            }
-            q.push_back(v);
-          }
-        }
-      }
-      void make() {
-      }
-      void put(int v, int w) {
-      }
-      int ask(int u, int v) {
-        int rv = 0;
-        for ( ; in[u]^in[v]; u = fa[in[u]]) {
-          if (d[in[u]] > d[in[v]]) swap(u, v);
-        }
-        if (id[u] > id[v]) swap(u, v);
-        return rv;
-      }
-    };
-
-    /* ZKW Cost Stream
+    //=
+    /* ZKW_Cost_Stream
      * */
     template<class edge_t, int N> struct zkw_t {
       vector<edge_t> E;
@@ -1592,9 +1534,13 @@ namespace dal {
         return mc;
       }
     };
+    //=
   }
-  namespace graph_theory_test {
-
+  //=
+  namespace graph_test {
+    ////
+    /* Graph
+     * */
     struct graph_t {
       struct edge_t {
         int v, to;
@@ -1623,7 +1569,9 @@ namespace dal {
         add(u, v), add(v, u);
       }
     };
-
+    //=
+    /* Shortest_Augment_Path
+     * */
     template<class graph_t> struct sap_t {
       vector<int> dis, gap;
       int dfs(graph_t &g, int src, int snk, int u, int f = ~1u>>1) {
@@ -1656,7 +1604,9 @@ namespace dal {
         return result;
       }
     };
-
+    //=
+    /* Strong_Connected_Component
+     * */
     template<class graph_t> struct scc_t {
       int time, cc;
       vector<int> dfn, low, in, pushed, st;
@@ -1685,7 +1635,9 @@ namespace dal {
           if (!~dfn[u]) dfs(g, u);
       }
     };
-
+    //=
+    /* Heavy_Light_Division
+     * */
     template<class graph_t, int N> struct hld_t {
       typedef int ai_t[N];
       ai_t d, sz, hb, fa, cl, in, id;
@@ -1718,11 +1670,13 @@ namespace dal {
         return result;
       }
     };
-
+    //=
   }
+  //=
 }
+////
 
 //main
 int main() {
-	return 0;
+  return 0;
 }
