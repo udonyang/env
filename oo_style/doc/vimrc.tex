@@ -1,0 +1,49 @@
+colorscheme desert
+set langmenu=en_US.UTF-8
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+language messages en_US.UTF-8
+syntax on
+filetype on
+filetype plugin indent on
+set smartindent
+set autochdir
+set autoindent
+set smartindent
+set backspace=2
+set columns=120
+set foldmethod=syntax
+set nohlsearch
+set incsearch
+set lines=40
+set nocompatible
+set noswapfile
+set number
+set shiftwidth=2
+set tabstop=2
+set expandtab
+
+func Compile()
+	exec "w"
+	exec "make"
+endfunc
+func Debug()
+	exec "w"
+	exec "make debug"
+endfunc
+func Run()
+	exec "w"
+	exec "make run"
+endfunc
+
+map <F4> :tabp<CR>
+map <F5> :tabn<CR>
+map <C-a> ggVG
+map <C-p> "+p
+map <F8> <ESC>:clist<CR>
+map <C-F8> <ESC>:call Debug()<CR>
+map <F9> <ESC>:call Compile()<CR>
+map <C-F9> <ESC>:call Run()<CR>
+map <silent><F6> :s#^#// #g<CR>
+map <silent><F7> :s#^// ##g<CR>
+vmap <C-y> "+y

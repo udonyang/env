@@ -242,6 +242,20 @@ namespace dal {
       }
     };
     //=
+    /* Triangle_Diagonal_Matrix_Algorithm
+     * */
+    template<class T> struct tdma_t {
+      void operator () (int n, T *a, T *b, T *c, T *d, T *x) {
+        for (int i = 0; i < n; i++) {
+          T tp = a[i]/b[i-1];
+          b[i] -= tp*c[i-1];
+          d[i] -= tp*d[i-1];
+        }
+        x[n-1] = d[n-1]/b[n-1];
+        for (int i = n-2; ~i; i--) x[i] = (d[i]-c[i]*x[i+1])/b[i];
+      }
+    };
+    //=
   }
   //=
   namespace pattern {
@@ -764,6 +778,35 @@ namespace dal {
         if (x->c[!i]-y->c[!i])
           return (1<<d-1)+ask(k, x->s[!i], y->s[!i], d-1);
         return ask(k, x->s[i], y->s[i], d-1);
+      }
+    };
+    //=
+    /* Lefist_Tree
+     */
+    template<int N> struct lefist_t {
+      struct node {
+        node *l, *r;
+        int k, d;
+      } s[N], *top;
+      void init() {
+        top = s;
+      }
+      node *make(int k) {
+        node *x = top++, t = {0, 0, k, 0};
+        *x = t;
+        return x;
+      }
+      node *merge(node *x, node *y) {
+        if (!x) return y;
+        if (!y) return x;
+        if (x->k < y->k) swap(x, y);
+        x->r = merge(x->r, y);
+        if (!x->l || x->r && x->l->d < x->r->d) swap(x->l, x->r);
+        if (x->r) x->d = x->r->d+1;
+        return x;
+      }
+      node *drop(node *x) {
+        return merge(x->l, x->r);
       }
     };
     //=
@@ -1599,6 +1642,8 @@ namespace dal {
           for (int e = g(q[h]); ~e; e = g[e].to)
             if (g[e^1].w && !~dis[g[e].v])
               gap[dis[g[e].v] = dis[q[h]]+1]++, q.push_back(g[e].v);
+        for (int i = 0; i < g.size(); i++)
+          if (!~dis[i]) gap[dis[i] = 0]++;
         int result = 0;
         for ( ; gap[src] < g.size(); ) result += dfs(g, src, snk, src);
         return result;

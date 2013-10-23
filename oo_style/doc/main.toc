@@ -8,39 +8,41 @@
 \contentsline {subsection}{\numberline {5.3}Contor coding.}{4}
 \contentsline {subsection}{\numberline {5.4}Chinese Remind Theory}{5}
 \contentsline {subsection}{\numberline {5.5}Base 2 Fast Fourier Transfrom}{5}
+\contentsline {subsection}{\numberline {5.6}Triangle Diagonal Matrix Algorithm}{6}
 \contentsline {section}{\numberline {6}pattern}{6}
 \contentsline {subsection}{\numberline {6.1}KMP}{6}
 \contentsline {subsection}{\numberline {6.2}Extend KMP}{7}
 \contentsline {subsection}{\numberline {6.3}Manacher}{7}
 \contentsline {subsection}{\numberline {6.4}Minimum Notation}{7}
-\contentsline {subsection}{\numberline {6.5}AC automaton}{7}
+\contentsline {subsection}{\numberline {6.5}AC automaton}{8}
 \contentsline {subsection}{\numberline {6.6}Suffix Array}{8}
 \contentsline {subsection}{\numberline {6.7}Suffix Automaton}{9}
 \contentsline {section}{\numberline {7}data}{10}
 \contentsline {subsection}{\numberline {7.1}RMQ Sparse Table}{10}
-\contentsline {subsection}{\numberline {7.2}Splay}{10}
+\contentsline {subsection}{\numberline {7.2}Splay}{11}
 \contentsline {subsection}{\numberline {7.3}Link-Cut Tree}{12}
 \contentsline {subsection}{\numberline {7.4}Functional Segment}{14}
 \contentsline {subsection}{\numberline {7.5}Functional Trie}{15}
-\contentsline {section}{\numberline {8}geometry}{15}
-\contentsline {subsection}{\numberline {8.1}Float Compare Functions}{15}
-\contentsline {subsection}{\numberline {8.2}2D point}{16}
-\contentsline {subsection}{\numberline {8.3}Angle Sort}{16}
-\contentsline {subsection}{\numberline {8.4}Graham Scan}{17}
-\contentsline {section}{\numberline {9}graph}{17}
-\contentsline {subsection}{\numberline {9.1}Graph}{17}
+\contentsline {subsection}{\numberline {7.6}Lefist Tree}{16}
+\contentsline {section}{\numberline {8}geometry}{16}
+\contentsline {subsection}{\numberline {8.1}Float Compare Functions}{16}
+\contentsline {subsection}{\numberline {8.2}2D point}{17}
+\contentsline {subsection}{\numberline {8.3}Angle Sort}{17}
+\contentsline {subsection}{\numberline {8.4}Graham Scan}{18}
+\contentsline {section}{\numberline {9}graph}{18}
+\contentsline {subsection}{\numberline {9.1}Graph}{18}
 \contentsline {subsection}{\numberline {9.2}Shortest Path Algorithm}{18}
-\contentsline {subsection}{\numberline {9.3}Bipartite Graph match}{18}
-\contentsline {subsection}{\numberline {9.4}General Graph match}{19}
-\contentsline {subsection}{\numberline {9.5}Dancing Link}{21}
-\contentsline {subsection}{\numberline {9.6}Directed Minimum Spanning Tree}{23}
-\contentsline {subsection}{\numberline {9.7}Spfa Cost Stream}{24}
-\contentsline {subsection}{\numberline {9.8}KM Maximum perfect match}{25}
-\contentsline {subsection}{\numberline {9.9}Doubling LCA}{26}
-\contentsline {subsection}{\numberline {9.10}Shortest Augment Path}{27}
-\contentsline {subsection}{\numberline {9.11}ZKW Cost Stream}{28}
-\contentsline {section}{\numberline {10}graph test}{29}
-\contentsline {subsection}{\numberline {10.1}Graph}{29}
-\contentsline {subsection}{\numberline {10.2}Shortest Augment Path}{29}
-\contentsline {subsection}{\numberline {10.3}Strong Connected Component}{30}
-\contentsline {subsection}{\numberline {10.4}Heavy Light Division}{31}
+\contentsline {subsection}{\numberline {9.3}Bipartite Graph match}{19}
+\contentsline {subsection}{\numberline {9.4}General Graph match}{20}
+\contentsline {subsection}{\numberline {9.5}Dancing Link}{22}
+\contentsline {subsection}{\numberline {9.6}Directed Minimum Spanning Tree}{24}
+\contentsline {subsection}{\numberline {9.7}Spfa Cost Stream}{25}
+\contentsline {subsection}{\numberline {9.8}KM Maximum perfect match}{26}
+\contentsline {subsection}{\numberline {9.9}Doubling LCA}{27}
+\contentsline {subsection}{\numberline {9.10}Shortest Augment Path}{28}
+\contentsline {subsection}{\numberline {9.11}ZKW Cost Stream}{29}
+\contentsline {section}{\numberline {10}graph test}{30}
+\contentsline {subsection}{\numberline {10.1}Graph}{30}
+\contentsline {subsection}{\numberline {10.2}Shortest Augment Path}{30}
+\contentsline {subsection}{\numberline {10.3}Strong Connected Component}{31}
+\contentsline {subsection}{\numberline {10.4}Heavy Light Division}{32}
