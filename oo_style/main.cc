@@ -1716,6 +1716,77 @@ namespace dal {
       }
     };
     //=
+    /* Biconnected_Component
+     * */
+    struct bcc_t {
+      int time, cc, cut[N], dfn[N], low[N];
+      vector<int> in, st;
+      void dfs(graph_t &g, int u, int p = -1) {
+        int branch = 0;
+        dfn[u] = low[u] = time++;
+        for (int e = g(u); ~e; e = g[e].to) {
+          int v = g[e].v;
+          if (e == p || dfn[v] >= dfn[u]) continue;
+          st.push_back(e);
+          if (~dfn[v]) low[u] = min(low[u], dfn[v]);
+          else {
+            branch++;
+            dfs(g, v, e^1);
+            low[u] = min(low[u], low[v]);
+            if (dfn[u] > low[v]) continue;
+            for (cut[u] = 1; ; ) {
+              int t = st.back();
+              st.pop_back();
+              in[t] = in[t^1] = cc;
+              if (t == e) break;
+            }
+            cc++;
+          }
+        }
+        if (!~p && cut[u] && branch < 2) cut[u] = 0;
+      }
+      void operator () (graph_t &g) {
+        in.resize(g.e.size());
+        for (int u = 0; u < g.size(); u++)
+          dfn[u] = low[u] = -1, cut[u] = 0;
+        st.clear();
+        for (int u = time = cc = 0; u < g.size(); u++)
+          if (!~dfn[u]) dfs(g, u);
+      }
+    };
+    //=
+    /* Static_Lowest_Ancestor
+     * */
+    struct slca_t {
+      graph_t q;
+      vector<int> r, f, c, d;
+      void init(int n) {
+        q.init(n), f.resize(n), c.resize(n);
+        for (int i = 0; i < n; i++)
+          f[i] = i, c[i] = 0;
+      }
+      void add(int u, int v) {
+        r.push_back(-1);
+        q.badd(u, v);
+      }
+      int find(int x) {
+        if (x != f[x]) f[x] = find(f[x]);
+        return f[x];
+      }
+      void go(graph_t &g, int u, int p = -1) {
+        for (int e = g(u); ~e; e = g[e].to) {
+          if (e == p) continue;
+          go(g, g[e].v, e^1);
+          f[find(g[e].v)] = u;
+        }
+        c[u] = 1;
+        for (int e = q(u); ~e; e = q[e].to) {
+          if (!c[q[e].v]) continue;
+          r[e>>1] = find(q[e].v);
+        }
+      }
+    };
+    //=
   }
   //=
 }

@@ -46,3 +46,5 @@
 \contentsline {subsection}{\numberline {10.2}Shortest Augment Path}{30}
 \contentsline {subsection}{\numberline {10.3}Strong Connected Component}{31}
 \contentsline {subsection}{\numberline {10.4}Heavy Light Division}{32}
+\contentsline {subsection}{\numberline {10.5}Biconnected Component}{32}
+\contentsline {subsection}{\numberline {10.6}Static Lowest Ancestor}{33}
