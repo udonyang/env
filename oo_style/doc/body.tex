@@ -533,93 +533,244 @@ template<int N> struct rmq_t {
 \begin{lstlisting}
 /* Splay
  * */
-template<int N> struct splay_t {
+struct splay_t {
   struct node {
-    node *s[2], *p;
-    int sz, w, sm, mx;
-    bool root() {
-      return !p;
-    }
-    bool which() {
+    node *p, *s[2];
+    int size, key;
+    int sum, lsum, rsum, msum;
+    int cover_tag, reverse_tag;
+    int side() {
       return p->s[1] == this;
     }
-    node *sets(int b, node *x) {
-      if (s[b] = x) x->p = this;
+    int rank() {
+      return s[0]? 1+s[0]->size: 1;
+    }
+    node *set_cover(int _key) {
+      cover_tag = 1;
+      key = _key;
+      sum = size*key;
+      lsum = rsum = msum = max(sum, key);
+      return this;
+    }
+    node *set_reverse() {
+      reverse_tag ^= 1;
+      swap(s[0], s[1]);
+      swap(lsum, rsum);
+      return this;
+    }
+    node *push() {
+      for (int i = 0; i < 2; i++) {
+        if (!s[i]) continue;
+        if (cover_tag) s[i]->set_cover(key);
+        if (reverse_tag) s[i]->set_reverse();
+      }
+      cover_tag = reverse_tag = 0;
+      return this;
+    }
+    node *merge_sum(node *x, node *y) {
+      if (!x || !y) return &(*this = x? *x: *y);
+      sum = x->sum+y->sum;
+      lsum = max(x->lsum, x->sum+y->lsum);
+      rsum = max(y->rsum, x->rsum+y->sum);
+      msum = max(x->msum, y->msum);
+      msum = max(msum, max(lsum, rsum));
+      msum = max(msum, x->rsum+y->lsum);
       return this;
     }
     node *pull() {
-      sz = 1;
-      sm = w+(s[0]? s[0]->sm: 0);
-      for (int i = 0; i < 2; i++) if (s[i]) sz += s[i]->sz;
-      mx = sm;
-      if (s[0]) mx = max(mx, s[0]->mx);
-      if (s[1]) mx = max(mx, s[1]->mx+sm);
-      sm += s[1]? s[1]->sm: 0;
-      return this;
+      size = 1;
+      sum = lsum = rsum = msum = key;
+      for (int i = 0; i < 2; i++) {
+        if (!s[i]) continue;
+        size += s[i]->size;
+      }
+      return merge_sum(node(*this).merge_sum(s[0], this), s[1]);
     }
-    node *spin() {
-      node *y = p;
-      int b = which();
-      if (y->root()) p = y->p;
-      else y->p->sets(y->which(), this);
-      y->sets(b, s[!b])->pull();
-      return sets(!b, y);
-    }
-    node *splay(node *x = 0) {
-      for ( ; p != x; )
-        if (p == x || p->p == x) spin();
-        else {
-          if (which() == p->which()) p->spin();
-          else spin();
-          spin();
-        }
+    node *set(int b, node *x) {
+      if (push()->s[b] = x) x->p = this;
       return pull();
     }
-    node *end(int b) {
-      node *x = this;
-      for ( ; x->s[b]; ) x = x->s[b];
-      return x;
+    node *get(int b) {
+      return push()->s[b];
     }
-    node *to(int b) {
-      if (s[b]) return s[b]->end(!b);
+    node *cut(int b, node *&x) {
+      if (x = push()->s[b]) s[b]->p = 0;
+      s[b] = 0;
+      return pull();
+    }
+    node *spin() {
+      node *y = p->push();
+      int b = push()->side();
+      if (p = y->p) p->s[y->side()] = this;
+      if (y->s[b] = s[!b]) s[!b]->p = y;
+      return (s[!b] = y)->pull()->p = this;
+    }
+    node *fine(node *x = 0) {
+      for ( ; p != x; spin())
+        if (p->p != x)
+          if (side() == p->side()) p->spin();
+          else spin();
+      return pull();
+    }
+    node *pick(int k, node *y = 0) {
+      node *x = this;
+      for ( ; x->rank() != k; ) {
+        int b = x->rank() < k;
+        k -= b*x->rank();
+        x = x->get(b);
+      }
+      return x->fine(y);
+    }
+  };
+  node *give(node *t = 0) {
+    static node *top = 0;
+    static int size = 1;
+    if (t) t->s[1] = top, top = t;
+    else {
+      if (!top) {
+        top = new node[size<<=1];
+        for (int i = 0; i < size-1; i++)
+          top[i].s[1] = top+i+1;
+        top[size-1].s[1] = 0;
+      }
+      t = top, top = top->s[1];
+    }
+    return t;
+  }
+  node *make(int key) {
+    node t = {0, {0}, 1, key, key, key, key, key, 0, 0};
+    return &(*give() = t);
+  }
+  void drop(node *&t) {
+    if (!t) return ;
+    drop(t->s[0]), drop(t->s[1]);
+    give(t), t = 0;
+  }
+  void show(node *t) {
+    if (!t) return ;
+    t->push();
+    show(t->s[0]);
+    printf(" %d", t->key);
+    show(t->s[1]);
+    t->pull();
+  }
+};
+\end{lstlisting}
+
+
+\subsection{Treap}
+\begin{lstlisting}
+/* Treap
+ * */
+struct treap_t {
+  struct node {
+    node *s[2];
+    int size, weight;
+    int key, cover_tag, sum,
+        max_sum, lsum, rsum, reverse_tag;
+    int rank() {
+      return s[0]? s[0]->size+1: 1;
+    }
+    node *set_cover(int _key) {
+      key = _key;
+      cover_tag = 1;
+      sum = size*key;
+      max_sum = lsum = rsum = max(key, sum);
       return this;
     }
-    node *pick(int k) {
-      node *x = this;
-      for ( ; ; ) {
-        int i = 1+(x->s[0]? x->s[0]->sz: 0);
-        if (i == k) break;
-        x = x->s[i < k];
-        k -= i*(i < k);
+    node *set_reverse() {
+      reverse_tag ^= 1;
+      swap(s[0], s[1]);
+      swap(lsum, rsum);
+      return this;
+    }
+    node *push() {
+      for (int i = 0; i < 2; i++) {
+        if (!s[i]) continue;
+        if (cover_tag) s[i]->set_cover(key);
+        if (reverse_tag) s[i]->set_reverse();
       }
-      return x;
+      cover_tag = reverse_tag = 0;
+      return this;
     }
-  } s[N], *top;
-  void init() {
-    top = s;
-  }
-  node *make(int w) {
-    node t = {{0, 0}, 0, 1, w, w, w};
-    *top = t;
-    return top++;
-  }
-  node *put(node *x, int b, node *y) {
-    if (x->splay()->s[b]) x->to(b)->sets(!b, y);
-    else x->sets(b, y);
-    return y->splay();
-  }
-  node *drop(node *x) {
-    if (!x->splay()->s[1]) {
-      if (x->s[0]) x->s[0]->p = 0;
-      return x->s[0];
+    node *merge_sum(node *x, node *y) {
+      if (!x || !y) {
+        x? *this = *x: *this = *y;
+        return this;
+      }
+      sum = x->sum+y->sum;
+      lsum = max(x->lsum, x->sum+y->lsum);
+      rsum = max(y->rsum, x->rsum+y->sum);
+      max_sum = max(x->max_sum, y->max_sum);
+      max_sum = max(max_sum, max(lsum, rsum));
+      max_sum = max(max_sum, x->rsum+y->lsum);
+      return this;
     }
-    return x->to(1)->splay()->sets(0, x->s[0])->pull();
+    node *pull() {
+      size = 1;
+      max_sum = sum = lsum = rsum = key;
+      for (int i = 0; i < 2; i++) {
+        if (!s[i]) continue;
+        size += s[i]->size;
+      }
+      return merge_sum(node(*this).merge_sum(s[0], this), s[1]);
+    }
+  };
+  node *give(node *t = 0) {
+    static node *top = 0;
+    static int size = 1;
+    if (t) t->s[1] = top, top = t;
+    else {
+      if (!top) {
+        top = new node[size<<=1];
+        for (int i = 0; i < size-1; i++)
+          top[i].s[1] = top+i+1;
+        top[size-1].s[1] = 0;
+      }
+      t = top, top = top->s[1];
+    }
+    return t;
   }
-  node *show(node *x) {
-    if (x->s[0]) show(x->s[0]);
-    printf(" %d", x->w);
-    if (x->s[1]) show(x->s[1]);
-    return x;
+  node *make(int key) {
+    node t = {{0}, 1, rand()*rand(), key, 0, key, key, key, key, 0};
+    return &(*give() = t);
+  }
+  void drop(node *&t) {
+    if (!t) return ;
+    drop(t->s[0]), drop(t->s[1]);
+    give(t), t = 0;
+  }
+  void merge(node *x, node *y, node *&t) {
+    if (!x || !y) t = x? x: y;
+    else if (x->weight < y->weight)
+      x->push(), merge(x->s[1], y, x->s[1]), t = x->pull();
+    else y->push(), merge(x, y->s[0], y->s[0]), t = y->pull();
+  }
+  void split(node *t, int k, node *&x, node *&y) {
+    if (!k) x = 0, y = t;
+    else if (t->size == k) x = t, y = 0;
+    else if (k < t->rank())
+      y = t->push(), split(t->s[0], k, x, y->s[0]), y->pull();
+    else x = t->push(), split(t->s[1], k-t->rank(), x->s[1], y), x->pull();
+  }
+  void slice(node *&t, int l = -1, int r = -1) {
+    static node *a, *b;
+    if (~l) split(t, l-1, a, b), split(b, r-l+1, t, b);
+    else merge(t, b, b), merge(a, b, t);
+  }
+  void show(node *t) {
+    if (!t) return ;
+    t->push();
+    show(t->s[0]);
+    printf(" %2d", t->key);
+    show(t->s[1]);
+    t->pull();
+  }
+  int ask_sum(node *t) {
+    return t? t->sum: 0;
+  }
+  int ask_max_sum(node *t) {
+    return t? t->max_sum: 0;
   }
 };
 \end{lstlisting}
@@ -841,7 +992,7 @@ template<int N, int D> struct ftrie_t {
 \subsection{Lefist Tree}
 \begin{lstlisting}
 /* Lefist_Tree
- */
+*/
 template<int N> struct lefist_t {
   struct node {
     node *l, *r;
