@@ -1,5 +1,5 @@
 main: main.cc
-	g++ main.cc -o main --std=c++11 -g
+	gcc main.cc -o main -lstdc++ -g -std=c++11
 .PHONY: debug clean run
 debug:
 	gdb main

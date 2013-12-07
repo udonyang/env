@@ -7,5 +7,5 @@ int main()
 {
   bitset<8> b=0777;
   cout << (b&b) << " hello world" << endl;
-	return 0;
+  return 0;
 }
