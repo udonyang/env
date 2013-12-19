@@ -1,38 +1,66 @@
-"Dwylkz
+"Global Value 
 "Setting
-language message en_US.UTF-8
 colorscheme desert
+set langmenu=en_US.UTF-8
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+language messages en_US.UTF-8
 syntax on
+filetype on
+filetype plugin indent on
 set go-=T
 set go-=m
-set nobackup
-set shell=cmd.exe
-set shellcmdflag=/C
+set smartindent
 set autochdir
-set ignorecase
-set fdm=syntax
-set lines=31
-set co=90
-set is
-set ts=4
-set gfn=Courier\ New:h13
-set sw=4
-set ai
-set cindent
-set syntax=&filetype
-set nu
-set hls
-set scs
-set sb
+set autoindent
+set smartindent
+set backspace=2
+set columns=120
+set foldmethod=syntax
+set nohlsearch
+set incsearch
+set lines=40
+set nocompatible
 set noswapfile
-set nobackup
-set makeprg=%mysys%\bin\make.exe
+set number
+set shiftwidth=2
+set tabstop=2
+set expandtab
 let g:netrw_liststyle=3
 
+"autocmd
+autocmd BufNewFile,BufRead *.* call TypeCheck()
+autocmd BufNewFile,BufRead *.go set filetype=go
+autocmd BufNewFile,BufRead *.i set filetype=c
+
+"new runtimepath
+set runtimepath+=$GOROOT/misc/vim
+
 "Function
+func TypeCheck()
+  if &filetype == 'i' || &filetype == 'c' || &filetype == 'cpp'
+	if &filetype != 'cpp'
+		set filetype=c
+	endif
+	set cindent
+    set tabstop=2
+    set shiftwidth=2
+  else
+    set tabstop=2
+    set shiftwidth=2
+  endif
+endfunc
 func Compile()
 	exec "w"
 	exec "make"
+endfunc
+func DebugCompile()
+	exec "w"
+	exec "make make_debug"
+endfunc
+func Debug()
+	exec "w"
+	exec "make debug"
 endfunc
 func ErrorList()
 	exec "clist"
@@ -41,55 +69,42 @@ func Run()
 	exec "w"
 	exec "make run"
 endfunc
+func Clean()
+	exec "w"
+	exec "make clean"
+endfunc
 func Test()
-	if &filetype == 'c' || &filetype =='cpp'
-		"exec "15vs input.in"
-		exec "15vs ."
-	endif
+	exec "15vs ."
 endfunc
 func Output()
 	if &filetype == 'c' || &filetype =='cpp'
 		exec "9sv output.out"
 	endif
 endfunc
+
 "map
 map <F2> :call Test()<CR>
 map <F3> :call Output()<CR>
+map <F4> :tabp<CR>
+map <F5> :tabn<CR>
+map <C-s> :w<CR>
+map <C-a> ggVG
+map <C-p> "+p
+map <F8> <ESC>:call ErrorList()<CR>
+map <C-F8> <ESC>:call Debug()<CR>
 map <F9> <ESC>:call Compile()<CR>
 map <C-F9> <ESC>:call Run()<CR>
-map <C-F8> <ESC>:call ErrorList()<CR>
+map <F10> <ESC>:call DebugCompile()<CR>
+map <C-F10> <ESC>:call Clean()<CR>
+map <silent><F6> :s#^#// #g<CR>
+map <silent><F7> :s#^// ##g<CR>
 cmap <C-j> <Left>
 cmap <C-k> <Right>
+vmap <C-y> "+y
+inoremap <C-a> <ESC>ggVG
 inoremap <F9> <ESC>:call Compile()<CR>
 inoremap <C-F9> <ESC>:call Run()<CR>
 inoremap <F8> <ESC>:call ErrorList()<CR>
-"Default
-set nocompatible
-let $LANG='en'
-source $VIMRUNTIME/vimrc_example.vim
-source $VIMRUNTIME/mswin.vim
-behave mswin
-set diffexpr=MyDiff()
-function MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let eq = ''
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      let cmd = '""' . $VIMRUNTIME . '\diff"'
-      let eq = '"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
+
+"abbreviate
+ab abOK /* OK */
