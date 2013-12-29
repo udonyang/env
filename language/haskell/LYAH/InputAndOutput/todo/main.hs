@@ -7,12 +7,11 @@ dispatch =
   [ ("add", add)
   , ("view", view)
   , ("remove", remove)
-  , ("bump", bump)
-  ]
+  , ("bump", bump)]
 
 main = do
   (actionString:args) <- getArgs
-  let Just action = lookup actionString dispatch
+  Just action <- return $ lookup actionString dispatch
   action args
 
 add [fileName, task] = appendFile fileName $ task ++ "\n"

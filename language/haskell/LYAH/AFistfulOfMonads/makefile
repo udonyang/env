@@ -3,6 +3,6 @@ main: main.hs
 	rm main.hi main.o
 .PHONY: debug run
 debug:
-	./main
+	runghc main.hs
 run:
 	cat input.in | ./main

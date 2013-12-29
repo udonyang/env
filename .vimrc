@@ -1,5 +1,4 @@
-"Global Value
-
+"Global Value 
 "Setting
 colorscheme desert
 set langmenu=en_US.UTF-8
