@@ -1,3 +1,6 @@
+#ifndef MAP_SITE_H
+#define MAP_SITE_H
+
 enum Direction {North, South, East, West};
 
 class MapSite {
@@ -16,14 +19,14 @@ class Room: public MapSite {
   
   private:
     static const char NSIDE = 4;
-    MapSide* sides[NSIDE];
+    MapSite* sides[NSIDE];
     int id;
 };
 
 class Wall: public MapSite {
   public:
     Wall();
-    virtual void Enter();
+    virtual void enter();
 };
 
 class Door: public MapSite {
@@ -37,3 +40,5 @@ class Door: public MapSite {
     Room* room1, room2;
     bool isOpen;
 };
+
+#endif // MAP_SITE_H
