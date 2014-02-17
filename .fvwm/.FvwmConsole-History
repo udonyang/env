@@ -1,0 +1,80 @@
+fvwmChromium
+x
+?
+help
+;
+fvwmChromium;
+fvwmChromium
+call
+fvwm 
+fvwm__fvwmChromium
+exec
+Exec
+Exec exec xterm
+Exec xterm
+Exec exec chromium
+Help
+Call
+Do
+Func
+Exec fvwmChromium
+exec
+exec xterm
+start
+style
+style
+?
+search
+browser
+exec pacmanfm
+exec pacfm
+exec panfm
+exec lxterminal
+exec gvim
+gvim
+exec chromium
+pick
+pick
+pick fvwmWindowScreenShot
+pick fvwmChromium
+fvwmChromium
+fvwmDesktopScreenShot
+fvwmMaximize 100 100
+fvwmIconifyOrShade
+fvwmIconifyOrShade
+fvwmIconifyOrShade
+fvwmIconifyOrShade
+fvwmMaximize 50 50
+fvwmMoveOrIconify
+fvwmMoveOrIconify
+fvwmMoveOrIconify
+fvwmMoveOrIconify
+fvwmWindowShade 
+fvwmWindowShade 
+fvwmWindowShade true
+fvwmWindowShade true
+fvwmWindowShade
+fvwmDeleteOrDestroy
+fvwmDeleteOrDestroy
+fvwmDeleteOrDestroy
+fvwmGvim
+fvwmViewManPage fvwm
+fvwmxterm
+fvwmdeleteordestroy
+fvwmchromium
+fvwmgimp
+restart
+exec pcmanfm
+exec pcmanfm
+fvwmxterm -rv
+gvim $[fvwm_userdir]/.fvwm2rc
+fvwmgvim $[fvwm_userdir]/.fvwm2rc
+fvwmchromium
+fvwmChromium
+fvwmXtrm
+fvwmXtrem
+fvwmXterm
+pick
+pick (CirculateHit)
+pick (CirculateHit)
+exec pcmanfm
