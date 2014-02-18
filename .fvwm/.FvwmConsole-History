@@ -78,3 +78,13 @@ pick
 pick (CirculateHit)
 pick (CirculateHit)
 exec pcmanfm
+ExecUseShell /bin/bash
+ls
+ExecUseShell /bin/bash
+pcmanfm
+exec pcmanfm
+echo w.id
+exec echo hoho
+Exec echo HOHO
+help
+?
