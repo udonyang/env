@@ -147,7 +147,7 @@ AddToFunc startFunction
 + I Module FvwmTaskBar
 + I Module FvwmPager 0 2
 + I Module FvwmButtons myButtons
-+ I buildWallpaperMen
++ I buildWallpaperMenu
 
 DestroyFunc initFunction
 AddToFunc initFunction
