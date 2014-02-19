@@ -1,4 +1,4 @@
-#!
+#!/bin/sh
 git pull -v
 cd ..
 cd ACMPS
