@@ -37,7 +37,7 @@ EwmhBaseStruts 62 162 0 48
 IgnoreModifiers L25
 ## misc
 OpaqueMoveSize -1
-Style * ResizeOpaque
+Style * ResizeOpaque, NoIcon
 Emulate Mwm
 
 #Function
