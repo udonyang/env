@@ -1,4 +1,3 @@
-call
 fvwm 
 fvwm__fvwmChromium
 exec
@@ -98,3 +97,4 @@ raise
 lower
 animatedmove 0 0
 animatedmove 0 0
+Module FvwmWindowMenu

@@ -247,15 +247,15 @@ Style * Colorset 4, HilightColorset 3,  BorderColorSet 5, HilightBorderColorset 
 
 # Menu
 ## ColorSet
-Colorset 7 RootTransparent, fg Black, bg, #e6e7d7, sh Black,\
-  hi #202070, Tint White 60, bgTint White 60
+Colorset 7 RootTransparent buffer, fg Black, bg, #e6e7d7, sh Black,\
+  hi #202070, Tint White 38, bgTint White 38
 Colorset 8 fg DarkRed, bg #e6e7d7, sh Black, hi #202070
 ## Style
 ### Global
 MenuStyle * PopupDelayed, PopupDelay 300, PopdownImmediately
 MenuStyle * PopupOffset -5 100, TitleWarpOff
 MenuStyle * TitleUnderlines2, SeparatorsLong, TrianglesSolid
-MenuStyle * AnimationOff, AutomaticHotkeysOff
+MenuStyle * AutomaticHotkeysOff
 MenuStyle * BorderWidth 1
 MenuStyle * PopupAsSubmenu, HoldSubmenus, SubmenusRight
 MenuStyle * ItemFormat "%|%5.5i%1.3l%2.3>%|"
@@ -384,8 +384,7 @@ DestroyModuleConfig FvwmTaskBar: *
 *FvwmTaskBar: PageOnly
 *FvwmTaskBar: StartName Dwylkz
 *FvwmTaskBar: StartIcon mini/x.png
-*FvwmTaskBar: StartMenu FvwmRootMenu
-*FvwmTaskBar: Button Title XTerm, Icon mini/terminal.png, Action (Mouse 1) fvwmXTerm
+*FvwmTaskBar: StartMenu fvwmProgramsMenu
 *FvwmTaskBar: Action Click3 Menu FvwmWindowOpsMenu
 *FvwmTaskBar: StartIcon mini/fvwm.png
 *FvwmTaskBar: ClockFormat %Y/%M/%d %R
@@ -416,7 +415,7 @@ DestroyModuleConfig myButtons: *
 *MyButtons: Columns 1
 *MyButtons: Frame 0
 *MyButtons: Padding 8 8
-*MyButtons: Font "Shadow=3:xft:Sans:Bold:pixelsize=14:minspace=True:antialias=True"
+*MyButtons: Font "xft:Sans:Bold:pixelsize=14:minspace=True:antialias=True"
 *MyButtons: (1x2, Frame 0, Title(Center) "Apps")
 *MyButtons: (1x5, Frame 0, Icon 48x48/terminal.png, \
   Action(Mouse 1) "fvwmXTerm", \
