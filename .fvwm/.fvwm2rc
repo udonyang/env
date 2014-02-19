@@ -104,6 +104,10 @@ DestroyFunc fvwmKGS
 AddToFunc fvwmKGS
 + I Exec javaws -localfile -J-Djnlp.application.href=http://files.gokgs.com/javaBin/cgoban.jnlp /home/dwylkz/.java/deployment/cache/6.0/54/21086f76-75701482
 
+DestroyFunc fvwmFm
+AddToFunc fvwmFm
++ I Exec emelfm2
+
 DestroyFunc fvwmViewManPage
 AddToFunc fvwmViewManPage
 + I Exec exec xterm -rv -g 80x40\
@@ -133,8 +137,8 @@ AddToFunc buildWallpaperMenu
 
 DestroyFunc fvwmChangeBackground
 AddToFunc fvwmChangeBackground
-+ I Exec fvwm-root -r $[fvwm_img]/wallpaper/$0
-+ I Exec echo "fvwm-root -r $[fvwm_img]/wallpaper/$0" >\
++ I Exec hsetroot -fill $[fvwm_img]/wallpaper/$0
++ I Exec echo "hsetroot -fill $[fvwm_img]/wallpaper/$0" >\
   $[fvwm_userdir]/cfg/background.cfg
 
 DestroyFunc initWallpaper
@@ -152,7 +156,6 @@ AddToFunc startFunction
 DestroyFunc initFunction
 AddToFunc initFunction
 + I exec ibus-daemon -d -x
-+ I exec fvwm-root -r $[fvwm_wallpapers]/background.png
 + I initWallpaper
 
 DestroyFunc restartFunction
@@ -264,6 +267,7 @@ AddToMenu   FvwmProgramsMenu "Programs" Title
 + "Topcoder" fvwmTopcoder
 + "IGS" fvwmIGS
 + "KGS" fvwmKGS
++ "FM" fvwmFm
 ### FvwmManagesMenu
 DestroyMenu fvwmManPagesMenu
 AddToMenu   fvwmManPagesMenu "FVWM Man Pages" Title
@@ -346,30 +350,31 @@ DestroyModuleConfig FvwmIdent: *
 *FvwmIdent: Font "Shadow=2:xft:Sans:Bold:size=12:antialias=True"
 ## FvwmTaskBar
 DestroyModuleConfig FvwmTaskBar: *
-*FvwmTaskBar: Geometry +0+0
+*FvwmTaskBar: Geometry +0-0
 *FvwmTaskBar: Rows 1
 *FvwmTaskBar: Font "xft:Sans:Bold:pixelsize=12:minispace=True:antialias=True"
 *FvwmTaskBar: SelFont "xft:Sans:Bold:pixelsize=12:minispace=True:antialias=True"
 *FvwmTaskBar: StatusFont "xft:Sans:Bold:pixelsize=12:minispace=True:antialias=True"
 *FvwmTaskBar: Colorset 7
 *FvwmTaskBar: IconColorset 7
-*FvwmTaskBar: FocusColorset 7
 *FvwmTaskBar: UseSkipList
 *FvwmTaskBar: UseIconNames
 *FvwmTaskBar: ShowTips
+*FvwmTaskBar: 3DFvwm
+*FvwmTaskBar: PageOnly
 *FvwmTaskBar: StartName Dwylkz
 *FvwmTaskBar: StartIcon mini/x.png
 *FvwmTaskBar: StartMenu FvwmRootMenu
 *FvwmTaskBar: Button Title XTerm, Icon mini/terminal.png, Action (Mouse 1) fvwmXTerm
 *FvwmTaskBar: Action Click3 Menu FvwmWindowOpsMenu
 *FvwmTaskBar: StartIcon mini/fvwm.png
-*FvwmTaskBar: AutoHide 10
+*FvwmTaskBar: ClockFormat %Y/%M/%d %R
 Style FvwmTaskBar NoTitle, !Handles, !Borders, Sticky,\
   WindowListSkip, CirculateSkip, StaysOnBottom,\
   FixedPosition, FixedSize, !Iconifiable
 ## FvwmPager
 DestroyModuleConfig FvwmPager: *
-*FvwmPager: Geometry -0-0
+*FvwmPager: Geometry -0+0
 *FvwmPager: Colorset * 7
 *FvwmPager: BalloonColorset * 7
 *FvwmPager: Font "xft:Sans:Bold:pixelsize=12:minspace=True:antialias=True"
@@ -385,11 +390,12 @@ Style "FvwmPager" NoTitle, !Handles, !Borders, Sticky, WindowListSkip, \
 ## FvwmButtons
 ### myButtons
 DestroyModuleConfig myButtons: *
-*MyButtons: Geometry 60x420+0+110
+*MyButtons: Geometry +0+0
 *MyButtons: Colorset 7
 *MyButtons: Rows 33
 *MyButtons: Columns 1
 *MyButtons: Frame 0
+*MyButtons: Padding 8 8
 *MyButtons: Font "Shadow=3:xft:Sans:Bold:pixelsize=14:minspace=True:antialias=True"
 *MyButtons: (1x2, Frame 0, Title(Center) "Apps")
 *MyButtons: (1x5, Frame 0, Icon 48x48/terminal.png, \

@@ -88,3 +88,7 @@ exec echo hoho
 Exec echo HOHO
 help
 ?
+exec pcmanfm
+emelfm2
+exec emelfm2
+exec emelfm2
