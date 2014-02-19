@@ -1,10 +1,3 @@
-fvwmChromium
-x
-?
-help
-;
-fvwmChromium;
-fvwmChromium
 call
 fvwm 
 fvwm__fvwmChromium
@@ -92,3 +85,16 @@ exec pcmanfm
 emelfm2
 exec emelfm2
 exec emelfm2
+module fvwmgtk
+module FvwmGtk
+1
+module FvwmIconMan
+module FvwmScript-fileBrowser
+module FvwmScript FvwmScript-fileBrowser
+module FvwmScript FvwmScript-Date
+module FvwmScript FvwmScript-FileBrowser
+module FvwmScript FvwmScript-Colorset
+raise
+lower
+animatedmove 0 0
+animatedmove 0 0

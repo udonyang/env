@@ -38,6 +38,7 @@ IgnoreModifiers L25
 ## misc
 OpaqueMoveSize -1
 Style * ResizeOpaque
+Emulate Mwm
 
 #Function
 ## Basic 
@@ -67,6 +68,14 @@ AddToFunc fvwmMoveOrIconify
 DestroyFunc fvwmWindowShade
 AddToFunc fvwmWindowShade
 + D WindowShade $0
+
+DestroyFunc fvwmReboot
+AddToFunc fvwmReboot
++ I exec reboot
+
+DestroyFunc fvwmPowerOff
+AddToFunc fvwmPowerOff
++ I exec poweroff
 
 ## Launching
 DestroyFunc fvwmXterm
@@ -121,14 +130,14 @@ AddToFunc fvwmXLock
 
 DestroyFunc buildWallpaperMenu
 AddToFunc buildWallpaperMenu
-+ I Exec rm $[fvwm_icon]/wallpaper/*.png
-+ I PipeRead 'for i in $[fvwm_img]/wallpaper/*.png;\
++ I Exec rm $[fvwm_icon]/wallpaper/*
++ I PipeRead 'for i in $[fvwm_img]/wallpaper/*;\
   do convert -scale 64 $i\
   "$[fvwm_icon]/wallpaper/`basename $i`"; done && echo Nop'
 + I Exec echo -e "DestroyMenu fvwmWallpaperMenu\
   \nAddToMenu fvwmWallpaperMenu \"Wallpapers\" Title" >\
   $[fvwm_userdir]/WallpaperMenu
-+ I PipeRead 'for i in $[fvwm_img]/wallpaper/*.png;\
++ I PipeRead 'for i in $[fvwm_img]/wallpaper/*;\
   do echo "AddToMenu fvwmWallpaperMenu\
   \\\"`basename $i`%wallpaper/`basename $i`%\\\"\
   fvwmChangeBackground \\\"`basename $i`\\\"" >> \
@@ -157,12 +166,13 @@ DestroyFunc initFunction
 AddToFunc initFunction
 + I exec ibus-daemon -d -x
 + I initWallpaper
++ I exec setxkbmap -option caps:swapescape
 
 DestroyFunc restartFunction
 AddToFunc restartFunction
 + I Nop
 
-## screenshot
+## Screenshot
 DestroyFunc fvwmWindowScreenShot
 AddToFunc fvwmWindowScreenShot
 + I thisWindow (!Shaded !Iconic Iconifiable) \
@@ -174,18 +184,21 @@ AddToFunc fvwmDesktopScreenShot
 + I exec sleep $0; import -window root -quality 100 -silent \
   "$[fvwm_userdir]/screenshot/screenshot-`date +%F[%R]`.jpg"
 
-# basic bindings
-## key
+# Bindings
+## Key
 Key F1 A M Menu menuFvwmRoot
 Key Tab A M WindowList Root c c NoDeskSort, SelectOnRelease Meta_L
 Key Super_R A A fvwmXTerm
 Key L A 4 fvwmXLock
 Key R A 4 Restart
-
-## mouse
+Key End A 4 fvwmPowerOff
+Key Home A 4 fvwmReboot
+## Mouse
+### Click
 Mouse 1 R A Menu fvwmRootMenu
 Mouse 2 R A Menu fvwmWallpaperMenu
-Mouse 3 R A Menu fvwmWindowOpsMenu
+Mouse 3 R N Menu fvwmWindowOpsMenu
+Mouse 3 A M StrokeFunc DrawMotion, StrokeWidth 10
 Mouse 1 1 A fvwmDeleteOrDestroy
 Mouse 1 3 A fvwmIconifyOrShade
 Mouse 1 5 A fvwmMaximize 100 100
@@ -195,6 +208,11 @@ Mouse 1 W M fvwmMoveOrIconify
 Mouse 1 I A fvwmMoveOrIconify
 Mouse 4 T A fvwmWindowShade True
 Mouse 5 T A fvwmWindowShade False
+### Stroke
+Stroke 258 0 R A Pick fvwmWindowScreenShot
+Stroke 25852 0 R A fvwmDesktopScreenShot
+Stroke 14789 0 R A fvwmXLock
+Stroke 852 0 R A fvwmFm
 
 # Window
 ## Colorsets
@@ -246,6 +264,7 @@ MenuStyle * MenuColorset 7
 MenuStyle * ActiveFore, Hilight3DOff
 MenuStyle * ActiveColorset 8
 MenuStyle * Font "Shadow=2:xft:Sans:size=8:antialias=True"
+MenuStyle * Animation
 ## Menu define
 ### FvwmRootMenu
 DestroyMenu fvwmRootMenu
@@ -257,6 +276,7 @@ AddToMenu fvwmRootMenu "Root Menu" Title
 + "Help%menu/help.png%"  Popup fvwmManPagesMenu
 + "Restart FVWM%menu/restart.png%"  Restart
 + "Quit FVWM%menu/quit.png%"  Quit
+
 ### FvwmProgramsMenu
 DestroyMenu FvwmProgramsMenu
 AddToMenu   FvwmProgramsMenu "Programs" Title
@@ -403,13 +423,11 @@ DestroyModuleConfig myButtons: *
 *MyButtons: (1x5, Frame 0, Icon 48x48/xmms.png, \
   Action(Mouse 1) "fvwmPlayer")
 *MyButtons: (1x5, Frame 0, Icon 48x48/vim.png, \
-  Action(Mouse 1) "fvwmGvim")
+  Action(Mouse 1) "fvwmGVim")
 *MyButtons: (1x5, Frame 0, Icon 48x48/gimp.png, \
   Action(Mouse 1) "fvwmGimp")
 *MyButtons: (1x5, Frame 0, Icon 48x48/firefox.png, \
   Action(Mosue 1) "fvwmChromium")
-*MyButtons: (1x5, Frame 0, Icon 48x48/tux.png, \
-  Action(Mouse 1) "fvwmXLock")
 *MyButtons: (1x1, Frame 0)
 Style "myButtons" NoTitle, !Handles, !Borders, Sticky, WindowListSkip, \
   CirculateSkip, StaysOnBottom, FixedPosition, FixedSize, !Iconifiable
