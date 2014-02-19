@@ -33,7 +33,7 @@ ClickTime 350
 MoveThreshold 3
 Style * SloppyFocus, MouseFocusClickRaises
 ## ewmh
-EwmhBaseStruts 62 162 0 48
+EwmhBaseStruts 64 122 0 21
 IgnoreModifiers L25
 ## misc
 OpaqueMoveSize -1
@@ -248,7 +248,7 @@ Style * Colorset 4, HilightColorset 3,  BorderColorSet 5, HilightBorderColorset 
 # Menu
 ## ColorSet
 Colorset 7 RootTransparent buffer, fg Black, bg, #e6e7d7, sh Black,\
-  hi #202070, Tint White 38, bgTint White 38
+  hi #202070, Tint White 60, bgTint White 60
 Colorset 8 fg DarkRed, bg #e6e7d7, sh Black, hi #202070
 ## Style
 ### Global

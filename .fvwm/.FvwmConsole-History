@@ -1,4 +1,3 @@
-fvwm 
 fvwm__fvwmChromium
 exec
 Exec
@@ -98,3 +97,4 @@ lower
 animatedmove 0 0
 animatedmove 0 0
 Module FvwmWindowMenu
+module FvwmWharf
