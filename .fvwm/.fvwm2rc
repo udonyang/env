@@ -31,7 +31,7 @@ EdgeThickness 1
 ## mouse and focus
 ClickTime 350
 MoveThreshold 3
-Style * SloppyFocus, MouseFocusClickRaises
+Style * MouseFocusClickRaises, ClickToFocus
 ## ewmh
 EwmhBaseStruts 64 122 0 21
 IgnoreModifiers L25
@@ -100,22 +100,13 @@ DestroyFunc fvwmPlayer
 AddToFunc fvwmPlayer
 + I Exec smplayer
 
-DestroyFunc fvwmTopcoder
-AddToFunc fvwmTopcoder
-+ I Exec javaws -localfile \
--J-Djnlp.application.href=http://www.topcoder.com/contest/arena/ContestAppletProd.jnlp /home/dwylkz/.java/deployment/cache/6.0/27/5854631b-5fcfa2ca
-
-DestroyFunc fvwmIGS
-AddToFunc fvwmIGS
-+ I Exec javaws -localfile -J-Djnlp.application.href=http://jagoclient.sourceforge.net/jago.jnlp /home/dwylkz/.java/deployment/cache/6.0/15/7dd9f98f-121b8155
-
-DestroyFunc fvwmKGS
-AddToFunc fvwmKGS
-+ I Exec javaws -localfile -J-Djnlp.application.href=http://files.gokgs.com/javaBin/cgoban.jnlp /home/dwylkz/.java/deployment/cache/6.0/54/21086f76-75701482
-
 DestroyFunc fvwmFm
 AddToFunc fvwmFm
-+ I Exec emelfm2
++ I Exec pcmanfm
+
+DestroyFunc fvwmMixer
+AddToFunc fvwmMixer
++ I Exec gnome-alsamixer
 
 DestroyFunc fvwmViewManPage
 AddToFunc fvwmViewManPage
@@ -198,7 +189,7 @@ Key Home A 4 fvwmReboot
 Mouse 1 R A Menu fvwmRootMenu
 Mouse 2 R A Menu fvwmWallpaperMenu
 Mouse 3 R N Menu fvwmWindowOpsMenu
-Mouse 3 A M StrokeFunc DrawMotion, StrokeWidth 10
+Mouse 3 A M StrokeFunc DrawMotion, StrokeWidth 10, NotStayPress
 Mouse 1 1 A fvwmDeleteOrDestroy
 Mouse 1 3 A fvwmIconifyOrShade
 Mouse 1 5 A fvwmMaximize 100 100
@@ -284,10 +275,6 @@ AddToMenu   FvwmProgramsMenu "Programs" Title
 + "Gimp%menu/gimp.png%"  fvwmGimp
 + "Chromium" fvwmChromium
 + "SMplayer" fvwmPlayer
-+ "Topcoder" fvwmTopcoder
-+ "IGS" fvwmIGS
-+ "KGS" fvwmKGS
-+ "FM" fvwmFm
 ### FvwmManagesMenu
 DestroyMenu fvwmManPagesMenu
 AddToMenu   fvwmManPagesMenu "FVWM Man Pages" Title
@@ -417,10 +404,8 @@ DestroyModuleConfig myButtons: *
 *MyButtons: Padding 8 8
 *MyButtons: Font "xft:Sans:Bold:pixelsize=14:minspace=True:antialias=True"
 *MyButtons: (1x2, Frame 0, Title(Center) "Apps")
-*MyButtons: (1x5, Frame 0, Icon 48x48/terminal.png, \
-  Action(Mouse 1) "fvwmXTerm", \
 *MyButtons: (1x5, Frame 0, Icon 48x48/xmms.png, \
-  Action(Mouse 1) "fvwmPlayer")
+  Action(Mouse 1) "fvwmMixer")
 *MyButtons: (1x5, Frame 0, Icon 48x48/vim.png, \
   Action(Mouse 1) "fvwmGVim")
 *MyButtons: (1x5, Frame 0, Icon 48x48/gimp.png, \
