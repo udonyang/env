@@ -5,4 +5,5 @@ main: main.hs
 debug:
 	./main
 run:
-	cat input.in | ./main
+	@./main "(+ 2 \"two\")"
+	@./main "(+ 2)"
