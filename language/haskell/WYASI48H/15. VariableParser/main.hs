@@ -2,6 +2,7 @@
 
 module Main where
 
+import Data.IORef
 import Control.Monad.Error
 import Control.Monad
 import System.Environment
@@ -294,3 +295,10 @@ until_ pred prompt action = do
 
 runRepl :: IO ()
 runRepl = until_ (== "quit") (readPrompt "Lisp>>> ") evalAndPrint
+
+type Env = IORef [(String, IORef LispVal)]
+
+nullEnv :: IO Env
+nullEnv = newIORef []
+
+type IOThrowsError = ErrorT LispError IO

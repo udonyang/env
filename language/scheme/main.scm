@@ -1,3 +1,11 @@
+(define-syntax try
+  (syntax-rules
+    ()
+    [(try x a b) (let/cc success
+                         (let/cc x
+                                 (success a))
+                         b)]))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;; The Little Schemer ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;
@@ -35,20 +43,20 @@
 
 ; (write (lat? '('() a b c)))
 
-(define member?
-  (lambda (a lat)
-    (cond ((null? lat) #f)
-      (else (or (eq? (car lat) a) 
-        (member? a (cdr lat)))))))
+; (define member?
+;   (lambda (a lat)
+;     (cond ((null? lat) #f)
+;       (else (or (eq? (car lat) a) 
+;         (member? a (cdr lat)))))))
 
 ; (write (member? 'eggs '(fried eggs and scrambled eggs)))
 
-(define rember
-  (lambda (a lat)
-    (cond
-      ((null? lat) '())
-      ((eq? a (car lat)) (cdr lat))
-      (else (cons (car lat) (rember a (cdr lat)))))))
+; (define rember
+;   (lambda (a lat)
+;     (cond
+;       ((null? lat) '())
+;       ((eq? a (car lat)) (cdr lat))
+;       (else (cons (car lat) (rember a (cdr lat)))))))
 
 ; (write (rember 'bacon '(bacon lettuce and tomato)))
 
@@ -60,25 +68,25 @@
 
 ; (write (firsts '((a b) (c d) (e f))))
 
-(define insertR
-  (lambda (new old lat)
-    (cond
-      ((null? lat) '())
-      ((eq? old (car lat))
-       (cons old (cons new (cdr lat))))
-      (else (cons (car lat) (insertR new old (cdr lat)))))))
-(define insertL
-  (lambda (new old lat)
-    (cond
-      ((null? lat) '())
-      ((eq? old (car lat)) (cons new lat))
-      (else (cons (car lat) (insertL new old (cdr lat)))))))
-(define subst
-  (lambda (new old lat)
-    (cond
-      ((null? lat) '())
-      ((eq? old (car lat)) (cons new (cdr lat)))
-      (else (cons (car lat) (subst new old (cdr lat)))))))
+; (define insertR
+;   (lambda (new old lat)
+;     (cond
+;       ((null? lat) '())
+;       ((eq? old (car lat))
+;        (cons old (cons new (cdr lat))))
+;       (else (cons (car lat) (insertR new old (cdr lat)))))))
+; (define insertL
+;   (lambda (new old lat)
+;     (cond
+;       ((null? lat) '())
+;       ((eq? old (car lat)) (cons new lat))
+;       (else (cons (car lat) (insertL new old (cdr lat)))))))
+; (define subst
+;   (lambda (new old lat)
+;     (cond
+;       ((null? lat) '())
+;       ((eq? old (car lat)) (cons new (cdr lat)))
+;       (else (cons (car lat) (subst new old (cdr lat)))))))
 (define subst2
   (lambda (new o1 o2 lat)
     (cond
@@ -93,12 +101,12 @@
 ; (write (subst2 'vanila 'chocolate 'banana
 ;                '(banana ice cream with cholate topping)))
 
-(define multirember
-  (lambda (a lat)
-    (cond
-      ((null? lat) '())
-      ((eq? a (car lat)) (multirember a (cdr lat)))
-      (else (cons (car lat) (multirember a (cdr lat)))))))
+; (define multirember
+;   (lambda (a lat)
+;     (cond
+;       ((null? lat) '())
+;       ((eq? a (car lat)) (multirember a (cdr lat)))
+;       (else (cons (car lat) (multirember a (cdr lat)))))))
 
 ; (write (multirember 'cup '(coffee cup tea cup and hick cup)))
 
@@ -233,11 +241,11 @@
 
 ; (write (pick 4 '(lasagna spahetti ravioli macaroni meatball)))
 
-(define rempick
-  (lambda (n lat)
-    (cond
-      ((zero? (sub1 n)) (cdr lat))
-      (else (cons (car lat) (rempick (sub1 n) (cdr lat)))))))
+; (define rempick
+;   (lambda (n lat)
+;     (cond
+;       ((zero? (sub1 n)) (cdr lat))
+;       (else (cons (car lat) (rempick (sub1 n) (cdr lat)))))))
 
 ; (write (rempick 4 '(lasagna spahetti ravioli macaroni meatball)))
 
@@ -382,11 +390,11 @@
 ;                           ((bean) sauce)
 ;                           (and ((flying)) sauce))))
 
-(define leftmost
-  (lambda (l)
-    (cond
-      ((atom? (car l)) (car l))
-      (else (leftmost (car l))))))
+; (define leftmost
+;   (lambda (l)
+;     (cond
+;       ((atom? (car l)) (car l))
+;       (else (leftmost (car l))))))
 
 ; (write (leftmost '(((tomato sauce))
 ;                    ((bean) sauce)
@@ -417,22 +425,22 @@
 
 ; (write (equal? list1 list2))
 
-(define eqlist?
-  (lambda (l1 l2)
-    (cond
-      ((and (null? l1) (null? l2)) #t)
-      ((or (null? l1) (null? l2)) #f)
-      (else (and (equal? (car l1) (car l2))
-                 (eqlist? (cdr l1) (cdr l2)))))))
+; (define eqlist?
+;   (lambda (l1 l2)
+;     (cond
+;       ((and (null? l1) (null? l2)) #t)
+;       ((or (null? l1) (null? l2)) #f)
+;       (else (and (equal? (car l1) (car l2))
+;                  (eqlist? (cdr l1) (cdr l2)))))))
 
 ; (write (eqlist? list1 list2))
 
-(define rember
-  (lambda (s l)
-    (cond
-      ((null? l) '())
-      ((equal? s (car l)) (cdr l))
-      (else (cons (car l) (rember s (cdr l)))))))
+; (define rember
+;   (lambda (s l)
+;     (cond
+;       ((null? l) '())
+;       ((equal? s (car l)) (cdr l))
+;       (else (cons (car l) (rember s (cdr l)))))))
 
 ; (write (rember 'bacon '(bacon lettuce and tomato)))
 
@@ -454,20 +462,20 @@
 (define operator
   (lambda (aexp)
     (car (cdr aexp))))
-(define value
-  (lambda (nexp)
-    (cond
-      ((atom? nexp) nexp)
-      ((eq? '+ (operator nexp))
-       (o+ (value (first-sub-exp nexp))
-           (value (second-sub-exp nexp))))
-      ((eq? '* (operator nexp))
-       (o* (value (first-sub-exp nexp))
-           (value (second-sub-exp nexp))))
-      ((eq? '^ (operator nexp))
-       (o^ (value (first-sub-exp nexp))
-           (value (second-sub-exp nexp)))))))
-
+; (define value
+;   (lambda (nexp)
+;     (cond
+;       ((atom? nexp) nexp)
+;       ((eq? '+ (operator nexp))
+;        (o+ (value (first-sub-exp nexp))
+;            (value (second-sub-exp nexp))))
+;       ((eq? '* (operator nexp))
+;        (o* (value (first-sub-exp nexp))
+;            (value (second-sub-exp nexp))))
+;       ((eq? '^ (operator nexp))
+;        (o^ (value (first-sub-exp nexp))
+;            (value (second-sub-exp nexp)))))))
+; 
 ; (write (value '(1 + (3 ^ 4))))
 
 ; 6. Shadow
@@ -493,11 +501,11 @@
 
 ; Friends and Relations
 
-(define member?
-  (lambda (a lat)
-    (cond ((null? lat) #f)
-      (else (or (equal? (car lat) a) 
-        (member? a (cdr lat)))))))
+; (define member?
+;   (lambda (a lat)
+;     (cond ((null? lat) #f)
+;       (else (or (equal? (car lat) a) 
+;         (member? a (cdr lat)))))))
 
 (define oset?
   (lambda (lat)
@@ -519,19 +527,19 @@
 ; (write (makeset list3))
 ; (write (makeset '(apple peach pear peach plum apple lemon peach)))
 
-(define multirember
-  (lambda (a lat)
-    (cond
-      ((null? lat) '())
-      ((equal? a (car lat)) (multirember a (cdr lat)))
-      (else (cons (car lat) (multirember a (cdr lat)))))))
+; (define multirember
+;   (lambda (a lat)
+;     (cond
+;       ((null? lat) '())
+;       ((equal? a (car lat)) (multirember a (cdr lat)))
+;       (else (cons (car lat) (multirember a (cdr lat)))))))
 
-(define makeset
-  (lambda (lat)
-    (cond
-      ((null? lat) '())
-      (else (cons (car lat)
-                  (makeset (multirember (car lat) (cdr lat))))))))
+; (define makeset
+;   (lambda (lat)
+;     (cond
+;       ((null? lat) '())
+;       (else (cons (car lat)
+;                   (makeset (multirember (car lat) (cdr lat))))))))
 
 ; (write (makeset list3))
 ; (write (makeset '(apple peach pear peach plum apple lemon peach)))
@@ -564,22 +572,22 @@
 
 ; (write (intersect? '(stewed tomatoes and macaroni) '(macaroni and cheese)))
 
-(define intersect
-  (lambda (set1 set2)
-    (cond
-      ((null? set1) '())
-      ((member? (car set1) set2)
-       (cons (car set1) (intersect (cdr set1) set2)))
-      (else (intersect (cdr set1) set2)))))
+; (define intersect
+;   (lambda (set1 set2)
+;     (cond
+;       ((null? set1) '())
+;       ((member? (car set1) set2)
+;        (cons (car set1) (intersect (cdr set1) set2)))
+;       (else (intersect (cdr set1) set2)))))
 
 ; (write (intersect '(stewed tomatoes and macaroni) '(macaroni and cheese)))
 
-(define union
-  (lambda (set1 set2)
-    (cond
-      ((null? set1) set2)
-      ((member? (car set1) set2) (union (cdr set1) set2))
-      (else (cons (car set1) (union (cdr set1) set2))))))
+; (define union
+;   (lambda (set1 set2)
+;     (cond
+;       ((null? set1) set2)
+;       ((member? (car set1) set2) (union (cdr set1) set2))
+;       (else (cons (car set1) (union (cdr set1) set2))))))
 
 ; (write (union '(stewed tomatoes and macaroni) '(macaroni and cheese)))
 
@@ -592,11 +600,11 @@
 
 ; (write (difference '(stewed tomatoes and macaroni) '(macaroni and cheese)))
 
-(define intersectall
-  (lambda (l-set)
-    (cond
-      ((null? (cdr l-set)) (car l-set))
-      (else (intersect (car l-set) (intersectall (cdr l-set)))))))
+; (define intersectall
+;   (lambda (l-set)
+;     (cond
+;       ((null? (cdr l-set)) (car l-set))
+;       (else (intersect (car l-set) (intersectall (cdr l-set)))))))
 
 ; (write (intersectall '((6 pears and)
 ;                        (3 peached and 6 peppers)
@@ -632,12 +640,12 @@
 ; (write (fun? '((d 4) (a 0) (b 9) (e 5))))
 ; (write (fun? '((d 4) (b 0) (b 9) (e 5))))
 
-(define revrel
-  (lambda (rel)
-    (cond
-      ((null? rel) '())
-      (else (cons (build (second (car rel)) (first (car rel)))
-                  (revrel (cdr rel)))))))
+; (define revrel
+;   (lambda (rel)
+;     (cond
+;       ((null? rel) '())
+;       (else (cons (build (second (car rel)) (first (car rel)))
+;                   (revrel (cdr rel)))))))
 
 ; (write (revrel '((d 4) (b 0) (b 9) (e 5))))
 
@@ -666,13 +674,14 @@
 ;                    (stewed grape))))
 
 ; 8. Lambda the Ultimate!!!
+;; CPS
 
-(define rember-f
-  (lambda (test? a l)
-    (cond
-      ((null? l) '())
-      ((test? a (car l)) (cdr l))
-      (else (cons (car l) (rember-f (cdr l)))))))
+; (define rember-f
+;   (lambda (test? a l)
+;     (cond
+;       ((null? l) '())
+;       ((test? a (car l)) (cdr l))
+;       (else (cons (car l) (rember-f (cdr l)))))))
 
 ; (write (rember-f equal? 'bacon '(bacon lettuce and tomato)))
 
@@ -754,9 +763,9 @@
 
 ; (write (subst 'bacon 'lettuce '(bacon lettuce and tomato)))
 
-(define rember
-  (lambda (a l)
-    ((insert-g (lambda (new old l) l)) #f a l)))
+; (define rember
+;   (lambda (a l)
+;     ((insert-g (lambda (new old l) l)) #f a l)))
 
 ; (write (rember 'lettuce '(bacon lettuce and tomato)))
 
@@ -767,13 +776,13 @@
       ((eq? '* x) o*)
       (else o^))))
 
-(define value
-  (lambda (nexp)
-    (cond
-      ((atom? nexp) nexp)
-      (else ((atom-to-function (operator nexp))
-             (value (first-sub-exp nexp))
-             (value (second-sub-exp nexp)))))))
+; (define value
+;   (lambda (nexp)
+;     (cond
+;       ((atom? nexp) nexp)
+;       (else ((atom-to-function (operator nexp))
+;              (value (first-sub-exp nexp))
+;              (value (second-sub-exp nexp)))))))
 
 ; (write (atom-to-function (+ 5 3)))
 ; (write (value '(1 + (3 ^ 4))))
@@ -911,6 +920,7 @@
 ;                        (lambda (newlat P S) (cons newlat (cons P S)))))
 
 ; 9. ... and Again, and Again, and Again,...
+;; Y combinator
 
 (define keep-looking
   (lambda (a b lat)
@@ -942,12 +952,12 @@
       (else (build (first pora)
                    (align (second pora)))))))
 
-(define length*
-  (lambda (lat)
-    (cond
-      ((null? lat) 0)
-      ((atom? (car lat)) (add1 (length* (cdr lat))))
-      (else (o+ (length* (car lat)) (length* (cdr lat)))))))
+; (define length*
+;   (lambda (lat)
+;     (cond
+;       ((null? lat) 0)
+;       ((atom? (car lat)) (add1 (length* (cdr lat))))
+;       (else (o+ (length* (car lat)) (length* (cdr lat)))))))
 
 (define length*
   (lambda (pora)
@@ -1187,12 +1197,10 @@
 ; Abstract ver.5
 ; Y combinator
 (define Y
-  (lambda (le)
-    ((lambda (mk-length)
-       (mk-length mk-length))
-     (lambda (mk-length)
-       (le (lambda (x)
-             ((mk-length mk-length) x)))))))
+  (lambda (f)
+    ((lambda (g) (g g))
+     (lambda (g)
+       (f (lambda (x) ((g g) x)))))))
 
 ; (write ((Y (lambda (length)
 ;             (lambda (l)
@@ -1200,7 +1208,8 @@
 ;                 ((null? l) 0)
 ;                 (else (add1 (length (cdr l)))))))) '(apple fuck you)))
 
-; What is the Value of All of This
+; 10. What is the Value of All of This
+;; Closure; Function is Value
 
 (define new-entry build)
 
@@ -1450,8 +1459,772 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; The Seasoned Schemer ;;
+;; 117
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Structure and Intepretation in ComputerPrograms;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; 11. Welcome back to the show
+;; Use extra arguments to record what have done so far.
+
+; (define two-in-a-row?
+;   (lambda (lat)
+;     (cond
+;       ((null? lat) #f)
+;       (else (or (is-first? (car lat) (cdr lat))
+;                 (two-in-a-row? (cdr lat)))))))
+; 
+; (define is-first?
+;   (lambda (a lat)
+;     (cond
+;       ((null? lat) #f)
+;       (else (eq? (car lat) a)))))
+
+; (define two-in-a-row?
+;   (lambda (lat)
+;     (cond
+;       ((null? lat) #f)
+;       (else (is-first-b? (car lat) (cdr lat))))))
+; 
+; (define is-first-b?
+;   (lambda (a lat)
+;     (cond
+;       ((null? lat) #f)
+;       (else (or (eq? (car lat) a)
+;                 (two-in-a-row? lat))))))
+
+; (define two-in-a-row?
+;   (lambda (lat)
+;     (cond
+;       ((null? lat) #f)
+;       (else (two-in-a-row-b? (car lat) (cdr lat))))))
+; 
+; (define two-in-a-row-b?
+;   (lambda (a lat)
+;     (cond
+;       ((null? lat) #f)
+;       (else (or (eq? (car lat) a)
+;                 (two-in-a-row-b? (car lat) (cdr lat)))))))
+
+; (write (two-in-a-row? '(Italian sardines sardines spaghetti parsley)))
+; (write (two-in-a-row? '(Italian sardines more sardines spaghetti)))
+
+; (define sum-of-prefixes
+;   (lambda (tup)
+;     (sum-of-prefixes-b 0 tup)))
+; 
+; (define sum-of-prefixes-b
+;   (lambda (sonssf tup)
+;     (cond
+;       ((null? tup) '())
+;       (else (cons (o+ (car tup) sonssf)
+;                   (sum-of-prefixes-b (o+ (car tup) sonssf)
+;                                      (cdr tup)))))))
+
+; (write (sum-of-prefixes '(2 1 9 17 0)))
+; (write (sum-of-prefixes '(1 1 1 1 1)))
+
+; (define scramble
+;   (lambda (tup)
+;     (scramble-b tup '())))
+; 
+; (define scramble-b
+;   (lambda (tup rev-pre)
+;     (cond
+;       ((null? tup) '())
+;       (else (cons (pick (car tup) (cons (car tup) rev-pre))
+;                   (scramble-b (cdr tup)
+;                               (cons (car tup) rev-pre)))))))
+
+; (write (scramble '(1 1 1 3 4 2 1 1 9 2)))
+; (write (scramble '(1 2 3 4 5 6 7 8 9)))
+; (write (scramble '(1 2 3 1 2 3 4 1 8 2 10)))
+
+; 12. Take Cover
+;; We should use letrec to sperate unchange value from funtion
+;; We should use letrec to protect the helper function
+
+; (define multirember
+;   (lambda (a lat)
+;     ((Y (lambda (mr)
+;           (lambda (lat)
+;             (cond
+;               ((null? lat) '())
+;               ((eq? (car lat) a)
+;                (mr (cdr lat)))
+;               (else (cons (car lat)
+;                           (mr (cdr lat))))))))
+;      lat)))
+
+; (define multirember
+;   (lambda (a lat)
+;     ((letrec
+;        ((mr (lambda (lat)
+;               (cond
+;                 ((null? lat) '())
+;                 ((eq? (car lat) a)
+;                  (mr (cdr lat)))
+;                 (else (cons (car lat)
+;                             (mr (cdr lat))))))))
+;         mr)
+;      lat)))
+
+(define multirember
+  (lambda (a lat)
+    (letrec
+      ((mr (lambda (lat)
+             (cond
+               ((null? lat) '())
+               ((eq? (car lat) a)
+                (mr (cdr lat)))
+               (else (cons (car lat)
+                           (mr (cdr lat)))))))
+       (fuck mr))
+      (fuck lat))))
+
+; (write (multirember 'tuna '(shrimp salad tuna salad and tuna)))
+
+; (define multirember-f
+;   (lambda (test?)
+;     (lambda (a lat)
+;       (cond
+;         ((null? lat) '())
+;         ((test? (car lat) a)
+;          ((multirember-f test?) a (cdr lat)))
+;         (else (cons (car lat)
+;                     ((multirember-f test?) a (cdr lat))))))))
+
+; (define multirember-f
+;   (lambda (test?)
+;     (letrec
+;       ((m-f (lambda (a lat)
+;               (cond
+;                 ((null? lat) '())
+;                 ((eq? (car lat) a)
+;                  (m-f a (cdr lat)))
+;                 (else (cons (car lat)
+;                             (m-f a (cdr lat))))))))
+;       m-f)))
+
+; (write ((multirember-f eq?) 'tuna '(shrimp salad tuna salad and tuna)))
+
+(define member?
+  (lambda (a lat)
+    (letrec
+      ((yes? (lambda (l)
+              (cond
+                ((null? l) #f)
+                (else (or (eq? (car l) a)
+                          (yes? (cdr l))))))))
+      (yes? lat))))
+
+; (write (member?  'tuna '(shrimp salad tuna salad and tuna)))
+
+(define union
+  (lambda (s1 s2)
+    (letrec
+      ((U (lambda (s)
+            (cond
+              ((null? s) s2)
+              ((M? (car s) s2)
+               (U (cdr s)))
+              (else (cons (car s) (U (cdr s)))))))
+       (M? (lambda (a lat)
+             (letrec
+               ((N? (lambda (l)
+                      (cond
+                        ((null? lat) #f)
+                        (else (or (eq? (car lat) a)
+                                  (M? a (cdr lat))))))))
+               (N? lat)))))
+      (U s1))))
+
+; (write (union '(tomatoes and macaroni casserole)
+;               '(macaroni and cheese)))
+
+(define two-in-a-row-L?
+  (letrec
+    ((F (lambda (a l)
+          (cond
+            ((null? l) #f)
+            (else (or (eq? (car l) a)
+                      (F (car l) (cdr l))))))))
+    (lambda (lat)
+      (cond ((null? lat) #f)
+            (else (F (car lat) (cdr lat)))))))
+
+; (write (two-in-a-row? '(Italian sardines more sardines spaghetti)))
+
+(define sum-of-prefixes
+  (letrec
+    ((sum-of-prefixes-b
+       (lambda (sonssf tup)
+         (cond
+           ((null? tup) '())
+           (else (cons (o+ (car tup) sonssf)
+                       (sum-of-prefixes-b (o+ (car tup) sonssf)
+                                          (cdr tup))))))))
+    (lambda (tup)
+      (sum-of-prefixes-b 0 tup))))
+
+; (write (sum-of-prefixes '(1 1 1 1 1)))
+
+; (define scramble
+;   (letrec
+;     ((scramble-b
+;        (lambda (tup rev-pre)
+;          (cond
+;            ((null? tup) '())
+;            (else (cons (pick (car tup) (cons (car tup) rev-pre))
+;                        (scramble-b (cdr tup)
+;                                    (cons (car tup) rev-pre))))))))
+;     (lambda (tup)
+;       (scramble-b tup '()))))
+
+; (write (scramble '(1 1 1 3 4 2 1 1 9 2)))
+
+; 13. Hop, Skip, and Jump
+;; Use call-with-current-continuation to quit abruptly and promptly.
+
+(define intersect
+  (lambda (set1 set2)
+    (letrec
+      ((main 
+         (lambda (set)
+           (cond
+             ((null? set) '())
+             ((member? (car set) set2)
+              (cons (car set) (main (cdr set))))
+             (else (main (cdr set)))))))
+      (cond ((null? set2) '())
+            (else (main set1))))))
+
+(define intersectall
+  (lambda (lset)
+    (call-with-current-continuation
+      (lambda (hop)
+        (letrec
+          ((F (lambda (lset)
+                (cond
+                  ((null? (car lset)) (hop '()))
+                  ((null? (cdr lset)) (car lset))
+                  (else (G (car lset) (F (cdr lset)))))))
+           (G (lambda (set1 set2)
+                (letrec
+                  ((main 
+                     (lambda (set)
+                       (cond
+                         ((null? set) '())
+                         ((member? (car set) set2)
+                          (cons (car set) (main (cdr set))))
+                         (else (main (cdr set)))))))
+                  (cond ((null? set2) (hop '()))
+                        (else (main set1)))))))
+          (cond ((null? lset) '())
+                (else (F lset))))))))
+
+; (write (intersect '(tomatoes and macaroni)
+;                   '(macaroni and cheese)))
+
+; (write (intersectall '((tomatoes and macaroni)
+;                        (3)
+;                        (macaroni and cheese))))
+
+(define rember
+  (lambda (s l)
+    (letrec
+      ((F (lambda(l)
+            (cond
+              ((null? l) '())
+              ((equal? s (car l)) (cdr l))
+              (else (cons (car l) (F (cdr l))))))))
+      (F l))))
+
+(define rember-beyond-first
+  (lambda (s l)
+    (letrec
+      ((F (lambda(l)
+            (cond
+              ((null? l) '())
+              ((equal? (car l) s) '())
+              (else (cons (car l) (F (cdr l))))))))
+      (F l))))
+
+(define rember-upto-last
+  (lambda (s l)
+    (call-with-current-continuation
+      (lambda (skip)
+        (letrec
+          ((F (lambda(l)
+                (cond
+                  ((null? l) '())
+                  ((equal? s (car l)) (skip (F (cdr l))))
+                  (else (cons (car l) (F (cdr l))))))))
+          (F l))))))
+
+; (write (rember 'bacon '(bacon lettuce and tomato)))
+; (write (rember-beyond-first 'bacon '(lettuce and bacon tomato)))
+; (write (rember-upto-last 'bacon '(bacon lettuce and bacon tomato)))
+
+; 14. Let There Be Names
+;; Use (let ..) to name the values of repeated expression
+;; in a function definition if they may be evaluated twice
+;; for one and the same use of the function
+;;
+;; (if pred true-exp false-exp)
+;; (try continuation-tag func fail-func)
+
+; (define leftmost
+;   (lambda (lat)
+;     (cond
+;       ((null? lat) '())
+;       ((atom? (car lat)) (car lat))
+;       (else (cond
+;               ((atom? (leftmost (car lat)))
+;                (leftmost (car lat)))
+;               (else (leftmost (cdr lat))))))))
+
+; (define leftmost
+;   (lambda (lat)
+;     (cond
+;       ((null? lat) '())
+;       ((atom? (car lat)) (car lat))
+;       (else (let
+;               ((ret (leftmost (car lat))))
+;               (cond
+;                 ((atom? ret) ret)
+;                 (else (leftmost (cdr lat)))))))))
+
+; (write (leftmost '((() a) ())))
+
+; (define rember1*
+;   (lambda (a l)
+;     (letrec
+;       ((main (lambda (l) 
+;                (cond
+;                  ((null? l) '())
+;                  ((atom? (car l))
+;                   (cond
+;                     ((eq? (car l) a) (cdr l))
+;                     (else (cons (car l)
+;                                 (main (cdr l))))))
+;                  (else (let
+;                          ((ret (main (car l))))
+;                          (cond
+;                            ((eqlist? ret (car l))
+;                             (cons (car l) (main (cdr l))))
+;                            (else (cons ret (cdr l))))))))))
+;       (main l))))
+
+; (write (rember1* 'meat '((pasta meat) pasta (noodles meat sauce meat tomatoes))))
+
+; (define depth*
+;   (lambda (l)
+;     (cond
+;       ((null? l) 1)
+;       (else
+;         (let
+;           ((d (depth* (cdr l))))
+;           (cond
+;             ((atom? (car l)) d)
+;             (else (let
+;                     ((a (add1 (depth* (car l)))))
+;                     (cond
+;                       ((o> d a) d)
+;                       (else a))))))))))
+
+; (define depth*
+;   (lambda (l)
+;     (cond
+;       ((null? l) 1)
+;       ((atom? (car l)) (depth* (cdr l)))
+;       (else (let
+;               ((a (add1 (depth* (car l))))
+;                (d (depth* (cdr l))))
+;               (if (o> d a) d a))))))
+
+(define max
+  (lambda (n m)
+    (if (o> n m) n m)))
+
+; (define depth*
+;   (lambda (l)
+;     (cond
+;       ((null? l) 1)
+;       ((atom? (car l)) (depth* (cdr l)))
+;       (else (max (add1 (depth* (car l)))
+;                  (depth* (cdr l)))))))
+
+; (write (depth* '((pickled) peppers (peppers pickled))))
+
+(define scramble
+  (letrec
+    ((scramble-b
+       (lambda (tup rev-pre)
+         (cond
+           ((null? tup) '())
+           (else (let
+                   ((a (cons (car tup) rev-pre)))
+                   (cons (pick (car tup) a)
+                         (scramble-b (cdr tup) a))))))))
+    (lambda (tup)
+      (scramble-b tup '()))))
+
+; (write (scramble '(1 1 1 3 4 2 1 1 9 2)))
+
+; (define leftmost
+;   (lambda (lat)
+;     (cond
+;       ((null? lat) '())
+;       ((atom? (car lat)) (car lat))
+;       (else (let
+;               ((ret (leftmost (car lat))))
+;               (cond
+;                 ((atom? ret) ret)
+;                 (else (leftmost (cdr lat)))))))))
+
+(define leftmost
+  (lambda (l)
+    (let/cc
+      skip
+      (letrec
+        ((lm (lambda (l)
+               (cond
+                 ((null? l) '())
+                 ((atom? (car l)) (skip (car l)))
+                 (else (let ()
+                         (lm (car l))
+                         (lm (cdr l))))))))
+        (lm l)))))
+
+; (write (leftmost '((() a) ())))
+; (write (leftmost '(((a)) b (c))))
+
+(define rember1*
+  (lambda (a l)
+    (letrec
+      ((rm (lambda (a l oh)
+             (cond
+               ((null? l) (oh 'no))
+               ((atom? (car l))
+                (if (eq? (car l) a)
+                  (cdr l)
+                  (cons (car l)
+                        (rm a (cdr l) oh))))
+               (else (try oh2
+                         (cons (rm a (car l) oh2) (cdr l))
+                         (cons (car l) (rm a (cdr l) oh))))))))
+      (try oh (rm a l oh) l))))
+
+; (write (rm 'fuck '((pasta meat) pasta (noodles meat sauce meat tomatoes))
+;            (lambda (x) x)))
+
+; (write (rember1* 'noodles '((food) more (food))))
+
+; 15. The Difference Between Men and Boys.
+;; Use (set! ...) only with names defined in (let ...)s.
+;; Use (set! ...) only when the value that x refers to is no longer needed.
+;; Use (set! x ...) for (let ((x ...)) ...) only there is
+;;; at least one (lambda ...) between it and the (let ((x ...)) ...). 
+
+(define x
+  (cons 'chicago
+        (cons 'pizza '())))
+
+; (write x)
+
+(set! x 'gone)
+
+; (write x)
+
+(set! x 'skins)
+
+; (write x)
+
+(define gourmet
+  (lambda (food)
+    (cons food
+          (cons x '()))))
+
+(define y (gourmet 'onion))
+
+; (write y)
+
+(set! x 'rings)
+
+; (write (build y (gourmet 'onion)))
+
+(define gourmand
+  (lambda (food)
+    (set! x food)
+    (cons food
+          (cons x '()))))
+
+; (write (build (gourmand 'potato) x))
+
+(define dinerR
+  (lambda (food)
+    (set! x food)
+    (cons 'milkshake
+          (cons food '()))))
+
+; (write (build x (dinerR 'potato)))
+
+(dinerR 'onion)
+
+
+(define omnivore
+  (let ([x 'minestrone])
+    (lambda (food)
+      (set! x food)
+      (cons food (cons x '())))))
+
+; (write (omnivore 'bouillabaisse))
+
+(define gobbler
+  (let ([x 'minestrone])
+    (lambda (food)
+      (set! x food)
+      (cons food (cons x '())))))
+
+; (write (gobbler 'gumbo))
+
+(define nibbler
+  (lambda (food)
+    (let ((x  'donut))
+      (set! x food)
+      (cons food (cons x '())))))
+
+(nibbler 'cheerio)
+
+(define food 'none)
+
+(define glutton
+  (lambda (x)
+    (set! food x)
+    (cons 'more (cons x (cons 'more (cons x '()))))))
+
+; (write (glutton 'onion))
+
+(glutton 'garlic)
+
+(define chez-nous
+  (let ([tmp food])
+    (lambda ()
+      (set! food x)
+      (set! x tmp))))
+
+(chez-nous)
+
+; 16. Ready, Set ,Bang!
+;; Use (set! ...) to remember valuable things between two
+;;; distinct uses of a function.
+;; Use (set! x ...) for (let ((x ...)) ...) only if there
+;;; is one (lambda ... between it and the (let ...), or
+;;; if value for x is a function that refers to x.
+
+; (write (build food x))
+
+; (write (build food x))
+
+(define sweet-tooth
+  (lambda (food)
+    (cons food (cons 'cake '()))))
+
+(define last 'angelfood)
+
+(define sweet-toothL
+  (lambda (food)
+    (set! last food)
+    (cons food (cons 'cake '()))))
+
+(sweet-toothL 'chocolate)
+
+(sweet-toothL 'fruit)
+
+(sweet-toothL 'cheese)
+
+(sweet-toothL 'carrot)
+
+; (write last)
+
+(define ingredients '())
+
+(define sweet-toothR
+  (lambda (food)
+    (set! ingredients (cons food ingredients))
+    (cons food (cons 'cake '()))))
+
+(sweet-toothR 'chocolate)
+
+(sweet-toothR 'fruit)
+
+(sweet-toothR 'cheese)
+
+(sweet-toothR 'carrot)
+
+; (write ingredients)
+
+; (define deep
+;   (lambda (n)
+;     (if (zero? n) 'pizza
+;       (cons (deep (sub1 n)) '()))))
+; 
+; (write (deep 7))
+; 
+; (define Rs '())
+; 
+; (define Ns '())
+; 
+; (define deepR
+;   (lambda (n)
+;     (let ([result (deep n)])
+;       (set! Rs (cons result Rs))
+;       (set! Ns (cons n Ns))
+;       result)))
+; 
+; (deepR 3)
+; 
+; (deepR 5)
+
+; (deepR 3)
+
+; (write (build Rs Ns))
+
+; (define find
+;   (lambda (n Ns Rs)
+;     (letrec
+;       ([main (lambda (Ns Rs)
+;                (cond
+;                  ((o= n (car Ns)) (car Rs))
+;                  (else (main (cdr Ns) (cdr Rs)))))])
+;       (main Ns Rs))))
+
+; (write (find 3 Ns Rs))
+
+; (define deepM
+;   (lambda (n)
+;     (if (member? n Ns) (find n Ns Rs)
+;       (let ([result (deep n)])
+;         (set! Rs (cons result Rs))
+;         (set! Ns (cons n Ns))
+;         result))))
+
+(define deep
+  (lambda (n)
+    (if (zero? n) 'pizza
+      (cons (deepM (sub1 n)) '()))))
+
+; (write (build (deepM 9) (build Ns Rs)))
+
+; (define deepM
+;   (let ([Rs '()]
+;         [Ns '()])
+;     (lambda (n)
+;       (if (member? n Ns) (find n Ns Rs)
+;         (let ([result (deep n)])
+;           (set! Rs (cons result Rs))
+;           (set! Ns (cons n Ns))
+;           result)))))
+
+(define find
+  (lambda (n Ns Rs)
+    (letrec
+      ([main (lambda (Ns Rs)
+               (cond
+                 ((null? Ns) #f)
+                 ((o= n (car Ns)) (car Rs))
+                 (else (main (cdr Ns) (cdr Rs)))))])
+      (main Ns Rs))))
+
+(define deepM
+  (let ([Rs '()]
+        [Ns '()])
+    (lambda (n)
+      (let ([exsit (find n Ns Rs)])
+        (if (atom? exsit)
+          (let ([result (deep n)])
+            (set! Rs (cons result Rs))
+            (set! Ns (cons n Ns))
+            result)
+          (find n Ns Rs))))))
+
+; (write (deepM 16))
+
+; (define length
+;   (let ((h (lambda (l) 0)))
+;     (set! h (lambda (l)
+;               (cond
+;                 ((null? l) 0)
+;                 (else (add1 (h (cdr l)))))))
+;     h))
+
+(define L
+  (lambda (length)
+    (lambda (l)
+      (cond
+        ((null? l) 0)
+        (else (add1 (length (cdr l))))))))
+
+; (define length
+;   (let ([h (lambda (l) 0)])
+;     (set! h (L (lambda (args) (h args))))
+;     h))
+
+; (write (length '(1 2 3)))
+
+(define Y!
+  (lambda (L)
+    (let ([h (lambda (l) 0)])
+      (set! h (L (lambda (args) (h args)))) 
+      h)))
+
+; (write ((Y! L)'(1 2 3)))
+
+(define Y-bang
+  (lambda (f)
+    (letrec
+      ([h (f (lambda (x) (h x)))])
+      h)))
+
+; (write ((Y-bang L)'(1 2 3)))
+
+(define length (Y! L))
+
+; (write (length '(1 2 3)))
+
+(define D
+  (lambda (depth*)
+    (lambda (l)
+      (cond
+        ((null? l) 1)
+        ((atom? (car l)) (depth* (cdr l)))
+        (else (max (add1 (depth* (car l)))
+                   (depth* (cdr l))))))))
+
+(define depth* (Y! D))
+
+; (write (depth* '((pickled) peppers (peppers pickled))))
+
+(define biz
+  (let ([x 0])
+    (lambda (f)
+      (set! x (add1 x))
+      (lambda (a)
+        (if (o= a x)
+          0
+          (f a))))))
+
+; (write ((Y biz) 5))
+
+; (write ((Y! biz) 5))
+
+; (define test
+;   (let ([x '()])
+;     (lambda (n)
+;       (if (zero? n) (length x)
+;         (let ()
+;           (set! x (cons 'fuck x))
+;           (test (sub1 n)))))))
+; 
+; (write (test 3))
+
+; 17. We Change, Therefore We Are! 
