@@ -225,11 +225,11 @@
 
 ; (write (o/ 10 5))
 
-(define length
-  (lambda (lat)
-    (cond
-      ((null? lat) 0)
-      (else (add1 (length (cdr lat)))))))
+; (define length
+;   (lambda (lat)
+;     (cond
+;       ((null? lat) 0)
+;       (else (add1 (length (cdr lat)))))))
 
 ; (write (length '(ham and cheese on rye)))
 
@@ -403,16 +403,16 @@
 (define list1 '(((tomato sauce)) ((bean) sauce) (and ((flying)) sauce)))
 (define list2 '((tomato sauce) ((bean) sauce) (and ((flying)) sauce)))
 
-(define eqlist?
-  (lambda (l1 l2)
-    (cond
-      ((and (null? l1) (null? l2)) #t)
-      ((or (null? l1) (null? l2)) #f)
-      ((and (atom? l1) (atom? l2))
-       (and (eqan? l1 l2) (eqlist? (cdr l1) (cdr l2))))
-      ((or (atom? l1) (atom? l2)) #f)
-      (else (and (eqlist? (car l1) (car l2))
-                 (eqlist? (cdr l1) (cdr l2)))))))
+; (define eqlist?
+;   (lambda (l1 l2)
+;     (cond
+;       ((and (null? l1) (null? l2)) #t)
+;       ((or (null? l1) (null? l2)) #f)
+;       ((and (atom? l1) (atom? l2))
+;        (and (eqan? l1 l2) (eqlist? (cdr l1) (cdr l2))))
+;       ((or (atom? l1) (atom? l2)) #f)
+;       (else (and (eqlist? (car l1) (car l2))
+;                  (eqlist? (cdr l1) (cdr l2)))))))
 
 ; (write (eqlist? list1 list2))
 
@@ -425,13 +425,13 @@
 
 ; (write (equal? list1 list2))
 
-; (define eqlist?
-;   (lambda (l1 l2)
-;     (cond
-;       ((and (null? l1) (null? l2)) #t)
-;       ((or (null? l1) (null? l2)) #f)
-;       (else (and (equal? (car l1) (car l2))
-;                  (eqlist? (cdr l1) (cdr l2)))))))
+(define eqlist?
+  (lambda (l1 l2)
+    (cond
+      ((and (null? l1) (null? l2)) #t)
+      ((or (null? l1) (null? l2)) #f)
+      (else (and (equal? (car l1) (car l2))
+                 (eqlist? (cdr l1) (cdr l2)))))))
 
 ; (write (eqlist? list1 list2))
 
@@ -1459,7 +1459,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; The Seasoned Schemer ;;
-;; 117
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ; 11. Welcome back to the show
@@ -2108,11 +2107,11 @@
 ;         (set! Ns (cons n Ns))
 ;         result))))
 
-(define deep
-  (lambda (n)
-    (if (zero? n) 'pizza
-      (cons (deepM (sub1 n)) '()))))
-
+; (define deep
+;   (lambda (n)
+;     (if (zero? n) 'pizza
+;       (cons (deepM (sub1 n)) '()))))
+; 
 ; (write (build (deepM 9) (build Ns Rs)))
 
 ; (define deepM
@@ -2135,17 +2134,17 @@
                  (else (main (cdr Ns) (cdr Rs)))))])
       (main Ns Rs))))
 
-(define deepM
-  (let ([Rs '()]
-        [Ns '()])
-    (lambda (n)
-      (let ([exsit (find n Ns Rs)])
-        (if (atom? exsit)
-          (let ([result (deep n)])
-            (set! Rs (cons result Rs))
-            (set! Ns (cons n Ns))
-            result)
-          (find n Ns Rs))))))
+; (define deepM
+;   (let ([Rs '()]
+;         [Ns '()])
+;     (lambda (n)
+;       (let ([exsit (find n Ns Rs)])
+;         (if (atom? exsit)
+;           (let ([result (deep n)])
+;             (set! Rs (cons result Rs))
+;             (set! Ns (cons n Ns))
+;             result)
+;           (find n Ns Rs))))))
 
 ; (write (deepM 16))
 
@@ -2228,3 +2227,409 @@
 ; (write (test 3))
 
 ; 17. We Change, Therefore We Are! 
+;; (define f
+;;   (let ([x y])
+;;     ((lambda ()
+;;        ()))))
+;;
+;; is equal to
+;;
+;; (define x y)
+;; (define f
+;;   (lambda ()
+;;        ()))
+;;
+;; but we couldn't see x outside f.
+
+; (define deepM
+;   (let ([Rs '()]
+;         [Ns '()])
+;     (lambda (n)
+;       (let ([exsit (find n Ns Rs)])
+;         (if (atom? exsit)
+;           (let ([result (let ([m 0])
+;                           (if (zero? m)
+;                             'pizza
+;                             (cons (deepM (sub1 m)) '())))])
+;             (set! Rs (cons result Rs))
+;             (set! Ns (cons n Ns))
+;             result)
+;           exsit)))))
+
+; (define deepM
+;   (let ([Rs '()]
+;         [Ns '()])
+;     (lambda (n)
+;       (let ([exsit (find n Ns Rs)])
+;         (if (atom? exsit)
+;           (let ([result (if (zero? n)
+;                           'pizza
+;                           (cons (deepM (sub1 n)) '()))])
+;             (set! Rs (cons result Rs))
+;             (set! Ns (cons n Ns))
+;             result)
+;           exsit)))))
+
+; (write (deepM 6))
+
+; (define consC
+;   (let ([N 0])
+;     (lambda (x y)
+;     (set! N (add1 N))
+;     (cons x y))))
+
+; (define deep
+;   (lambda (m)
+;     (if (zero? m)
+;       'pizza
+;       (consC (deep (sub1 m))
+;              '()))))
+; 
+; (define counter 0)
+
+; (define consC
+;   (let ([N 0])
+;     (set! counter
+;       (lambda () N))
+;     (lambda (x y)
+;       (set! N (add1 N))
+;       (cons x y))))
+
+; (deep 5) 
+
+; (define test
+;   (let* ([a 1]
+;         [b a])
+;     (cons a b)))
+
+; (write test)
+
+; (deep 7)
+
+; (write (counter))
+
+(define supercounter
+  (lambda (f)
+    (letrec
+      ([S (lambda (n)
+            (if (zero? n)
+              (f n)
+              (let ()
+                (f n)
+                (S (sub1 n)))))])
+      (S 1000)
+      counter)))
+
+(define counter 'fuck)
+
+(define set-counter 0)
+
+(define consC
+  (let ([N 0])
+    (set! counter
+      (lambda ()
+        N))
+    (set! set-counter
+      (lambda (x)
+        (set! N x)))
+    (lambda (x y)
+      (set! N (add1 N))
+      (cons x y))))
+
+(define deep
+  (lambda (m)
+    (if (zero? m)
+      'pizza
+      (consC (deep (sub1 m))
+             '()))))
+
+(deep 5)
+
+(deep 7)
+
+(set-counter 0)
+
+(supercounter deep)
+
+(define get-Rs 0)
+
+(define deepM
+  (let ([Rs '()]
+        [Ns '()])
+    (set! get-Rs (lambda () Rs))
+    (lambda (n)
+      (let ([exsit (find n Ns Rs)])
+        (if (atom? exsit)
+          (let ([result (if (zero? n)
+                          'pizza
+                          (consC (deepM (sub1 n)) '()))])
+            (set! Rs (cons result Rs))
+            (set! Ns (cons n Ns))
+            result)
+          exsit)))))
+
+(set-counter 0)
+
+(deepM 5)
+
+(deepM 7)
+
+; (supercounter deepM)
+
+; (print (counter))
+
+(define rember1*C
+  (lambda (a l)
+    (letrec
+      ((rm (lambda (a l oh)
+             (cond
+               ((null? l) (oh 'no))
+               ((atom? (car l))
+                (if (eq? (car l) a)
+                  (cdr l)
+                  (consC (car l)
+                        (rm a (cdr l) oh))))
+               (else (try oh2
+                         (consC (rm a (car l) oh2) (cdr l))
+                         (consC (car l) (rm a (cdr l) oh))))))))
+      (try oh (rm a l oh) l))))
+
+(set-counter 0)
+
+; (write (build (rember1*C 'noodles '((food) more (food)))
+;               (counter)))
+
+(define rember1*C2
+  (lambda (a l)
+    (letrec
+      ((main (lambda (l) 
+               (cond
+                 ((null? l) '())
+                 ((atom? (car l))
+                  (cond
+                    ((eq? (car l) a) (cdr l))
+                    (else (consC (car l)
+                                (main (cdr l))))))
+                 (else (let
+                         ((ret (main (car l))))
+                         (cond
+                           ((eqlist? (car l) ret)
+                            (consC (car l)
+                                   (main (cdr l))))
+                           (else (consC ret
+                                        (cdr l))))))))))
+      (main l))))
+
+; (require racket/trace)
+; (trace rember1*C2)
+; (trace eqlist?)
+; (trace consC)
+
+(set-counter 0)
+
+(rember1*C2 'noodles '((food) more (food)))
+
+; (write (counter))
+
+(set-counter 0)
+
+(consC (consC 'food '())
+       (consC 'more
+              (consC (consC 'food '())
+                     '())))
+; (write (counter))
+
+; 18. We Change, Therefore. We Are the Same.
+;; I understand why function is value, again, shockly!!!
+;;; from the example of cons's shadow.
+;; In Scheme, beware of the references, see "long" example.
+
+(require scheme/mpair)
+
+; (define kons mcons)
+; 
+; (define kar mcar)
+; 
+; (define kdr mcdr)
+; 
+; (define set-kdr set-mcdr!)
+
+(define kounter 0)
+
+(define set-kounter 0)
+
+(define konsC
+  (let ([N 0])
+    (set! kounter
+      (lambda () N))
+    (set! set-kounter
+      (lambda (x)
+        (set! N x)))
+    (lambda (a b)
+      (set! N (add1 N))
+      (kons a b))))
+
+
+(define lots
+  (lambda (m)
+    (cond
+      ((zero? m) '())
+      (else (konsC 'egg
+                  (lots (sub1 m)))))))
+
+(define lenkth
+  (lambda (l)
+    (cond
+      ((null? l) 0)
+      (else (add1 (lenkth (kdr l)))))))
+
+; (write (lenkth (lots 5)))
+
+(define add-at-end
+  (lambda (l)
+    (cond
+      ((null? (kdr l))
+       (konsC (kar l)
+              (konsC 'egg '())))
+      (else (konsC (kar l)
+                  (add-at-end (kdr l)))))))
+
+; (write (build (add-at-end (lots 3)) (kounter)))
+
+(define add-at-end-too
+  (lambda (l)
+    (letrec
+      ([A (lambda (ls)
+            (cond
+              ((null? (kdr ls))
+               (set-kdr ls
+                        (konsC 'egg '())))
+              (else (A (kdr ls)))))])
+      (A l)
+      l)))
+
+(set-kounter 0)
+
+; (write (build (add-at-end-too (lots 3)) (kounter)))
+
+; (define kons
+;   (lambda (kar kdr)
+;     (lambda (selector)
+;       (selector kar kdr))))
+; 
+; (define kar
+;   (lambda (c)
+;     (c (lambda (a d) a))))
+; 
+; (define kdr
+;   (lambda (c)
+;     (c (lambda (a d) d))))
+
+(define bons
+  (lambda (kar)
+    (let ([kdr '()])
+      (lambda (selector)
+        (selector
+          (lambda (x) (set! kdr x))
+          kar
+          kdr)))))
+
+(define kar
+  (lambda (c)
+    (c (lambda (s a d) a))))
+
+(define kdr
+  (lambda (c)
+    (c (lambda (s a d) d))))
+
+(define set-kdr
+  (lambda (c x)
+    ((c (lambda (s a d) s)) x)))
+
+(define kons
+  (lambda (a d)
+    (let ([c (bons a)])
+      (set-kdr c d)
+      c)))
+
+; (define test (kons 'egg (kons 'egg '())))
+; (set-kdr test (kons 'cake '()))
+; (write (kar (kdr test)))
+
+; (set-kounter 0)
+; (define test (lots 3))
+; (add-at-end-too test)
+; (write (kounter))
+
+(set-kounter 0)
+(define dozen (lots 12))
+(define bakers-dozen (add-at-end dozen))
+(define bakers-dozen-too (add-at-end-too dozen))
+(define bakers-dozen-again (add-at-end dozen))
+; (write (kounter))
+
+(define eklist?
+  (lambda (ls1 ls2)
+    (cond
+      ((null? ls1) (null? ls2))
+      ((null? ls2) #f)
+      (else
+        (and (eq? (kar ls1) (kar ls2))
+             (eklist? (kdr ls1) (kdr ls2)))))))
+
+; (write (eklist? bakers-dozen bakers-dozen-too))
+
+(define same?
+  (lambda (c1 c2)
+    (let ([t1 (kdr c1)]
+          [t2 (kdr c2)])
+      (set-kdr c1 1)
+      (set-kdr c2 2)
+      (let ([v (o= (kdr c1) (kdr c2))])
+        (set-kdr c1 t1)
+        (set-kdr c2 t2)
+        v))))
+
+; (write (same? bakers-dozen bakers-dozen-too))
+
+(define last-kons
+  (lambda (ls)
+    (cond
+      ((null? (kdr ls)) ls)
+      (else (last-kons (kdr ls))))))
+
+(define long (lots 12))
+; (set-kdr (last-kons long) long)
+(set-kdr (last-kons long) (kdr long))
+; (write (lenkth long))
+
+(define finite-length
+  (lambda (p)
+    (let/cc
+      infinite
+      (letrec ([C (lambda (p q)
+                    (cond
+                      ((same? p q)
+                       (infinite #f))
+                      ((null? q) 0)
+                      ((null? (kdr q)) 1)
+                      (else
+                        (o+ (C (sl p) (qk q))
+                            2))))]
+               [qk (lambda (x) (kdr (kdr x)))]
+               [sl (lambda (x) (kdr x))])
+        (cond
+          ((null? p) 0)
+          (else (add1 (C p (kdr p)))))))))
+
+
+; (write (finite-length long))
+
+(define from-kons
+  (lambda l
+    (if (null? l) '()
+      (cons (kar l) (from-kons (kdr l))))))
+
+(write (from-kons (lots 3)))
+
+; 19. Absconding with the Jewels.

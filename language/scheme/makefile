@@ -1,4 +1,4 @@
 main: main.scm
 
 %: %.scm
-	racket -f $<
+	tsocks racket -f $<
