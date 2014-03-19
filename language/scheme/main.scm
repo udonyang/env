@@ -2625,11 +2625,59 @@
 
 ; (write (finite-length long))
 
-(define from-kons
-  (lambda l
-    (if (null? l) '()
-      (cons (kar l) (from-kons (kdr l))))))
-
-(write (from-kons (lots 3)))
+; (define from-kons
+;   (lambda l
+;     (if (null? l) '()
+;       (cons (kar l) (from-kons (kdr l))))))
+; 
+; (write (from-kons (lots 3)))
 
 ; 19. Absconding with the Jewels.
+
+; (define deep
+;   (lambda (m)
+;     (cond
+;       ((zero? m) 'pizza)
+;       (else (cons (deep (sub1 m)) '())))))
+
+; (write (deep 6))
+
+(define toppings 0)
+
+(define deepB
+  (lambda (m)
+    (cond
+      ((zero? m)
+       (let/cc
+         jump
+         (set! toppings jump)
+         'pizza))
+      (else (cons (deepB (sub1 m))
+                  '())))))
+
+(write (deepB 1))
+
+; (write (toppings 'haha))
+
+; (write (cons (toppings 'cake) '()))
+
+; (write (cons (cons (toppings 'cake) (toppings 'cake))
+;             (toppings 'cake)))
+
+(write (cons (toppings 'cake) '()))
+
+(define deep-coB
+  (lambda (m col)
+    (cond
+      ((zero? m)
+       (let ()
+         (set! toppings
+           (lambda (x) (col x)))
+         (col 'pizza)))
+      (else (deep-coB (sub1 m)
+                      (lambda (x)
+                        (cons (col x) '())))))))
+
+; (write (deep-coB 2 (lambda (x) x)))
+; 
+; (write (cons (toppings 'cake) (toppings 'cake)))
