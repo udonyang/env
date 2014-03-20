@@ -2655,7 +2655,7 @@
       (else (cons (deepB (sub1 m))
                   '())))))
 
-(write (deepB 1))
+; (write (deepB 1))
 
 ; (write (toppings 'haha))
 
@@ -2664,7 +2664,7 @@
 ; (write (cons (cons (toppings 'cake) (toppings 'cake))
 ;             (toppings 'cake)))
 
-(write (cons (toppings 'cake) '()))
+; (write (cons '() (cons '() (cons '() (cons (toppings 'cake) '())))))
 
 (define deep-coB
   (lambda (m col)
@@ -2681,3 +2681,161 @@
 ; (write (deep-coB 2 (lambda (x) x)))
 ; 
 ; (write (cons (toppings 'cake) (toppings 'cake)))
+
+; (define leave 0)
+; 
+; (define walk
+;   (lambda (l)
+;     (cond
+;       ((null? l) '())
+;       ((atom? (car l))
+;        (leave (car l)))
+;       (else
+;         (let ()
+;           (walk (car l))
+;           (walk (cdr l)))))))
+; 
+; (define start-it
+;   (lambda (l)
+;     (let/cc
+;       here
+;       (set! leave here)
+;       (walk l))))
+
+; (define list4 '((potato) (chips (chips (with))) fish))
+
+; (write (start-it list4))
+
+; (define fill 0)
+; 
+; (define waddle
+;   (lambda (l)
+;     (cond
+;       ((null? l) '())
+;       ((atom? (car l))
+;        (let()
+;          (let/cc
+;            rest
+;            (set! fill rest)
+;            (leave (car l)))
+;          (waddle (cdr l))))
+;       (else
+;         (let ()
+;           (waddle (car l))
+;           (waddle (cdr l)))))))
+
+; (define start-it2
+;   (lambda (l)
+;     (let/cc
+;       here
+;       (set! leave here)
+;       (waddle l))))
+; 
+; (define list5 '((donuts) (cheerios (cheerios (spaghettios))) donuts))
+; 
+; (define fuck (start-it2 list5))
+; 
+; (define list6 '(() (cheerios (cheerios (spaghettios))) donuts))
+; 
+; (define rest1
+;   (lambda (x)
+;     (waddle list6)))
+; 
+; (define get-next
+;   (lambda (x)
+;     (let/cc
+;       here-again
+;       (set! leave here-again)
+;       (fill 'go)
+;       (leave '()))))
+
+; (set! fuck (get-next 'go))
+; (set! fuck (get-next 'go))
+; (set! fuck (get-next 'go))
+; (set! fuck (get-next 'go))
+; (write (get-next 'go))
+
+; (define get-first
+;   (lambda (l)
+;     (let/cc
+;       here
+;       (set! leave here)
+;       (waddle l)
+;       (leave '()))))
+
+; (write (get-first list5))
+
+; (define two-in-a-row*?
+;   (lambda (l)
+;     (let
+;       ((fst (get-first l)))
+;       (if (atom? fst)
+;         (two-in-a-row-b*? fst)
+;         #f))))
+
+; (define two-in-a-row-b*?
+;   (lambda (x)
+;     (let
+;       ((y (get-next 'go)))
+;       (if (atom? y)
+;         (or (eq? x y)
+;             (two-in-a-row-b*? y))
+;         #f))))
+
+(define list6 '(fish (chips) chips))
+
+; (write (get-first list6))
+; (write (get-next 'go))
+; (write (get-next 'go))
+
+; (write (two-in-a-row*? list6))
+
+(define two-in-a-row*?
+  (lambda (l)
+    (letrec
+      ([two-in-a-row-b*?
+         (lambda (x)
+           (let
+             ((y (get-next 'go)))
+             (if (atom? y)
+               (or (eq? x y)
+                   (two-in-a-row-b*? y))
+               #f)))]
+       [get-first
+         (lambda (x)
+           (let/cc
+             here-again
+             (set! leave here-again)
+             (fill 'go)
+             (leave '())))]
+       [get-next
+         (lambda (x)
+           (let/cc
+             here-again
+             (set! leave here-again)
+             (fill 'go)
+             (leave '())))]
+       [waddle
+         (lambda (l)
+           (cond
+             ((null? l) '())
+             ((atom? (car l))
+              (let()
+                (let/cc
+                  rest
+                  (set! fill rest)
+                  (leave (car l)))
+                (waddle (cdr l))))
+             (else
+               (let ()
+                 (waddle (car l))
+                 (waddle (cdr l))))))]
+       [fill (lambda (x) x)]
+       [leave (lambda (x) x)])
+      (let
+        ((fst (get-first l)))
+        (if (atom? fst)
+          (two-in-a-row-b*? fst)
+          #f)))))
+
+(write (two-in-a-row*? list6))
