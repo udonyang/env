@@ -2793,7 +2793,9 @@
 (define two-in-a-row*?
   (lambda (l)
     (letrec
-      ([two-in-a-row-b*?
+      ([fill (lambda (x) x)]
+       [leave (lambda (x) x)]
+       [two-in-a-row-b*?
          (lambda (x)
            (let
              ((y (get-next 'go)))
@@ -2829,9 +2831,7 @@
              (else
                (let ()
                  (waddle (car l))
-                 (waddle (cdr l))))))]
-       [fill (lambda (x) x)]
-       [leave (lambda (x) x)])
+                 (waddle (cdr l))))))])
       (let
         ((fst (get-first l)))
         (if (atom? fst)

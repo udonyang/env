@@ -108,3 +108,6 @@ inoremap <F8> <ESC>:call ErrorList()<CR>
 
 "abbreviate
 ab abOK /* OK */
+augroup filetype
+    autocmd! BufRead,BufNewFile BUILD set filetype=blade
+augroup end

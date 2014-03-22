@@ -108,6 +108,10 @@ DestroyFunc fvwmMixer
 AddToFunc fvwmMixer
 + I Exec gnome-alsamixer
 
+DestroyFunc fvwmVbox
+AddToFunc fvwmVbox
++ I Exec virtualbox
+
 DestroyFunc fvwmViewManPage
 AddToFunc fvwmViewManPage
 + I Exec exec xterm -rv -g 80x40\
@@ -275,6 +279,7 @@ AddToMenu   FvwmProgramsMenu "Programs" Title
 + "Gimp%menu/gimp.png%"  fvwmGimp
 + "Chromium" fvwmChromium
 + "SMplayer" fvwmPlayer
++ "VirtualBox" fvwmVbox
 ### FvwmManagesMenu
 DestroyMenu fvwmManPagesMenu
 AddToMenu   fvwmManPagesMenu "FVWM Man Pages" Title
