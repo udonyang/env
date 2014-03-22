@@ -2804,11 +2804,11 @@
                    (two-in-a-row-b*? y))
                #f)))]
        [get-first
-         (lambda (x)
+         (lambda (l)
            (let/cc
-             here-again
-             (set! leave here-again)
-             (fill 'go)
+             here
+             (set! leave here)
+             (waddle l)
              (leave '())))]
        [get-next
          (lambda (x)
@@ -2838,4 +2838,12 @@
           (two-in-a-row-b*? fst)
           #f)))))
 
-(write (two-in-a-row*? list6))
+; (write (two-in-a-row*? list6))
+
+; (define test
+;   (lambda (x)
+;     (let ([n '()])
+;       (set! n (cons '() n))
+;       (if (zero? x) n (test (sub1 x))))))
+
+; (write (test 3))
