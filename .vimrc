@@ -76,13 +76,14 @@ endfunc
 func Test()
 	exec "15vs ."
 endfunc
-func Output()
+func! Output()
 	if &filetype == 'c' || &filetype =='cpp'
 		exec "9sv output.out"
 	endif
 endfunc
 
 "map
+imap jj <ESC>
 map <F2> :call Test()<CR>
 map <F3> :call Output()<CR>
 map <F4> :tabp<CR>
