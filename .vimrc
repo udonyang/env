@@ -64,4 +64,3 @@ nmap <leader>d :Dox<CR>
 nmap <leader>l :DoxLic<CR>
 
 "Abbreviate
-ab /bar --------------------------------------------------------------------
