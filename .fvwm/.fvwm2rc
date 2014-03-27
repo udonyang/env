@@ -161,7 +161,7 @@ DestroyFunc initFunction
 AddToFunc initFunction
 + I exec ibus-daemon -d -x
 + I initWallpaper
-+ I exec setxkbmap -option caps:swapescape
+# + I exec setxkbmap -option caps:swapescape
 
 DestroyFunc restartFunction
 AddToFunc restartFunction

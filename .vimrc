@@ -1,4 +1,3 @@
-"Global Value 
 "Setting
 colorscheme desert
 set langmenu=en_US.UTF-8
@@ -14,10 +13,8 @@ set smartindent
 set autochdir
 set autoindent
 set smartindent
-set backspace=2
 set columns=120
 set foldmethod=syntax
-set nohlsearch
 set incsearch
 set lines=40
 set nocompatible
@@ -25,90 +22,47 @@ set noswapfile
 set number
 set shiftwidth=2
 set tabstop=2
-set expandtab
+
+"Global Values
+""Browser
 let g:netrw_liststyle=3
+let mapleader=","
 
-"autocmd
-autocmd BufNewFile,BufRead *.* call TypeCheck()
-autocmd BufNewFile,BufRead *.go set filetype=go
-autocmd BufNewFile,BufRead *.i set filetype=c
-
-"new runtimepath
-set runtimepath+=$GOROOT/misc/vim
+"Autocmd
 
 "Function
-func TypeCheck()
-  if &filetype == 'i' || &filetype == 'c' || &filetype == 'cpp'
-	if &filetype != 'cpp'
-		set filetype=c
-	endif
-	set cindent
-    set tabstop=2
-    set shiftwidth=2
-  else
-    set tabstop=2
-    set shiftwidth=2
-  endif
-endfunc
-func Compile()
-	exec "w"
-	exec "make"
-endfunc
-func DebugCompile()
-	exec "w"
-	exec "make make_debug"
-endfunc
-func Debug()
-	exec "w"
-	exec "make debug"
-endfunc
-func ErrorList()
+func! ErrorList()
 	exec "clist"
 endfunc
-func Run()
-	exec "w"
-	exec "make run"
+func! Make(target)
+  exec "w"
+  exec "make!" a:target
 endfunc
-func Clean()
-	exec "w"
-	exec "make clean"
-endfunc
-func Test()
+func! Browser()
 	exec "15vs ."
 endfunc
-func! Output()
-	if &filetype == 'c' || &filetype =='cpp'
-		exec "9sv output.out"
-	endif
-endfunc
 
-"map
+"Map
+""Basic
 imap jj <ESC>
-map <F2> :call Test()<CR>
-map <F3> :call Output()<CR>
-map <F4> :tabp<CR>
-map <F5> :tabn<CR>
-map <C-s> :w<CR>
 map <C-a> ggVG
-map <C-p> "+p
-map <F8> <ESC>:call ErrorList()<CR>
-map <C-F8> <ESC>:call Debug()<CR>
-map <F9> <ESC>:call Compile()<CR>
-map <C-F9> <ESC>:call Run()<CR>
-map <F10> <ESC>:call DebugCompile()<CR>
-map <C-F10> <ESC>:call Clean()<CR>
-map <silent><F6> :s#^#// #g<CR>
-map <silent><F7> :s#^// ##g<CR>
-cmap <C-j> <Left>
-cmap <C-k> <Right>
 vmap <C-y> "+y
-inoremap <C-a> <ESC>ggVG
-inoremap <F9> <ESC>:call Compile()<CR>
-inoremap <C-F9> <ESC>:call Run()<CR>
-inoremap <F8> <ESC>:call ErrorList()<CR>
+map <C-p> "+p
+map <F3> <ESC>:tabe  
+map <F4> <ESC>:tabp<CR>
+map <F5> <ESC>:tabn<CR>
+map <F2> <ESC>:call Browser()<CR>
+map <F8> <ESC>:call ErrorList()<CR>
+""Make
+map <C-F8> <ESC>:call Make("debug")<CR>
+map <F9> <ESC>:call Make("")<CR>
+map <C-F9> <ESC>:call Make("run")<CR>
+map <F10> <ESC>:call Make("test")<CR>
+""Doxygen
+nmap <leader>a :DoxAuthor<CR>
+nmap <leader>d :Dox<CR>
+nmap <leader>l :DoxLic<CR>
 
-"abbreviate
-ab abOK /* OK */
-augroup filetype
-    autocmd! BufRead,BufNewFile BUILD set filetype=blade
-augroup end
+"Abbreviate
+ab /b /******************************************************
+ab /e *****************************************************/
