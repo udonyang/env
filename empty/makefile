@@ -5,19 +5,27 @@ source_to_object	= $(subst .c,.o,$(filter %.c,$1))
 subdirectory	= $(patsubst %/module.mk,%,\
 								$(word $(words $(MAKEFILE_LIST)), $(MAKEFILE_LIST)))
 
-# $(call make-library, library-name, source-file-list)
-define make_library
+# $(call make-slibrary, library-name, source-file-list)
+define make_slibrary
 	libraries	+= $1
 	sources += $2
-$1: $(call source-to-object, $2)
+$1: $(call source_to_object,$2)
 	$(AR) $(ARFLAGS) $$@ $$^
+endef
+
+# $(call make-dlibrary, library-name, source-file-list)
+define make_dlibrary
+	libraries	+= $1
+	sources += $2
+$1: $(call source_to_object,$2)
+	$(CC) -fPIC -Wall -shared -o $$@ $$^
 endef
 
 # $(call make-program, program-name, source-file-list)
 define make_program
 	programs += $1
 	sources += $2
-$1: $(call source-to-object, $2)
+$1: $(call source_to_object, $2)
 endef
 
 # Makefile All-in-one
@@ -34,8 +42,9 @@ vpath %.h $(include_dirs)
 
 includes	:= $(shell find $(include_dirs) -name *.h)
 
-CFLAGS				+= $(addprefix -I ,$(include_dirs))
+CFLAGS				+= -Wall -O2 $(addprefix -I ,$(include_dirs))
 
+CC		:= gcc
 MV		:= mv -f
 RM		:= rm -rf
 CP		:= cp -rf
@@ -56,7 +65,7 @@ all:
 
 include $(addsuffix /module.mk,$(modules))
 
-.PHONY: all install libraries clean distclean new
+.PHONY: all install libraries clean distclean test new
 
 all: $(programs)
 
@@ -91,11 +100,13 @@ distclean:
 	$(RM) $(objects) $(programs) $(libraries)\
 		$(dependencies)
 
+test:
+	./test/main
 
 # New Target
 # make new -e new_name= -e new_type= -e new_dir= -e new_srctype=
 # new_name		: target name
-# new_type		: program or library
+# new_type		: program | slibrary dlibrary
 # new_dir			: new directory relative to the project root
 # new_srctype	: source files suffix. eg. *.c
 new_name		:=
@@ -104,10 +115,9 @@ new_dir 		:=
 new_srctype	:=
 
 new:
-	$(RM) $(new_dir)
 	$(MKDIR) $(new_dir)
 	$(ECHO) 'local_sources	:= $$(wildcard $$(subdirectory)/$(new_srctype))'\
-		>> $(new_dir)/module.mk
+		> $(new_dir)/module.mk
 	$(ECHO) '$$(eval $$(call make_$(new_type),$$(subdirectory)/$(new_name),$$(local_sources)))'\
 		>> $(new_dir)/module.mk
 
@@ -117,6 +127,6 @@ endif
 
 # Pattern rule
 %.d: %.c
-	$(CC) $(CFLAGS) $(TARGET_ARCH) -M $< |\
+	@$(CC) $(CFLAGS) $(TARGET_ARCH) -M $< |\
 		$(SED) 's,\($(notdir $*)\.o\) *:,$(dir $@)\1 $@: ,'> $@.tmp
-	$(MV) $@.tmp $@
+	@$(MV) $@.tmp $@
