@@ -1,5 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/home/dwylkz/Desktop/ACMPS/CF/407/main'
 let g:netrw_dirhist_2='/home/dwylkz/Desktop/ACMPS/CF/407/C'
 let g:netrw_dirhist_3='/home/dwylkz/Desktop/DAL/language/c and c++/pthread/6. Manager and Worker'
+let g:netrw_dirhist_4='/home/dwylkz/Desktop/Project/Dlex22/src'
+let g:netrw_dirhist_5='/home/dwylkz/Desktop/ACMPS/CF/415/A'
+let g:netrw_dirhist_6='/home/dwylkz/Desktop/ACMPS/CF/415/B'
+let g:netrw_dirhist_7='/home/dwylkz/Desktop/ACMPS/CF/415/C'
+let g:netrw_dirhist_8='/home/dwylkz/Desktop/ACMPS/CF/415/D'

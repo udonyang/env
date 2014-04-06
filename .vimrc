@@ -9,10 +9,7 @@ filetype on
 filetype plugin indent on
 set go-=T
 set go-=m
-set smartindent
 set autochdir
-set autoindent
-set smartindent
 set columns=120
 set foldmethod=syntax
 set incsearch

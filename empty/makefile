@@ -9,6 +9,7 @@ subdirectory	= $(patsubst %/module.mk,%,\
 define make_slibrary
 	libraries	+= $1
 	sources += $2
+$(notdir $1): $(call source_to_object,$2)
 $1: $(call source_to_object,$2)
 	$(AR) $(ARFLAGS) $$@ $$^
 endef
@@ -17,6 +18,7 @@ endef
 define make_dlibrary
 	libraries	+= $1
 	sources += $2
+$(notdir $1): $(call source_to_object,$2)
 $1: $(call source_to_object,$2)
 	$(CC) -fPIC -Wall -shared -o $$@ $$^
 endef
@@ -25,7 +27,9 @@ endef
 define make_program
 	programs += $1
 	sources += $2
-$1: $(call source_to_object, $2)
+$(notdir $1): $(call source_to_object,$2)
+$1: $(call source_to_object,$2)
+	$(CC) $(CFLAGS) $(TARGET_ARCH) -o $$@ $$^
 endef
 
 # Makefile All-in-one
