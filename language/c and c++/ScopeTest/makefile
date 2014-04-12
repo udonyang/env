@@ -1,11 +1,10 @@
-CC=gcc
+main: main.o A.o B.o
+	$(CC) $(CFLAGS) -o $@ $^
 
-main: HashMap.o TreeMap.o
+debug:
+	gdb main
 
-main.o: test.c Intrs
+run:
+	./main
 
-Intrs: MapIntr.h
-
-HashMap.o: HashMap.h HashMap.c
-
-TreeMap.o: TreeMap.h TreeMap.c
+.PHONY: debug clean run main

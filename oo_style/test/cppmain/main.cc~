@@ -5,7 +5,7 @@
 using namespace std;
 const int N = 1e5+10;
 
-template<class T> struct AVL {
+template<class T> struct Avl {
 	struct Node {
 		Node *son[2];
 		int height;
@@ -40,7 +40,7 @@ template<class T> struct AVL {
 	};
 	Node pool[N], *root, *top;
 	int size;
-	AVL(): root(NULL), top(pool), size(0) {}
+	Avl(): root(NULL), top(pool), size(0) {}
 	Node *make(T &data) {
 		Node t = {{0}, 1, data};
 		return &(*top++ = t);

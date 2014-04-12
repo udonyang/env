@@ -1,5 +1,7 @@
 # $(call source-to-object, source-file-list)
-source_to_object	= $(subst .c,.o,$(filter %.c,$1))
+source_to_object	= $(subst .dlx2,_tn.h,$(filter %.dlx2,$1)) \
+										$(subst .dlx2,.dfa,$(filter %.dlx2,$1)) \
+										$(subst .c,.o,$(filter %.c,$1))
 
 # $(subdirectory)
 subdirectory	= $(patsubst %/module.mk,%,\
@@ -11,7 +13,7 @@ define make_slibrary
 	sources += $2
 $(notdir $1): $(call source_to_object,$2)
 $1: $(call source_to_object,$2)
-	$(AR) $(ARFLAGS) $$@ $$^
+	$(AR) $(ARFLAGS) $$@ $$(filter %.o,$$^)
 endef
 
 # $(call make-dlibrary, library-name, source-file-list)
@@ -20,7 +22,7 @@ define make_dlibrary
 	sources += $2
 $(notdir $1): $(call source_to_object,$2)
 $1: $(call source_to_object,$2)
-	$(CC) -fPIC -Wall -shared -o $$@ $$^
+	$(CC) -fPIC -Wall -shared -o $$@ $$(filter %.o,$$^)
 endef
 
 # $(call make-program, program-name, source-file-list)
@@ -29,7 +31,7 @@ define make_program
 	sources += $2
 $(notdir $1): $(call source_to_object,$2)
 $1: $(call source_to_object,$2)
-	$(CC) $(CFLAGS) $(TARGET_ARCH) -o $$@ $$^
+	$(CC) $(CFLAGS) $(TARGET_ARCH) -o $$@ $$(filter %.o,$$^)
 endef
 
 # Makefile All-in-one
@@ -39,7 +41,7 @@ sources				:=
 libraries			:=
 
 objects				= $(call source_to_object,$(sources))
-dependencies	= $(subst .o,.d,$(objects))
+dependencies	= $(subst .o,.d,$(filter %.o,$(objects)))
 
 include_dirs	:= src
 vpath %.h $(include_dirs)
@@ -120,7 +122,7 @@ new_srctype	:=
 
 new:
 	$(MKDIR) $(new_dir)
-	$(ECHO) 'local_sources	:= $$(wildcard $$(subdirectory)/$(new_srctype))'\
+	$(ECHO) 'local_sources	:= $$(wildcard $(addprefix $$(subdirectory)/,$(new_srctype)))'\
 		> $(new_dir)/module.mk
 	$(ECHO) '$$(eval $$(call make_$(new_type),$$(subdirectory)/$(new_name),$$(local_sources)))'\
 		>> $(new_dir)/module.mk
@@ -134,3 +136,7 @@ endif
 	@$(CC) $(CFLAGS) $(TARGET_ARCH) -M $< |\
 		$(SED) 's,\($(notdir $*)\.o\) *:,$(dir $@)\1 $@: ,'> $@.tmp
 	@$(MV) $@.tmp $@
+%_tn.h: %.dfa
+	@echo making dfa
+%.dfa: %.dlx2
+	dlex2 $< $@
