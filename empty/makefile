@@ -1,6 +1,5 @@
 # $(call source-to-object, source-file-list)
-source_to_object	= $(subst .dlx2,_tn.h,$(filter %.dlx2,$1)) \
-										$(subst .dlx2,.dfa,$(filter %.dlx2,$1)) \
+source_to_object	= $(subst .cc,.o,$(filter %.cc,$1)) \
 										$(subst .c,.o,$(filter %.c,$1))
 
 # $(subdirectory)
@@ -46,9 +45,9 @@ dependencies	= $(subst .o,.d,$(filter %.o,$(objects)))
 include_dirs	:= src
 vpath %.h $(include_dirs)
 
-includes	:= $(shell find $(include_dirs) -name *.h)
+includes := $(shell find $(include_dirs) -name *.h)
 
-CFLAGS				+= -Wall -O2 $(addprefix -I ,$(include_dirs))
+CFLAGS += -Wall -O2 $(addprefix -I ,$(include_dirs))
 
 CC		:= gcc
 MV		:= mv -f
@@ -136,7 +135,3 @@ endif
 	@$(CC) $(CFLAGS) $(TARGET_ARCH) -M $< |\
 		$(SED) 's,\($(notdir $*)\.o\) *:,$(dir $@)\1 $@: ,'> $@.tmp
 	@$(MV) $@.tmp $@
-%_tn.h: %.dfa
-	@echo making dfa
-%.dfa: %.dlx2
-	dlex2 $< $@
