@@ -1,0 +1,6 @@
+#!/bin/sh
+recordmydesktop -o temp.ogv \
+	--no-sound \
+	--overwrite \
+	--no-wm-check \
+	--workdir $(pwd)

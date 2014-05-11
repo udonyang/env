@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/home/dwylkz/Desktop/ACMPS/microsoft/2014/P2'
 let g:netrw_dirhist_2='/home/dwylkz/Desktop/Project/Dlex2/src/lib'
 let g:netrw_dirhist_3='/home/dwylkz/Downloads/tty/ex-040103/libterm'
@@ -7,3 +7,5 @@ let g:netrw_dirhist_4='/home/dwylkz/Desktop/ACMPS/microsoft/2014/Round1/P1'
 let g:netrw_dirhist_5='/home/dwylkz/Desktop/ACMPS/microsoft/2014/Round1/P2'
 let g:netrw_dirhist_6='/home/dwylkz/Desktop/ACMPS/microsoft/2014/Round1/P3'
 let g:netrw_dirhist_7='/home/dwylkz/Desktop/ACMPS/CF/420/A'
+let g:netrw_dirhist_8='/home/dwylkz/Downloads/ttf-microsoft/src'
+let g:netrw_dirhist_9='/home/dwylkz/Desktop/Project/qteditor/filedialog/tmp'

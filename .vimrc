@@ -1,39 +1,30 @@
 "Setting
 colorscheme desert
-set langmenu=en_US.UTF-8
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
-language messages en_US.UTF-8
 syntax on
 filetype on
 filetype plugin indent on
-set go-=T
-set go-=m
 set autochdir
-set columns=120
 set foldmethod=syntax
 set incsearch
-set lines=40
 set nocompatible
 set noswapfile
 set number
 set shiftwidth=2
 set tabstop=2
+set autoindent
+set smartindent
 
-"Global Values
 ""Browser
 let g:netrw_liststyle=3
 let mapleader=","
-
-"Autocmd
 
 "Function
 func! ErrorList()
 	exec "clist"
 endfunc
 func! Make(target)
-  exec "w"
-  exec "make!" a:target
+	exec "w"
+	exec "make!" a:target
 endfunc
 func! Browser()
 	exec "15vs ."
@@ -61,3 +52,4 @@ nmap <leader>d :Dox<CR>
 nmap <leader>l :DoxLic<CR>
 
 "Abbreviate
+autocmd BufReadPre,BufRead,BufWrite,BufNew *.qml :set filetype=qml

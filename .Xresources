@@ -1,0 +1,8 @@
+*xterm*faceSize: 11
+*xterm*faceName: Courier New:antialias=true
+*xterm*faceNameDoublesize: simhei
+*xterm*geometry: 80x32
+! *xterm*reverseVideo: true
+
+*xterm*background: #343434
+*xterm*foreground: #f0f0f0
