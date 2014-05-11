@@ -1,9 +1,12 @@
 # Init
-echo "Hey, remember:"
-echo "	Focus on what is import."
-echo "	Done first, perfect second."
-echo "	Life is short, so use script,"
-echo "		except you are solving ACM problem."
+echo -e "\
+#################################################\n\
+# Remember:\n\
+# 1. Focus on what is import.\n\
+# 2. Done first, perfect second.\n\
+# 3. Life is short, so script first.\n\
+# 4. Solve the easier version.\n\
+#################################################\n"
 
 export EDITOR=vim
 export PATH=$HOME/.local/bin:$PATH
