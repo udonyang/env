@@ -2,10 +2,10 @@
 echo -e "\
 #################################################\n\
 # Remember:\n\
-# 1. Focus on what is import.\n\
+# 1. Focus on what is the most significant\n\
 # 2. Done first, perfect second.\n\
 # 3. Life is short, so script first.\n\
-# 4. Solve the easier version.\n\
+# 4. Try the easier version if stucked.\n\
 #################################################\n"
 
 export EDITOR=vim
@@ -33,4 +33,5 @@ alias cpr="cp -rf"
 alias rmr="rm -rf"
 alias pst="pstree $USER"
 alias psg="ps aux | grep -v grep | grep"
+alias envg="env | grep"
 alias ka="killall"
