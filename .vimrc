@@ -9,6 +9,7 @@ set incsearch
 set nocompatible
 set noswapfile
 set number
+set ruler
 set shiftwidth=2
 set tabstop=2
 set autoindent
@@ -52,4 +53,4 @@ nmap <leader>d :Dox<CR>
 nmap <leader>l :DoxLic<CR>
 
 "Abbreviate
-autocmd BufReadPre,BufRead,BufWrite,BufNew *.qml :set filetype=qml
+autocmd BufReadPre,BufRead,BufNew *.qml :set filetype=qml
