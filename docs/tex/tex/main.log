@@ -1,0 +1,1016 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdftex 2013.6.22)  9 JUL 2013 22:47
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**main.tex
+(./main.tex (./sml.tex) [1{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/u
+pdmap/pdftex.map}] [2] [3] [4] [6]
+\cs AB#1#2C$#3\$ ->#3{ab#1}#1 c\x #2
+#1<-1
+#2<-{2}{3}{4}
+#3<-{2}{2}
+
+\x ->
+
+\a #1{->\hbox to #1{
+#1<-3pt
+
+Overfull \hbox (1.63887pt too wide) detected at line 101
+\tenit x|
+
+\hbox(4.30554+0.0)x3.0
+.\tenit x
+.\rule(*+*)x5.0
+
+
+\exercise [#1]->\noindent {\bf EXERCISE #1}
+#1<-20.6
+
+\bf ->\fam \bffam \tenbf 
+
+\a {->\b {
+
+\b #1->{\o@lign {\relax #1\crcr \hidewidth \sh@ft {-3ex}\vbox to.2ex{\hbox {\ch
+ar 22}\vss }\hidewidth }}
+#1<-hohoo
+
+\o@lign ->\lineskiplimit \z@ \oalign 
+
+\oalign #1->\leavevmode \vtop {\baselineskip \z@skip \lineskip .25ex\ialign {##
+\crcr #1\crcr }}
+#1<-\relax hohoo\crcr \hidewidth \sh@ft {-3ex}\vbox to.2ex{\hbox {\char 22}\vss
+ }\hidewidth 
+
+\leavevmode ->\unhbox \voidb@x 
+
+\ialign ->\everycr {}\tabskip \z@skip \halign 
+
+\hidewidth ->\hskip \hideskip 
+
+\sh@ft #1->\dimen@ #1\kern \expandafter \getf@ctor \the \fontdimen 1\font \dime
+n@ 
+#1<--3ex
+
+\getf@ctor #1pt->#1
+#1<-0.25
+
+\hidewidth ->\hskip \hideskip 
+
+\exercise [#1]->\noindent {\bf EXERCISE #1}
+#1<-20.7
+
+\bf ->\fam \bffam \tenbf 
+
+\beginexe [#1]->\noindent \begingroup {\bf EXERCISE #1}
+#1<-20.9
+
+\bf ->\fam \bffam \tenbf 
+
+\xpar #1->#1\par 
+#1<-adslfkjaslf
+
+\par ->a
+
+\endexe ->\endgroup \par 
+
+\b ->\futurelet \a \c 
+
+\c #1->#1hoho
+#1<-1
+
+\balance ->\count 2
+
+\statement -> \ifnum \balance =0 \fullpaid \else \ifnum \balance >0 \overpaid \
+else \underpaid \fi \fi \par 
+
+\balance ->\count 2
+
+\balance ->\count 2
+
+\overpaid ->overpaid
+
+\balance ->\count 2
+
+\statement -> \ifnum \balance =0 \fullpaid \else \ifnum \balance >0 \overpaid \
+else \underpaid \fi \fi \par 
+
+\balance ->\count 2
+
+\fullpaid ->Your taxes are fully paid---thank you.
+
+\balance ->\count 2
+
+\statement -> \ifnum \balance =0 \fullpaid \else \ifnum \balance >0 \overpaid \
+else \underpaid \fi \fi \par 
+
+\balance ->\count 2
+
+\balance ->\count 2
+
+\underpaid ->{ \balance =-\balance \ifnum \balance <100 you owe \dollaramount ,
+ but you need not pay it, because our policy is to disregard amount less than \
+$1.00. \else Please remit \dollaramount \ within ten days, or additional intere
+st charges will be due. \fi }
+
+\balance ->\count 2
+
+\balance ->\count 2
+
+\balance ->\count 2
+
+\dollaramount ->{\$\the \count 2.00}
+
+\Ifcat #1#2->(#1,#2) = \ifcat #1#2yes\else no\fi \par 
+#1<-\noexpand [
+#2<-\noexpand [
+
+\Ifcat #1#2->(#1,#2) = \ifcat #1#2yes\else no\fi \par 
+#1<-[
+#2<-*
+
+[->*
+
+[->*
+
+\Ifcat #1#2->(#1,#2) = \ifcat #1#2yes\else no\fi \par 
+#1<-\noexpand [
+#2<-*
+
+\newif #1->\count@ \escapechar \escapechar \m@ne \expandafter \expandafter \exp
+andafter \def \@if #1{true}{\let #1=\iftrue }\expandafter \expandafter \expanda
+fter \def \@if #1{false}{\let #1=\iffalse }\@if #1{false}\escapechar \count@ 
+#1<-\ifhph 
+
+@if #1#2->csname expandafter if@ string #1#2endcsname 
+#1<-ifhph 
+#2<-true
+
+if@ if->
+
+@if #1#2->csname expandafter if@ string #1#2endcsname 
+#1<-ifhph 
+#2<-false
+
+if@ if->
+
+@if #1#2->csname expandafter if@ string #1#2endcsname 
+#1<-ifhph 
+#2<-false
+
+if@ if->
+
+hphfalse ->let ifhph =iffalse 
+
+\newif #1->\count@ \escapechar \escapechar \m@ne \expandafter \expandafter \exp
+andafter \def \@if #1{true}{\let #1=\iftrue }\expandafter \expandafter \expanda
+fter \def \@if #1{false}{\let #1=\iffalse }\@if #1{false}\escapechar \count@ 
+#1<-\ifvph 
+
+@if #1#2->csname expandafter if@ string #1#2endcsname 
+#1<-ifvph 
+#2<-true
+
+if@ if->
+
+@if #1#2->csname expandafter if@ string #1#2endcsname 
+#1<-ifvph 
+#2<-false
+
+if@ if->
+
+@if #1#2->csname expandafter if@ string #1#2endcsname 
+#1<-ifvph 
+#2<-false
+
+if@ if->
+
+vphfalse ->let ifvph =iffalse 
+
+\newtoks ->\alloc@ 5\toks \toksdef \@cclvi 
+
+\alloc@ #1#2#3#4#5->\ifnum \count 1#1 < #4\allocationnumber =\count 1#1 \global
+ \advance \count 1#1 by \@ne \global #3#5=\allocationnumber \wlog {\string #5=\
+string #2\the \allocationnumber }\else \ifnum #1 < 6 \begingroup \escapechar =\
+m@ne \expandafter \alloc@@ \expandafter {\string #2}#5\else \errmessage {No roo
+m for a new #2}\fi \fi 
+#1<-5
+#2<-\toks 
+#3<-\toksdef 
+#4<-\@cclvi 
+#5<-\fuck 
+
+\wlog ->\immediate \write \m@ne 
+\fuck=\toks13
+{vertical mode: \tracingmacros}
+{\tracingonline}
+{\jobname}
+{the character m}
+{horizontal mode: the character m}
+{\par}
+{vertical mode: \meaning}
+{the character \}
+{horizontal mode: the character \}
+{\par}
+{vertical mode: \meaning}
+{the character \}
+{horizontal mode: the character \}
+{\par}
+{vertical mode: \csname}
+{\jobname}
+{the character m}
+{horizontal mode: the character m}
+{\par}
+{vertical mode: \expandafter}
+{\the}
+{\jobname}
+{the character m}
+{horizontal mode: the character m}
+{\par}
+{vertical mode: \the}
+{the character 3}
+{horizontal mode: the character 3}
+{\par}
+{vertical mode: begin-group character {}
+{\chardef}
+{end-group character }}
+{blank space  }
+{\par}
+{\par}
+{begin-group character {}
+{blank space  }
+{\def}
+{blank space  }
+{\edef}
+
+\double #1->#1#1
+#1<-xy
+{blank space  }
+{\edef}
+
+\double #1->#1#1
+#1<-\a 
+
+\a ->xyxy
+
+\a ->xyxy
+{blank space  }
+
+\a ->xyxyxyxy
+{the letter x}
+{horizontal mode: the letter x}
+{\toks}
+{blank space  }
+{\the}
+
+\a ->xyxyxyxy
+{the letter x}
+{end-group character }}
+{blank space  }
+{\par}
+
+\beginexe [#1]->\noindent \begingroup {\bf EXERCISE #1}
+#1<-20.14
+{vertical mode: \noindent}
+{horizontal mode: \begingroup}
+{begin-group character {}
+
+\bf ->\fam \bffam \tenbf 
+{\fam}
+{select font cmbx10}
+{the letter E}
+{blank space  }
+{the character 2}
+{end-group character }}
+{blank space  }
+{\def}
+{blank space  }
+{\def}
+{blank space  }
+{\def}
+{blank space  }
+{\def}
+{blank space  }
+{\par}
+{vertical mode: \edef}
+
+\b ->b
+
+\d ->d
+{blank space  }
+{\def}
+{blank space  }
+
+\endexe ->\endgroup \par 
+{\endgroup}
+{\par}
+{\par}
+{\par}
+{\par}
+{begin-group character {}
+{blank space  }
+
+\newif #1->\count@ \escapechar \escapechar \m@ne \expandafter \expandafter \exp
+andafter \def \@if #1{true}{\let #1=\iftrue }\expandafter \expandafter \expanda
+fter \def \@if #1{false}{\let #1=\iffalse }\@if #1{false}\escapechar \count@ 
+#1<-\ifprime 
+{\count255}
+{\escapechar}
+{expandafter}
+{expandafter}
+
+@if #1#2->csname expandafter if@ string #1#2endcsname 
+#1<-ifprime 
+#2<-true
+{expandafter}
+{csname}
+{expandafter}
+{string}
+
+if@ if->
+{def}
+{expandafter}
+{expandafter}
+
+@if #1#2->csname expandafter if@ string #1#2endcsname 
+#1<-ifprime 
+#2<-false
+{expandafter}
+{csname}
+{expandafter}
+{string}
+
+if@ if->
+{def}
+
+@if #1#2->csname expandafter if@ string #1#2endcsname 
+#1<-ifprime 
+#2<-false
+{csname}
+{expandafter}
+{string}
+
+if@ if->
+
+primefalse ->let ifprime =iffalse 
+{let}
+{escapechar}
+
+\newif #1->\count@ \escapechar \escapechar \m@ne \expandafter \expandafter \exp
+andafter \def \@if #1{true}{\let #1=\iftrue }\expandafter \expandafter \expanda
+fter \def \@if #1{false}{\let #1=\iffalse }\@if #1{false}\escapechar \count@ 
+#1<-\ifunknown 
+{\count255}
+{\escapechar}
+{expandafter}
+{expandafter}
+
+@if #1#2->csname expandafter if@ string #1#2endcsname 
+#1<-ifunknown 
+#2<-true
+{expandafter}
+{csname}
+{expandafter}
+{string}
+
+if@ if->
+{def}
+{expandafter}
+{expandafter}
+
+@if #1#2->csname expandafter if@ string #1#2endcsname 
+#1<-ifunknown 
+#2<-false
+{expandafter}
+{csname}
+{expandafter}
+{string}
+
+if@ if->
+{def}
+
+@if #1#2->csname expandafter if@ string #1#2endcsname 
+#1<-ifunknown 
+#2<-false
+{csname}
+{expandafter}
+{string}
+
+if@ if->
+
+unknownfalse ->let ifunknown =iffalse 
+{let}
+{escapechar}
+
+\newcount ->\alloc@ 0\count \countdef \insc@unt 
+
+\alloc@ #1#2#3#4#5->\ifnum \count 1#1 < #4\allocationnumber =\count 1#1 \global
+ \advance \count 1#1 by \@ne \global #3#5=\allocationnumber \wlog {\string #5=\
+string #2\the \allocationnumber }\else \ifnum #1 < 6 \begingroup \escapechar =\
+m@ne \expandafter \alloc@@ \expandafter {\string #2}#5\else \errmessage {No roo
+m for a new #2}\fi \fi 
+#1<-0
+#2<-\count 
+#3<-\countdef 
+#4<-\insc@unt 
+#5<-\n 
+{\ifnum}
+{true}
+{\count21}
+{\global}
+{\global}
+
+\wlog ->\immediate \write \m@ne 
+{\immediate}
+\write->\string \n =\string \count \the \allocationnumber 
+{no mode: \string}
+{\string}
+\n=\count27
+{vertical mode: \else}
+
+\newcount ->\alloc@ 0\count \countdef \insc@unt 
+
+\alloc@ #1#2#3#4#5->\ifnum \count 1#1 < #4\allocationnumber =\count 1#1 \global
+ \advance \count 1#1 by \@ne \global #3#5=\allocationnumber \wlog {\string #5=\
+string #2\the \allocationnumber }\else \ifnum #1 < 6 \begingroup \escapechar =\
+m@ne \expandafter \alloc@@ \expandafter {\string #2}#5\else \errmessage {No roo
+m for a new #2}\fi \fi 
+#1<-0
+#2<-\count 
+#3<-\countdef 
+#4<-\insc@unt 
+#5<-\p 
+{\ifnum}
+{true}
+{\count21}
+{\global}
+{\global}
+
+\wlog ->\immediate \write \m@ne 
+{\immediate}
+\write->\string \p =\string \count \the \allocationnumber 
+{no mode: \string}
+{\string}
+\p=\count28
+{vertical mode: \else}
+
+\newcount ->\alloc@ 0\count \countdef \insc@unt 
+
+\alloc@ #1#2#3#4#5->\ifnum \count 1#1 < #4\allocationnumber =\count 1#1 \global
+ \advance \count 1#1 by \@ne \global #3#5=\allocationnumber \wlog {\string #5=\
+string #2\the \allocationnumber }\else \ifnum #1 < 6 \begingroup \escapechar =\
+m@ne \expandafter \alloc@@ \expandafter {\string #2}#5\else \errmessage {No roo
+m for a new #2}\fi \fi 
+#1<-0
+#2<-\count 
+#3<-\countdef 
+#4<-\insc@unt 
+#5<-\d 
+{\ifnum}
+{true}
+{\count21}
+{\global}
+{\global}
+
+\wlog ->\immediate \write \m@ne 
+{\immediate}
+\write->\string \d =\string \count \the \allocationnumber 
+{no mode: \string}
+{\string}
+\d=\count29
+{vertical mode: \else}
+
+\newcount ->\alloc@ 0\count \countdef \insc@unt 
+
+\alloc@ #1#2#3#4#5->\ifnum \count 1#1 < #4\allocationnumber =\count 1#1 \global
+ \advance \count 1#1 by \@ne \global #3#5=\allocationnumber \wlog {\string #5=\
+string #2\the \allocationnumber }\else \ifnum #1 < 6 \begingroup \escapechar =\
+m@ne \expandafter \alloc@@ \expandafter {\string #2}#5\else \errmessage {No roo
+m for a new #2}\fi \fi 
+#1<-0
+#2<-\count 
+#3<-\countdef 
+#4<-\insc@unt 
+#5<-\a 
+{\ifnum}
+{false}
+{\ifnum}
+{true}
+{\begingroup}
+{\escapechar}
+{expandafter}
+{expandafter}
+{string}
+
+alloc@@ #1#2->endgroup message {Normal csname #1endcsname register pool exhaust
+ed, switching to extended pool.}global expandafter let csname new#1expandafter 
+endcsname csname glob#1endcsname csname new#1endcsname #2
+#1<-count
+#2<-a 
+{endgroup}
+{\message}
+{\csname}
+Normal \count register pool exhausted, switching to extended pool.
+{\global}
+{\expandafter}
+{\csname}
+{\expandafter}
+{\csname}
+{\csname}
+
+\newcount ->\et@xglob 0 \count \countdef 
+
+\et@xglob #1#2#3#4->\et@xchk #1#2{\allocationnumber =\count 26#1 \global \advan
+ce \count 26#1 by \@ne \global #3#4=\allocationnumber \wlog {\string #4=\string
+ #2\the \allocationnumber }}
+#1<-0
+#2<-\count 
+#3<-\countdef 
+#4<-\a 
+
+\et@xchk #1#2#3->\ifnum \count 26#1 < \count 27#1 #3\else \errmessage {No room 
+for a new #2}\fi 
+#1<-0
+#2<-\count 
+#3<-\allocationnumber =\count 260 \global \advance \count 260 by \@ne \global \
+countdef \a =\allocationnumber \wlog {\string \a =\string \count \the \allocati
+onnumber }
+{\ifnum}
+{true}
+{\count21}
+{\global}
+{\global}
+
+\wlog ->\immediate \write \m@ne 
+{\immediate}
+\write->\string \a =\string \count \the \allocationnumber 
+{no mode: \string}
+{\string}
+\a=\count277
+{vertical mode: \else}
+{\else}
+{\fi}
+{\def}
+{blank space  }
+{\def}
+{blank space  }
+{\def}
+{blank space  }
+{\def}
+{blank space  }
+{\def}
+{blank space  }
+{end-group character }}
+{blank space  }
+{\par}
+{begin-group character {}
+{blank space  }
+{\def}
+{blank space  }
+{\def}
+{blank space  }
+
+\hex #1->{\n =#1 \count 0=\n \divide \n by16 \ifnum \n >0 \hex \fi \count 2=\n 
+\multiply \count 2 by-16 \advance \count 0 by\count 2 \hexdigit }
+#1<-10
+{begin-group character {}
+{\count27}
+{\count}
+{\divide}
+{\ifnum}
+{false}
+{\count}
+{\multiply}
+{\advance}
+
+\hexdigit ->\ifnum \count 0<10 \number \count 0 \else \advance \count 0 by-10 \
+advance \count 0 by `A \char \count 0 \fi 
+{\ifnum}
+{false}
+{\advance}
+{\advance}
+{\char}
+{horizontal mode: \char}
+{\fi}
+{end-group character }}
+{blank space  }
+{end-group character }}
+{blank space  }
+{\par}
+{vertical mode: begin-group character {}
+{blank space  }
+{\def}
+{blank space  }
+{\def}
+{blank space  }
+
+\length #1->{\count 0=0 \getlength #1\end \number \count 0}
+#1<-hoho i i i ajsldkj fklasj kljaslkdk flasjdkl jalk
+{begin-group character {}
+{\count}
+
+\getlength #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let 
+\next =\getlength \fi \next 
+#1<-h
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-o
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-h
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-o
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-i
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-i
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-i
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-a
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-j
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-s
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-l
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-d
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-k
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-j
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-f
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-k
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-l
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-a
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-s
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-j
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-k
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-l
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-j
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-a
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-s
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-l
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-k
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-d
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-k
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-f
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-l
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-a
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-s
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-j
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-d
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-k
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-l
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-j
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-a
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-l
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-k
+{\ifx}
+{false}
+{\advance}
+{\let}
+{\fi}
+
+\next #1->\ifx #1\end \let \next =\relax \else \advance \count 0 by1 \let \next
+ =\getlength \fi \next 
+#1<-\end 
+{\ifx}
+{true}
+{\let}
+{\else}
+{\relax}
+{\number}
+{the character 4}
+{horizontal mode: the character 4}
+{end-group character }}
+{blank space  }
+{end-group character }}
+{blank space  }
+{\par}
+{vertical mode: \par}
+{\show}
+
+> \matrix=macro:
+#1->\null \,\vcenter {\normalbaselines \m@th \ialign {\hfil $##$\hfil &&\quad \
+hfil $##$\hfil \crcr \mathstrut \crcr \noalign {\kern -\baselineskip } #1\crcr 
+\mathstrut \crcr \noalign {\kern -\baselineskip }}}\,.
+l.317 \show\matrix
+                  
+? X
+</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><
+/usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
+usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></us
+r/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on main.pdf (5 pages, 50757 bytes).
+PDF statistics:
+ 36 PDF objects out of 1000 (max. 8388607)
+ 24 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

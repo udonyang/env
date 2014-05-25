@@ -1,0 +1,662 @@
+\input sml.tex
+$\tau\epsilon\chi=\hbox{\TeX}$
+
+\noindent{\bf EXERCISE 2.1} Alice said, ``I always use an en--dash instead of a hyphen 
+when specifying page number like `480--491' in a bibliography.''
+
+\lq single quote\rq
+
+\lq\lq double quote\rq\rq
+
+{'}''
+
+'''
+
+'following single quote
+
+''following double quote
+
+'\thinspace''
+
+'$\,$''
+
+\newpage
+\exercise[3.2] math\'ematique centim\`etre
+\newpage
+\def\ic #1{{\it#1\/}}
+
+\ic Choho
+
+{\it C}hoho
+
+\font\bigtenrm=cmr10 scaled\magstep5
+{\bigtenrm hoho}
+\newpage
+\exercise[5.5] \ital{hoho, haha}
+\newpage
+
+\global\advance\count0 by 1
+
+
+\exercise[5.6]{
+	\def\c{\count1=}
+	\def\g{\global\count1=}
+	\def\s{\showthe\count1}
+	%{\c1\s\g2{\s\c3\s\g4\s\c5\s}\s\c6\s}\s
+		1 2 3 4 5 4 6 4
+}
+
+%{\begingroup}\endgroup
+
+\def\beginthe#1{\begingroup{\bf#1}}
+\def\endthe#1{\endgroup{\bf#1}}
+
+\beginthe{beguine}
+\beginthe{waltz}
+\endthe{waltz}
+\endthe{beguine}
+
+\newpage
+
+%\input story
+{
+\catcode`\<=1
+\catcode`\>=2
+<hoho>
+}
+\string TeX
+
+\expandafter\string\csname a\string\  b\endcsname
+
+%\show\expandafter
+
+%\show\TeX
+
+\romannumeral\count5
+
+\uppercase{a\lowercase{bC}}
+
+%\showthe\uccode\lccode65
+%\showthe\year\month
+\def\appendroman#1#2#3{\def#1{#2\romannumeral#3}}
+\count20=30
+\appendroman\a\TeX{\count20}
+\a
+
+\char"62 b
+\chardef\\=19
+
+%\showthe\count0
+%\show\proclaim
+%\show\strut
+
+\proclaim Theorem 1. \TeX\ has a powerful macro capability.\par
+
+\tracingmacros=1
+\def\x{}
+\def\cs AB#1#2C$#3\$ {#3{ab#1}#1 c\x#2}
+\cs AB1{2}{3}{4}C${2}{2}\$
+
+{\def\a#1#{\hbox to #1}
+\a3pt{x}}
+
+\exercise[20.6]{
+	\def\a#{\b}
+	\a{hohoo}
+}
+
+\exercise[20.7]{
+	\catcode`[=1
+	\catcode`]=2
+	\catcode`!=6
+	\def\!!1#2![{!#]#!!2}
+	%\! x{[y]][z}
+}
+
+%\show\long
+\let\zero=0
+\zero
+
+\beginexe[20.9]
+	\let\xpar=\par
+	\def\par{a}
+	\def\xpar#1{#1\par}
+	\xpar{adslfkjaslf}
+\endexe
+
+{
+	\def\c#1{#1hoho}
+	\def\b{\futurelet\a\c}
+	\b1\a
+}
+
+{
+%\show\if
+	%\showthe\count2
+	\def\dollaramount{{\$\the\count2.00}}
+	\def\balance{\count2}
+	\def\fullpaid{Your taxes are fully paid---thank you.}
+	\def\overpaid{overpaid}
+	\def\underpaid{{
+		\balance=-\balance
+		\ifnum\balance<100
+			you owe \dollaramount, but you need not pay it,
+			because our policy is to disregard amount less
+			than \$1.00.
+		\else Please remit \dollaramount\ within ten days,
+			or additional interest charges will be due.
+		\fi
+	}}
+	\def\statement{
+		\ifnum\balance=0 \fullpaid
+		\else\ifnum\balance>0 \overpaid
+			\else\underpaid
+			\fi
+		\fi
+		\par
+	}
+	\balance=1\statement
+	\balance=0\statement
+	\balance=-1\statement
+}
+
+{\if \par\let yes\else no\fi}
+
+{
+	\def\Ifcat#1#2{(#1,#2) = \ifcat#1#2yes\else no\fi\par}
+	\catcode`[=13\catcode`[=13\def[{*}
+	\Ifcat{\noexpand[}{\noexpand[}
+	\Ifcat[*
+	\Ifcat{\noexpand[}*
+}
+
+{
+	\def\hphantom{\ph YN}
+	\def\vphantom{\ph NY}
+	\def\phantom{\ph YY}
+	\def\ph#1#2{\def\hph{#1}\def\vph{#2}\phant}
+}
+
+{
+	\def\yes{\if00}
+	\def\no{\if01}
+	\def\hphantom{\ph\yes\no}
+	\def\vphantom{\ph\yes\yes}
+	\def\phantom{\ph\yes\yes}
+	\def\ph#1#2{\let\ifhph=#1\let\ifvph=#2\phant}
+}
+
+{
+	\newif\ifhph\newif\ifvph
+	\def\hphantom{\hphtrue\vphfalse\phant}
+	\ifhph haha \else fuck\fi
+}
+
+\toksdef\catch=22
+\toks1={11}
+\catch=\toks1
+\newtoks\fuck
+\fuck=\catch
+%\showthe\fuck
+\tracingcommands=2
+\tracingmacros=2
+\tracingonline=0
+%\show\else
+\jobname
+
+\meaning \fuck
+
+\meaning \catch
+
+\csname jobname\endcsname
+
+\expandafter\jobname\the\fuck
+
+%\show\widowpenalty
+%\show\parindent
+\the\pagetotal
+
+{\chardef\a=97}
+
+%\show\span
+%\show\tabskip
+
+{
+	\def\double#1{#1#1}
+	\edef\a{\double{xy}}
+	\edef\a{\double\a}
+	\a
+	\toks0={\a}
+	\the\toks0
+}
+
+\beginexe[20.14]
+	\def\e{e}
+	\def\b{b}
+	\def\d{d}
+	\def\c{c}
+
+	\edef\e#1{\b#1\d}
+	\def\a{\e\c}
+\endexe
+
+%{
+%	\newread\in
+%	%\showthe\in
+%	\openin\in=story
+%	\read\in to\buf
+%	%\showthe\buf
+%	\closein\in
+%%TeX will prompt user to write something to the terminal
+%%if the <number> beyond 0~15, inclusive.
+%	\message{Please type your name:}
+%	\read-1 to\myname
+%	\newtoks\mn
+%	\mn={\myname}
+%	\message{Hello, \myname!}
+%}
+
+%{{
+%	\def\yes{Yes }\def\no{No }\newif\ifgarbage
+%	\loop\message{Are you happy? }
+%		\read-1 to\answer
+%		\ifx\answer\yes\garbagefalse
+%			\else\ifx\answer\no\garbagefalse
+%				\else\garbagetrue
+%			\fi
+%		\fi
+%		\ifgarbage\message{(Please type Yes or No.)}
+%	\repeat
+%}}
+
+{
+%\show\advance
+%\show\multiply
+%\show\divide
+	\newif\ifprime\newif\ifunknown
+	\newcount\n\newcount\p\newcount\d\newcount\a
+	\def\primes#1{2,~3
+		\n=#1\advance\n by-2
+		\p=5
+		\loop\ifnum\n>0\printifprime\advance\p by2\repeat
+	}
+	\def\printp{,
+		\ifnum\n=1 and~\fi
+		\number\p \advance\n by -1}
+	\def\printifprime{\testprimality \ifprime\printp\fi}
+	\def\testprimality{{\d=3\global\primetrue
+		\loop\trialdivision \ifunknown\advance\d by2 \repeat}}
+	\def\trialdivision{\a=\p \divide\a by\d
+		\ifnum\a>\d \unknowntrue\else\unknownfalse\fi
+		\multiply\a by\d
+		\ifnum\a=\p \global\primefalse\unknownfalse\fi}
+	%\primes{30}
+}
+
+{
+	\def\hex#1{{\n=#1 \count0=\n \divide\n by16
+		\ifnum\n>0 \hex\fi \count2=\n \multiply\count2 by-16
+		\advance\count0 by\count2 \hexdigit}}
+	\def\hexdigit{\ifnum\count0<10 \number\count0
+		\else\advance\count0 by-10 \advance\count0 by `A \char\count0 \fi}
+	\hex{10}
+}
+
+{
+	\def\length#1{{\count0=0 \getlength#1\end \number\count0}}
+	\def\getlength#1{\ifx#1\end \let\next=\relax
+		\else\advance\count0 by1 \let\next=\getlength\fi \next}
+	\length{hoho i i i ajsldkj fklasj kljaslkdk flasjdkl jalk}
+}
+
+%\show\lastbox
+%\show\halign
+%\show\offinterlineskip
+%\show\beginsection
+
+\bye
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\hsize 29pc
+Hoho
+$$x_1+\cdots+x_n$$
+$$x_1=\cdots=x_n=0$$
+$$A_1\times\cdots\times A_n$$
+$$f(x_1,\ldots,x_n)$$
+$$x_1x_2\ldots x_n$$
+$$(1-x)(1-x^2)\ldots(1-x^n)$$
+$$n(n-1)\ldots(1)$$
+$$x_1+x_1x_2+\cdots+x_1x_2\cdots x_n$$
+$$(x_1,\ldots,x_n)\cdot(y_1,\ldots,y_n)=x_1y_1+\cdots+x_ny_n$$
+
+Prove that $(1-x)^{-1}=1+x+x^2+\cdots\,$.
+
+Clearly $a_i<b_i$ for $i=1$,~2, $\ldots\,$,~$n$.
+
+The coeffcients $c_0$,~$c_1$, \dots,~$c_n$ are positive.
+
+Prove that $(1-x)^{-1}=1+x+x^2+\cdots$.\
+
+Clearly $a_i<b_i$ for $i=1$,~2, $\ldots$,~$n$.
+
+The coeffcients $c_0$,~$c_1$, \dots,~$c_n$ are positive.
+
+Clearly $a_i<b_i$ for~$i=1$,~2, \dots,~$n$.
+
+Clearly $a_i<b_i$ for~$i=1, 2, \ldots, n$.
+
+Well \dots, hardly ever.
+
+$$\lbrace a, b, c\rbrace$$
+$$\lbrace 1, 2, \ldots, n\rbrace$$
+$$\lbrace\rm red, white, blue\rbrace$$
+$$\lbrace\, x\mid x > 5\,\rbrace$$
+$$\lbrace x\mid x > 5\rbrace$$
+$$\lbrace x, y\rbrace$$
+$$\big\lbrace\,\big(x, f(x)\big)\,\big|\,x \in D\,\big\rbrace$$
+$$\big\lbrace\,\big(x, f(x)\big)\bigm|x \in D\,\big\rbrace$$
+$$\bigl\lbrace\,\bigl(x, f(x)\bigr)\bigm|x \in D\,\bigr\rbrace$$
+$$\big\lbrace\,\big(x, f(x)\big)\big|x \in D\,\big\rbrace$$
+$$\bigl\{\,x^3\bigm|h(x)\in\{-1,0,+1\}\,\bigr\}$$
+$$\big\{\,x^3\bigm|h(x)\in\{-1,0,+1\}\,\big\}$$
+$$|x|=\cases{x,&if $x\ge0$;\cr
+			-x,&otherwise.\cr}$$
+$$f(x)=\cases{1/3&if $0\le x\le1$;\cr
+	2/3&if $3\le x\le4$;\cr
+	0&elsewhere.}$$
+$$A=\left(\matrix{x-\lambda&1&0\cr
+		0&x-\lambda&1\cr
+		0&0&x-\lambda\cr}\right).$$
+$$A=\pmatrix{x-\lambda&1&0\cr
+		0&x-\lambda&1\cr
+		0&0&x-\lambda\cr}.$$
+$$A=\pmatrix{a_{11}&a_{12}&\ldots&a_{1n}\cr
+		a_{21}&a_{22}&\ldots&a_{2n}\cr
+		\vdots&\vdots&\ddots&\vdots\cr
+		a_{m1}&a_{m2}&\ldots&a_{mn}\cr}.$$
+$$\pmatrix{y_1\cr
+\vdots\cr
+y_k}$$
+
+$${\bf Fine Points of Mathematical Typing}\>
+\cases{
+	1.~\hbox{\it Punctuation.}\cr
+	2.~\hbox{\it Non-Italic letters in formulas.}\cr
+	3.~\hbox{\it Spacing between formulas.}\cr
+	4.~\hbox{\it Spacing within formulas.}\cr
+	5.~\hbox{\it Ellipses.}\cr
+	6.~\hbox{\it Line breaking}\cr
+	7.~\hbox{\it Cases.}\cr
+	8.~\hbox{\it Matrix.}\cr
+}$$
+%-------------------------------------------------------------%
+$$\hbox{Displayed Text}$$
+$$X_n=X_k\qquad\hbox{if and only if}\qquad
+Y_n=Y_k\quad\hbox{and}\quad Z_n=Z_k$$
+$$Y_n=X_n\bmod p\quad\hbox{and}\quad Z_n=X_n\bmod q\qquad
+\hbox{for all }n\ge0.$$
+$$Y_n=X_n\bmod p\quad\hbox{and}\quad Z_n=X_n\bmod q\qquad
+\hbox{for all $n\ge0$.}$$
+
+$$\sum_{n=0}^\infty a_nz^n\qquad\hbox{converges if}\qquad
+|z|<\Bigl(\limsup_{n\to\infty}\root n \of{|a_n|}\Bigr)^{-1}.$$
+$$\sum_{n=0}^\infty a_nz^n\qquad\hbox{converges if}\qquad
+|z|<\Bigl(\limsup_{n\to\infty}\root n\!\of{|a_n|}\,\Bigr)^{-1}.$$
+$${f(x+\Delta x)-f(x)\over\Delta x}\to f'(x)\qquad
+\hbox{as $\Delta x\to0$.}$$
+$$\|u_i\|=1,\qquad u_i\cdot u_j=0\quad\hbox{if $i\not=j$.}$$
+$$\|u_i\|=1,\qquad u_i\cdot u_j=0\quad\hbox{if $i\ne j$.}$$
+$$\hbox{\it The confluent image of}\quad
+	\left\{\matrix{
+		\hbox{\it an arc}\hfill\cr
+		\hbox{\it a circle}\hfill\cr
+		\hbox{\it a fan}\hfill\cr
+	}\right\}\quad is\quad\left\{\matrix{
+		\hbox{\it an arc}\hfill\cr
+		\hbox{\it an arc or a circle}\hfill\cr
+		\hbox{\it a fan or an arc}\hfill\cr
+	}\right\}.$$
+
+$$\hbox{\it The confluent image of}\quad
+	\left\{\eqalign{
+		&\hbox{\it an arc}\cr
+		&\hbox{\it a circle}\cr
+		&\hbox{\it a fan}\cr
+	}\right\}\quad is\quad\left\{\eqalign{
+		&\hbox{\it an arc}\cr
+		&\hbox{\it an arc or a circle}\cr
+		&\hbox{\it a fan or an arc}\cr
+	}\right\}.$$
+
+$$x^2-y^2=(x+y)(x-y).\eqno(15)$$
+$$x^2-y^2=(x+y)(x-y).\leqno(16)$$
+
+$$\prod_{k\ge0}{1\over(1-q^kz)}=\sum_{n\ge0}z^n\bigg/
+	\prod_{1\le k\le n}(1-q^k).\eqno (16')$$
+$$\eqalign{
+	X_1+\cdots+X_p&=m,\cr
+	Y_1+\cdots+Y_p&=n.\cr
+}$$
+$$\eqalign{
+	T(n)\le T(2^{\lceil\lg n\rceil})&\le
+		c(3^{\lceil\lg n\rceil}-2^{\lceil\lg n\rceil})\cr
+	&<3c\cdot3^{\lg 3}\cr
+	&=3cn^{\lg 3}.\cr
+}$$
+\vfil\eject
+$$\left\{\eqalign{
+	\alpha&=f(z)\cr
+	\beta&=f(z^2)\cr
+	\gamma&=f(z^3)\cr
+}\right\}\qquad\left\{\eqalign{
+	x&=a^2-\beta\cr
+	y&=2\gamma\cr
+}\right\}$$
+$$\eqalign{
+	P(x)&=a_0+a_1x+a_2x^2+\cdots+a_nx^n,\cr
+	P(-x)&=a_0-a_1x+a_2x^2-\cdots+(-1)^na_nx^n.\cr
+}\eqno(30)$$
+$$\eqalignno{
+	(x+y)(x-y)&=x^2-xy+yx-y^2\cr
+	&=x^2-y^2;&(4)\cr
+	(x+y)^2&=x^2+2xy+y^2.&(5)\cr
+}$$
+$$\leqalignno{
+	(x+y)(x-y)&=x^2-xy+yx-y^2\cr
+	&=x^2-y^2;&(4)\cr
+	(x+y)^2&=x^2+2xy+y^2.&(5)\cr
+}$$
+%overlap test
+$$\eqalignno{
+	(x+y)(x-y)&=x^2-xy+yx-y^2\cr
+	&=x^2-y^2;&(4)\cr
+	(xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx+y)^2&=x^2+2xy+y^2.&(5)\cr
+}$$
+$$\leqalignno{
+	\gcd(u,v)&=\gcd(u,v);&(9)\cr
+	\gcd(u,v)&=\gcd(-u,v).&(10)\cr
+}$$
+$$\eqalignno{
+	\left(\int_{-\infty}^\infty e^{-x^2}\,dx\right)^2&=
+		\int_{-\infty}^\infty\int_{-\infty}^\infty e^{-(x^2+y^2)}\,dx\,dy\cr
+	&=\int_0^{2\pi}\int_0^\infty e^{-r^2}r\,dr\,d\theta\cr
+	&=\int_0^{2\pi}\biggl(\!-{e^{-r^2}\over2}\biggr|_{r=0}^{r=\infty}\,\biggr)\,d\theta\cr
+	&=\pi.&(11)\cr
+}$$
+$$\eqalign{
+	\sigma(2^{34}-1,2^{34},1)&=-3+(2^{34}-1)/2^{35}\!/(2^{34}-1)\cr
+	&\qquad+7/2^{35}(2^{34}-1)-\sigma(2^{35},2^{34}-1,1).\cr
+}$$
+$$\eqalignno{
+	x_nu_1+\cdots+x_{n+t-1}u_t&=x_nu_1+(ax_n+c)u_2+\cdots\cr
+		&\qquad+(a^{t-1}x_n+c(a^{t-2}+\cdots+1))u_t\cr
+	&=(u_1+au_2+\cdots+a^{t-1}u_t)x_n+h(u_1,\dots,u_t).&(47)\cr
+}$$
+$$\hbox{\bf Displayed Equation}\cases{
+	1.~\hbox{\it One-line displays}\cr
+	2.~\hbox{\it Multi-line displays}\cr
+	3.~\hbox{\it Long formulas}\cr
+}$$
+\vfil\eject
+%------------------------------------------------------------------------------
+\def\xvec{x_1,\ldots,x_n}
+\def\Ahat{\^A}
+$$\sum_{\xvec\ne(0,\ldots,0)}\bigl(f\xvec+g\xvec\bigr)$$
+$$\ldotp$$
+\centerline\SXD
+\def\badcheck{A penalty has been added because your check to us was
+not honored by your bank.\par}
+\def\cheater{A penalty of 50\% of the underpaid tax has been added
+for fraud.\par}
+\badcheck\cheater
+
+\def\mustnt{I must not talk in class.\par}
+\def\five{\mustnt\mustnt\mustnt\mustnt\mustnt}
+\def\twenty{\five\five\five\five}
+\def\punishment{\twenty\twenty\twenty\twenty\twenty}
+\punishment
+%------------------------------------------------------------------------------
+\settabs 4\columns
+\+&&Text that starts in the third column\cr
+\+&Text that starts in the second column\cr
+\+\it Text that starts in the first column, and&&&
+the fourth, and&beyond!\cr
+
+\settabs\+\indent&Horizontal lists\quad&\cr %sample line
+\+&Horizontal list&Chapter 14\cr
+\+&Vertical list&Chapter 15\cr
+\+&Math list&Chapter 17\cr
+
+\hrule\vskip1pt\settabs\+$10{^1/_2}$ lbs\quad&Servings\quad&\cr
+\+\negthinspace\it Weight&\it Servings&\it Approximate Cooking Time*\cr
+\+8 lbs.&6&1 hour and 50 to 55 minutes\cr
+\+9 lbs.&7 to 8&About 2 hours\cr
+\+$9{\,^1\!/\!_2}$ lbs.&8 to 9&2 hours and 10 to 15 minutes\cr
+\+$10{\,^1\!/\!_2}$ lbs.&9 to 10&2 hours and 15 to 20 minutes\cr
+\+* For a stuffed goose, add 20 to 40 minutes to the times given.\cr
+\vskip1pt\hrule
+\vfill\eject
+{\hoffset=.5in\voffset=1.5in \nopagenumbers
+Sheet
+\vfill\eject}
+Sheet
+\vfill\eject
+A B\par
+A\enspace B\par
+A\thinspace B\par
+A\negthinspace B\par
+A\kern 1cm B\par
+
+A\enskip B\par
+A\quad B\par
+A\qquad B\par
+A\hskip 1cm B\par
+
+\settabs 4 \columns
+\+\vdots&\vdots&\vdots&\vdots&\cr
+\+Here's an example&of\hfill some &tabbing:&\hrulefill hrulefill\hrulefill&\cr
+\+\hfill$\backslash$hrulefill &\hrulefill&
+\hfill$\backslash$dotfill &\dotfill&\cr
+\+\hfill$\backslash$leftarrowfill &\leftarrowfill&
+\hfill$\backslash$rightarrowfill &\rightarrowfill&\cr
+\+\hfill$\backslash$upbracefill &\upbracefill&
+\hfill$\backslash$upbracefill &\upbracefill&\cr
+\bye

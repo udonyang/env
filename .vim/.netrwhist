@@ -1,10 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/home/dwylkz/Desktop/DAL/empty'
-let g:netrw_dirhist_2='/home/dwylkz/Project/qtexample/plugins/Charts'
-let g:netrw_dirhist_3='/home/dwylkz/Project/qtexample/plugins/import'
-let g:netrw_dirhist_4='/home/dwylkz/Project/qtexample/plugins/Charts'
-let g:netrw_dirhist_5='/home/dwylkz/Project/qteditor/DPA'
-let g:netrw_dirhist_6='/home/dwylkz/Project/DAC/src'
-let g:netrw_dirhist_7='/home/dwylkz/Project/Dlex2/test'
-let g:netrw_dirhist_8='/home/dwylkz/Project/Dlex2/test/grammar_example'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/home/dwylkz/Desktop/DAL/docs/c/unp/unpv13e/sock'
