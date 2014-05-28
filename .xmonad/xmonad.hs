@@ -28,7 +28,7 @@ main = do
 		} `additionalKeys`
 		[ ((mod4Mask, xK_l), spawn "xlock")
 		, ((mod4Mask, xK_a), spawn "gnome-alsamixer")
-		, ((mod4Mask, xK_c), spawn "chromium --enable-plugins")
+		, ((mod4Mask, xK_c), spawn "chromium")
 		, ((mod4Mask, xK_e), spawn "pcmanfm")
 		, ((mod4Mask, xK_p), spawn "poweroff")
 		, ((mod4Mask, xK_o), spawn "reboot")

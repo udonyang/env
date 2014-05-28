@@ -31,8 +31,8 @@ export XMODIFIERS=@im=ibus
 # Alias
 alias ..="cd .."
 alias ...="cd ..; cd .."
-alias ll="ls -l"
-alias la="ls -la"
+alias ll="ls -lh"
+alias la="ls -lah"
 ## Directory
 alias cdp="cd $HOME/Project"
 alias cdd="cd $HOME/Desktop"
@@ -49,7 +49,7 @@ alias envg="env | grep"
 alias ka="killall"
 alias dush="du -sh"
 ## Application
-alias mpgl="mpg123 -C *"
+alias mpgl="mpg123 -C -z *"
 ### Git
 alias gitcl="tsocks git clone"
 alias gitpl="tsocks git pull -v"
