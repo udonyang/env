@@ -5,9 +5,8 @@ xrdb -merge $HOME/.Xresources
 
 # Set the background and poionter type
 xsetroot -cursor_name left_ptr
-hsetroot -fill $HOME/Pictures/1353056333875.jpg
+hsetroot -fill $HOME/.xmonad/bg.jpg
 
 # Fire up apps
 ibus-daemon -d -x
-
-exec xmonad
+dbus-launch --exit-with-session xmonad
