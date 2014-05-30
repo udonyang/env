@@ -10,18 +10,30 @@ echo -e "\
 #    and scriptability.\n\
 #################################################\n"
 
+# Export 
+## Basic
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
 export EDITOR=vim
 export PATH=$HOME/.local/bin:$PATH
+export GTK_IM_MODULE=ibus
+export QT_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+## C/C++
 export LIBRARY_PATH=$HOME/.local/lib:$LIBRARY_PATH
 export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
 export LD_RUN_PATH=$HOME/.local/lib:$LD_RUN_PATH
 export C_INCLUDE_PATH=$HOME/.local/include:$C_INCLUDE_PATH
 export CPLUS_INCLUDE_PATH=$HOME/.local/include:$C_INCLUDE_PATH
-export LC_ALL=en_US.UTF-8
-
-export GTK_IM_MODULE=ibus
-export QT_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
+## Java
+export JAVA_HOME=$HOME/Downloads/jdk
+export PATH=$PATH:$JAVA_HOME/bin
+export CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar
+## TeX
+export TEXHOME=/usr/local/texlive/2013
+export MANPATH=$MANPATH:$TEXHOME/texmf-dist/doc/man
+export PATH=$PATH:$TEXHOME/bin/i386-linux
 
 # if [[ -n $(pidof xbindkeys) ]]; then
 # 	killall xbindkeys
