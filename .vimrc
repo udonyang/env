@@ -18,6 +18,9 @@ set smartindent
 ""Browser
 let g:netrw_liststyle=3
 let mapleader=","
+""Html
+let g:html_indent_script1="inc"
+let g:html_indent_style1="inc"
 
 "Function
 func! ErrorList()
