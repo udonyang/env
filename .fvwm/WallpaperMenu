@@ -1,4 +1,0 @@
-DestroyMenu fvwmWallpaperMenu  
-AddToMenu fvwmWallpaperMenu "Wallpapers" Title
-AddToMenu fvwmWallpaperMenu  "150df948-244c-4682-909b-adc5cbba96a4_5.png%wallpaper/150df948-244c-4682-909b-adc5cbba96a4_5.png%"  fvwmChangeBackground "150df948-244c-4682-909b-adc5cbba96a4_5.png"
-AddToMenu fvwmWallpaperMenu  "background.png%wallpaper/background.png%"  fvwmChangeBackground "background.png"
