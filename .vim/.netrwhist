@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/home/dwylkz/Desktop/DAL/docs/c/unp/unpv13e/sock'
 let g:netrw_dirhist_2='/home/dwylkz/Project/tdsl/src/.libs'
 let g:netrw_dirhist_3='/home/dwylkz/Project/tdsl'
@@ -8,3 +8,4 @@ let g:netrw_dirhist_5='/home/dwylkz'
 let g:netrw_dirhist_6='/home/dwylkz/acmps/CF/435/main'
 let g:netrw_dirhist_7='/home/dwylkz/acmps/CF/435/A'
 let g:netrw_dirhist_8='/home/dwylkz/acmps/euler/main'
+let g:netrw_dirhist_9='/home/dwylkz/project/tdsl/src'
