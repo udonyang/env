@@ -7,7 +7,7 @@ do_install=
 cai() {
 	local dir=${HOME}/${1}
 	echo "create directory ${dir}"
-	if [[ -z ${dir} ]]; then
+	if [[ ! -d ${dir} ]]; then
 		if [[ -n ${do_install} ]]; then
 			mkdir -p ${dir}
 		fi
