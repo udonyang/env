@@ -3,7 +3,7 @@
 ### Usage
 ```bash
 ./install (run | show)
-	do: really install
+	run: really install
 	show: dry run
 ```
 
