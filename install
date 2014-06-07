@@ -1,0 +1,82 @@
+#!/bin/bash
+
+#options
+do_install=
+
+#function
+cai() {
+	local dir=${HOME}/${1}
+	echo "create directory ${dir}"
+	if [[ -z ${dir} ]]; then
+		if [[ -n ${do_install} ]]; then
+			mkdir -p ${dir}
+		fi
+	fi
+}
+
+#install configure files
+conf() {
+	for from in conf/*; do
+		from=${PWD}/${from}
+		local file=$(basename ${from})
+		local to=${HOME}/.${file}
+		echo "link ${from} to ${to}"
+		if [[ -n ${do_install} ]]; then
+			ln -sf ${from} ${to}
+		fi
+	done
+}
+
+#install binary files
+bin() {
+	cai ".local/bin"
+	for from in bin/*; do
+		from=${PWD}/${from}
+		file=$(basename ${from})
+		to=${HOME}/.local/bin/${file}
+		echo "link ${from} to ${to}"
+		if [[ -n ${do_install} ]]; then
+			ln -sf ${from} ${to}
+		fi
+	done
+}
+
+#copy download files
+down() {
+	cai "Downloads"
+	for from in down/*; do
+		file=$(basename ${from})
+		to=${HOME}/Downloads/${file}
+		echo "copy ${from} to ${to}"
+		if [[ -n ${do_install} ]]; then
+			cp -rf ${from} ${to}
+		fi
+	done
+}
+
+#main function
+main() {
+	conf
+	bin
+	down
+}
+
+#parsing arguments
+case ${1} in
+	"do")
+		do_install="true"
+		;;
+	"show")
+		;;
+	*)
+		if [[ -n ${1} ]]; then
+			echo "invalid option: ${1}"
+		else
+			echo "missing option"
+		fi
+		echo "usage: ${0} (do | show)"
+		exit -1
+		;;
+esac
+
+main
