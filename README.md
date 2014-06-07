@@ -17,6 +17,7 @@ google-chrome
 hsetroot
 jdk
 pcmanfm
+recordmydesktop
 scrot
 xmobar
 xmonad

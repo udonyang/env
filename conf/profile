@@ -12,7 +12,7 @@ echo -e "\
 
 # Export 
 ## Basic
-export LC_ALL=en_US.UTF-8
+export LC_ALL=C
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export EDITOR=vim
@@ -63,6 +63,7 @@ alias ka="killall"
 alias dush="du -sh"
 ## Application
 alias mpgl="mpg123 -C -z *"
+alias vi="vim"
 ### Git
 alias gitcl="git clone"
 alias tgitcl="tsocks git clone"
