@@ -10,6 +10,7 @@ AM_PROG_AR
 LT_INIT
 
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
-AC_CONFIG_FILES([Makefile])
+AC_CONFIG_FILES([Makefile
+								 src/Makefile])
 
 AC_OUTPUT
