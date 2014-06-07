@@ -63,7 +63,7 @@ main() {
 
 #parsing arguments
 case ${1} in
-	"do")
+	"run")
 		do_install="true"
 		;;
 	"show")
@@ -74,7 +74,7 @@ case ${1} in
 		else
 			echo "missing option"
 		fi
-		echo "usage: ${0} (do | show)"
+		echo "usage: ${0} (run | show)"
 		exit -1
 		;;
 esac
