@@ -50,10 +50,6 @@ map <C-F8> <ESC>:call Make("debug")<CR>
 map <F9> <ESC>:call Make("")<CR>
 map <C-F9> <ESC>:call Make("run")<CR>
 map <F10> <ESC>:call Make("test")<CR>
-""Doxygen
-nmap <leader>a :DoxAuthor<CR>
-nmap <leader>d :Dox<CR>
-nmap <leader>l :DoxLic<CR>
 
 "Abbreviate
 autocmd BufReadPre,BufRead,BufNew *.qml :set filetype=qml
