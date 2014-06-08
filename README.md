@@ -21,4 +21,5 @@ recordmydesktop
 scrot
 xmobar
 xmonad
+ibus
 ```
