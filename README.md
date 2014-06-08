@@ -13,13 +13,14 @@ dmenu
 ghc
 gnome-alsamixer
 gnome-screensaver
-google-chrome
+google-chrome-stable
 hsetroot
+ibus
 jdk
 pcmanfm
 recordmydesktop
 scrot
 xmobar
 xmonad
-ibus
+xmonad-contrib
 ```
