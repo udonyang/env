@@ -59,6 +59,8 @@ main() {
 	conf
 	bin
 	down
+	cai "Music"
+	cai "Videos"
 }
 
 #parsing arguments

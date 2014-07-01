@@ -4,8 +4,7 @@ echo -e "\
 # Remember:\n\
 # 1. Focus on what is the most significant\n\
 # 2. Done first, perfect second.\n\
-# 3. Life is short, so script first.\n\
-# 4. Try the easier version if stucked.\n\
+# 3. Life is short, so script first.\n\ # 4. Try the easier version if stucked.\n\
 # 5. Concision, expressiveness, ease, transparency\n\
 #    and scriptability.\n\
 #################################################\n"
@@ -48,7 +47,6 @@ alias la="ls -lah"
 ## Directory
 alias cde="cd $HOME/env"
 alias cdp="cd $HOME/project"
-alias cdd="cd $HOME/Desktop"
 alias cdm="cd $HOME/Music"
 alias cdo="cd $HOME/Downloads"
 alias cdv="cd $HOME/Videos"
@@ -71,7 +69,7 @@ alias gitpl="git pull -v"
 alias tgitpl="tsocks git pull -v"
 alias gitph="git push -v"
 alias tgitph="tsocks git push -v"
-alias gitcm="git commit -a"
+alias gitcm="git commit"
 alias gitco="git checkout"
 alias gitbr="git branch"
 alias gitaa="git add --all"
