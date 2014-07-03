@@ -1,0 +1,18 @@
+#!/bin/bash
+
+for i in deb/*; do
+	sudo dpkg -i ${i}
+done
+
+PKGS="vim-gtk ibus jdk pcmanfm recordmydesktop \
+	scrot nvidia-current xmobar xmonad \
+	mupdf ttf-wqy-zenhei autoconf"
+sudo apt install ${PKGS}
+
+sudo dpkg-reconfigure tzdata
+
+sudo apt-get purge lightdm unity
+
+echo '. ~/.profile' >> ~/.bashrc
+sudo gpasswd -a ${USER} audio
+
