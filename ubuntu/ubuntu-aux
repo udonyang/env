@@ -7,7 +7,7 @@ sudo apt install ${PKGS}
 
 sudo dpkg-reconfigure tzdata
 
-sudo apt-get purge lightdm unity
+sudo apt-get purge lightdm unity nautilus
 
 echo '. ~/.profile' >> ~/.bashrc
 sudo gpasswd -a ${USER} audio
