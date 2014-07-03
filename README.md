@@ -24,3 +24,9 @@ xmobar
 xmonad
 xmonad-contrib
 ```
+
+### Recommand Package
+```
+gvim
+mupdf
+```
