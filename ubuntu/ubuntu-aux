@@ -1,9 +1,5 @@
 #!/bin/bash
 
-for i in deb/*; do
-	sudo dpkg -i ${i}
-done
-
 PKGS="vim-gtk ibus jdk pcmanfm recordmydesktop \
 	scrot nvidia-current xmobar xmonad \
 	mupdf ttf-wqy-zenhei autoconf mplayer"
@@ -15,3 +11,10 @@ sudo apt-get purge lightdm unity
 
 echo '. ~/.profile' >> ~/.bashrc
 sudo gpasswd -a ${USER} audio
+
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb
+wget http://wdl1.cache.wps.cn/wps/download/Linux/unstable/wps-office_8.1.0.3724~b1p2_i386.deb
+
+for i in *.deb; do
+	sudo dpkg -i ${i}.deb
+done
