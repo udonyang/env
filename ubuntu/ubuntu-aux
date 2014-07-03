@@ -1,13 +1,13 @@
 #!/bin/bash
 
+sudo dpkg-reconfigure tzdata
+
+sudo apt-get purge lightdm unity nautilus -y
+
 PKGS="vim-gtk ibus jdk pcmanfm recordmydesktop \
 	scrot nvidia-current xmobar xmonad \
 	mupdf ttf-wqy-zenhei autoconf mplayer"
-sudo apt install ${PKGS}
-
-sudo dpkg-reconfigure tzdata
-
-sudo apt-get purge lightdm unity nautilus
+sudo apt-get install ${PKGS} -y
 
 echo '. ~/.profile' >> ~/.bashrc
 sudo gpasswd -a ${USER} audio
