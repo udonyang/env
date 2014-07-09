@@ -30,4 +30,5 @@ xmonad-contrib
 gvim
 mupdf
 mplayer
+rar
 ```
