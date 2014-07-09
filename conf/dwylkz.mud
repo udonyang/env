@@ -20,7 +20,7 @@
 #CONFIG           {WORDWRAP}  {ON}
 #MACRO {\cs}
 {
-	#write dwylkz.mud;
+	#write ~/.dwylkz.mud;
 	#showme file saved
 }
 
@@ -35,7 +35,7 @@
 
 #MACRO {\eOQ}
 {
-	#session aa alteraeon.com 3000#split;
+	#session aa alteraeon.com 3000;
 	#read dwylkz.mud;
 	#split;
 	dwylkz;
