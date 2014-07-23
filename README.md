@@ -28,6 +28,7 @@ xmonad-contrib
 ### Recommand Package
 ```
 gvim
+cscope
 mupdf
 mplayer
 rar
