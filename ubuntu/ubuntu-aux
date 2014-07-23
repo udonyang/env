@@ -6,7 +6,7 @@ sudo apt-get purge lightdm unity nautilus -y
 
 PKGS="vim-gtk ibus jdk pcmanfm recordmydesktop \
 	scrot nvidia-current xmobar xmonad \
-	mupdf ttf-wqy-zenhei autoconf mplayer g++ rar"
+	mupdf ttf-wqy-zenhei autoconf mplayer g++ rar cscope"
 sudo apt-get install ${PKGS} -y
 
 echo '. ~/.profile' >> ~/.bashrc
