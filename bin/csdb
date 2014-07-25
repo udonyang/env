@@ -1,0 +1,116 @@
+#!/bin/bash
+
+CS=${HOME}/.csdb
+P=${CS}/pdb
+T=${CS}/tdb
+
+default()
+{
+	# create csdb if not exist
+	if [[ -a ${CS} ]]; then
+		echo "csdb exsit"
+	else
+		echo "init csdb"
+		echo "mkdir ${CS}"
+		mkdir ${CS}
+		REFER=${CS}/refresh
+		touch ${REFER}
+		echo "create script ${REFER}"
+		echo '#!/bin/bash' >> ${REFER}
+		echo '' >> ${REFER}
+		echo '# gen db if not exsit' >> ${REFER}
+		echo 'if [[ -a tdb ]]; then' >> ${REFER}
+		echo '	echo "tdb exist"' >> ${REFER}
+		echo 'else' >> ${REFER}
+		echo '	touch tdb' >> ${REFER}
+		echo 'fi' >> ${REFER}
+		echo 'if [[ -a pdb ]]; then' >> ${REFER}
+		echo '	echo "pdb exist"' >> ${REFER}
+		echo 'else' >> ${REFER}
+		echo '	touch pdb' >> ${REFER}
+		echo 'fi' >> ${REFER}
+		echo '' >> ${REFER}
+		echo 'PROJECT=$(cat pdb)' >> ${REFER}
+		echo 'FILE_TYPE=$(cat tdb)' >> ${REFER}
+		echo '' >> ${REFER}
+		echo '# gen filedb' >> ${REFER}
+		echo 'for p in ${PROJECT}; do' >> ${REFER}
+		echo '	for t in ${FILE_TYPE}; do' >> ${REFER}
+		echo '		find ${p} -iname *.${t} >> cscope.files' >> ${REFER}
+		echo '	done' >> ${REFER}
+		echo 'done' >> ${REFER}
+		echo '' >> ${REFER}
+		echo '# gen makefile if not exist' >> ${REFER}
+		echo 'if ! [[ -f makefile ]]; then' >> ${REFER}
+		echo '	echo -e ".PHONY: all\nall:\n\tcscope -b -q" > makefile' >> ${REFER}
+		echo '	echo -e ".PHONY: clean\nclean:\n\trm -rf makefile cscope*" >> makefile' >> ${REFER}
+		echo '	echo -e ".PHONY: distclean\ndistclean:\n\trm -rf tdb pdb" >> makefile' >> ${REFER}
+		echo 'fi' >> ${REFER}
+		echo '' >> ${REFER}
+		echo '# make' >> ${REFER}
+		echo 'make' >> ${REFER}
+		chmod +x ${REFER}
+		echo "install vim plugin"
+		VIMDIR=${HOME}/.vim/plugin
+		if [[ -a ${VIMDIR} ]]; then
+			echo "${VIMDIR} exist"
+		else
+			echo "mkdir ${VIMDIR}"
+			mkdir -p ${VIMDIR}
+		fi
+		PLUGIN=${VIMDIR}/cscope.vim
+		if [[ -a ${PLUGIN} ]]; then
+			echo "${PLUGIN} exist"
+		else
+			echo "create plugin ${PLUGIN}"
+			touch ${PLUGIN}
+			echo 'set cscopetag' >> ${PLUGIN}
+			echo 'autocmd BufReadPre,BufRead,BufNew * cscope add ~/.csdb/cscope.out' >> ${PLUGIN}
+		fi
+	fi
+
+	# refresh csdb
+	echo "freshing csdb..."
+	cd ${CS}
+	./refresh
+	echo "done."
+}
+
+if [[ -z ${1} ]]; then
+	default
+	exit 0
+fi
+
+COM=${1}
+shift 1
+ARGS=${*}
+
+case ${COM} in
+	"p")
+		todo ${P} s
+		;;
+	"ap")
+		todo ${P} a ${*}
+		;;
+	"dp")
+		todo ${P} d ${*}
+		;;
+	"t")
+		todo ${T} s
+		;;
+	"at")
+		todo ${T} a ${*}
+		;;
+	"dt")
+		todo ${T} d ${*}
+		;;
+	*)
+		echo -e "" "usage ${0}"\
+			"[p]" \
+			"[ap <project_name>]" \
+			"[dp <project_id>]" \
+			"[t]" \
+			"[at <type_name>]" \
+			"[dt <type_id>]\n" \
+			"it would refresh the csdb if no argument provided."
+esac
