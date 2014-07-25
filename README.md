@@ -16,9 +16,7 @@ gnome-screensaver
 google-chrome-stable
 hsetroot
 ibus
-jdk
 pcmanfm
-recordmydesktop
 scrot
 xmobar
 xmonad
@@ -27,9 +25,28 @@ xmonad-contrib
 
 ### Recommand Package
 ```
-gvim
 cscope
-mupdf
+gvim
+jdk
 mplayer
+mupdf
 rar
+recordmydesktop
+tintin++
 ```
+
+### Tools inside
+#### record
+> record the screen
+
+#### todo
+> simple line-oriented edit command
+
+#### csdb
+> manage the global cscope database easily
+
+#### tcca
+> topcoder wrapper
+
+#### dtt++
+> mud client wrapper
