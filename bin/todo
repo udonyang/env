@@ -1,0 +1,42 @@
+#!/bin/bash
+
+usage()
+{
+	echo -e "" "usage ${0} <todo_list> <command>\n"\
+		"<command>:\n" \
+		"  s: show file\n" \
+		"  a {<text>}: append some lines\n" \
+		"  d {<id>}: delete some lines accrodding to it's number"
+}
+
+if [[ -z ${1} ]]; then
+	usage
+	exit -1
+fi
+
+FILE=${1}
+COM=${2}
+shift 2
+ARGS=$(echo ${*} | sed 's, ,\n,g' | sort -rn)
+
+case ${COM} in
+	s)
+		cat -n ${FILE}
+		;;
+	a)
+		for t in ${ARGS}; do
+			echo "${t}" >> ${FILE}
+		done
+		;;
+	d)
+		TEMP=/tmp/todo_${FILE}
+		for i in ${ARGS}; do
+			awk "NR!=${i}{print}" ${FILE} > /tmp/todo_temp
+			mv /tmp/todo_temp ${FILE}
+		done 
+		;;
+	*)
+		usage
+		exit -1
+		;;
+esac
