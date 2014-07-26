@@ -81,6 +81,7 @@ if [[ -z ${1} ]]; then
 	exit 0
 fi
 
+echo ${*}
 COM=${1}
 shift 1
 ARGS=${*}

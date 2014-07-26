@@ -44,6 +44,11 @@ tintin++
 
 #### csdb
 > manage the global cscope database easily
+it's recommand to add:
+```
+* * * * * HOME=<your_home>;source <your_home>/<your_profile>;csdb > /dev/null 2>&1
+```
+to crontab
 
 #### tcca
 > topcoder wrapper
