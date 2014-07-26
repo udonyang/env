@@ -37,14 +37,15 @@ tintin++
 
 ### Tools inside
 #### record
-> record the screen
+> record the screen  
+it would store the video in pwd.
 
 #### todo
-> simple line-oriented edit command
+> simple line-oriented edit command support AD.
 
 #### csdb
-> manage the global cscope database easily
-it's recommand to add:
+> manage the global cscope database easily  
+it's recommanded to add:
 ```
 * * * * * HOME=<your_home>;source ${HOME}/<your_profile>;csdb > /dev/null 2>&1
 ```
