@@ -1,13 +1,14 @@
 #!/bin/bash
 
+echo "configure timezone"
 sudo dpkg-reconfigure tzdata
 
-sudo apt-get purge lightdm unity nautilus -y
+sudo apt-get purge lightdm unity nautilus -fy
 
-PKGS="vim-gtk ibus jdk pcmanfm recordmydesktop \
+PKGS="hsetroot vim-gtk ibus pcmanfm recordmydesktop \
 	scrot nvidia-current xmobar xmonad \
 	mupdf ttf-wqy-zenhei autoconf mplayer g++ rar cscope"
-sudo apt-get install ${PKGS} -y
+sudo apt-get install ${PKGS} -fy
 
 echo '. ~/.profile' >> ~/.bashrc
 sudo gpasswd -a ${USER} audio
@@ -16,5 +17,5 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_i386.deb
 wget http://wdl1.cache.wps.cn/wps/download/Linux/unstable/wps-office_8.1.0.3724~b1p2_i386.deb
 
 for i in *.deb; do
-	sudo dpkg -i ${i}.deb
+	sudo dpkg -i ${i}
 done
