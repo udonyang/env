@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [[ -n $(pidof cscope) ]]; then
+	echo "cscope is running."
+	exit 0
+fi
+
 CS=${HOME}/.csdb
 P=${CS}/pdb
 T=${CS}/tdb
