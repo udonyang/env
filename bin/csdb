@@ -1,13 +1,9 @@
 #!/bin/bash
 
-if [[ -n $(pidof cscope) ]]; then
-	echo "cscope is running."
-	exit 0
-fi
-
 CS=${HOME}/.csdb
 P=${CS}/pdb
 T=${CS}/tdb
+PID=$(ps aux | grep -v grep | grep cscope | grep -v cscope.out)
 
 default()
 {
@@ -39,11 +35,13 @@ default()
 		echo 'FILE_TYPE=$(cat tdb)' >> ${REFER}
 		echo '' >> ${REFER}
 		echo '# gen filedb' >> ${REFER}
+		echo 'rm -f cscope.files' >> ${REFER}
 		echo 'for p in ${PROJECT}; do' >> ${REFER}
 		echo '	for t in ${FILE_TYPE}; do' >> ${REFER}
 		echo '		find ${p} -iname *.${t} >> cscope.files' >> ${REFER}
 		echo '	done' >> ${REFER}
 		echo 'done' >> ${REFER}
+		echo "sed -i 's/\"/\\\"/g;s/\\\\/\\\\\\\\/g;s/^/\"/g;s/$/\"/g' cscope.files" >> ${REFER}
 		echo '' >> ${REFER}
 		echo '# gen makefile if not exist' >> ${REFER}
 		echo 'if ! [[ -f makefile ]]; then' >> ${REFER}
@@ -75,6 +73,10 @@ default()
 	fi
 
 	# refresh csdb
+	if [[ -n ${PID} ]]; then
+		echo "cscope is running. PID=${PID}"
+		exit 0
+	fi
 	echo "freshing csdb..."
 	cd ${CS}
 	./refresh
@@ -86,7 +88,6 @@ if [[ -z ${1} ]]; then
 	exit 0
 fi
 
-echo ${*}
 COM=${1}
 shift 1
 ARGS=${*}
