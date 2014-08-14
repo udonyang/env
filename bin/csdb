@@ -3,14 +3,12 @@
 CS=${HOME}/.csdb
 P=${CS}/pdb
 T=${CS}/tdb
-PID=$(ps aux | grep -v grep | grep cscope | grep -v cscope.out)
+PID=$(ps aux | grep -v grep | grep ctags)
 
 default()
 {
 	# create csdb if not exist
-	if [[ -a ${CS} ]]; then
-		echo "csdb exsit"
-	else
+	if [[ ! -d ${CS} ]]; then
 		echo "init csdb"
 		echo "mkdir ${CS}"
 		mkdir ${CS}
@@ -20,14 +18,10 @@ default()
 		echo '#!/bin/bash' >> ${REFER}
 		echo '' >> ${REFER}
 		echo '# gen db if not exsit' >> ${REFER}
-		echo 'if [[ -a tdb ]]; then' >> ${REFER}
-		echo '	echo "tdb exist"' >> ${REFER}
-		echo 'else' >> ${REFER}
+		echo 'if [[ ! -a tdb ]]; then' >> ${REFER}
 		echo '	touch tdb' >> ${REFER}
 		echo 'fi' >> ${REFER}
-		echo 'if [[ -a pdb ]]; then' >> ${REFER}
-		echo '	echo "pdb exist"' >> ${REFER}
-		echo 'else' >> ${REFER}
+		echo 'if [[ ! -a pdb ]]; then' >> ${REFER}
 		echo '	touch pdb' >> ${REFER}
 		echo 'fi' >> ${REFER}
 		echo '' >> ${REFER}
@@ -51,16 +45,12 @@ default()
 		chmod +x ${REFER}
 		echo "install vim plugin"
 		VIMDIR=${HOME}/.vim/plugin
-		if [[ -a ${VIMDIR} ]]; then
-			echo "${VIMDIR} exist"
-		else
+		if [[ ! -d ${VIMDIR} ]]; then
 			echo "mkdir ${VIMDIR}"
 			mkdir -p ${VIMDIR}
 		fi
 		PLUGIN=${VIMDIR}/cscope.vim
-		if [[ -a ${PLUGIN} ]]; then
-			echo "${PLUGIN} exist"
-		else
+		if [[ ! -f ${PLUGIN} ]]; then
 			echo "create plugin ${PLUGIN}"
 			touch ${PLUGIN}
 			echo 'set cscopetag' >> ${PLUGIN}

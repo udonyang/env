@@ -1,0 +1,13 @@
+#!/bin/bash
+
+PDFDB=${HOME}/.pdfdb
+if [[ ! -f ${PDFDB} ]]; then
+	touch ${PDFDB}
+fi
+
+alias ,pl="todo ${PDFDB} s"
+alias ,pa="todo ${PDFDB} a"
+alias ,pd="todo ${PDFDB} d"
+,pg() {
+	mupdf $(todo ${PDFDB} n ${1})
+}
