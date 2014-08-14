@@ -1,14 +1,17 @@
 # Init
 echo -e "\
-##################################################\n\
-# Remember:\n\
+#######################################################\n\
 # 1. Focus on what is the most significant\n\
 # 2. Done first, perfect second.\n\
 # 3. Life is short, so script first.\n\
 # 4. Try the easier version if stucked.\n\
-# 5. Concision, expressiveness, ease, transparency\n\
-#    and scriptability.\n\
-#################################################\n"
+# 5. Build your tools after you had done your jobs.\n\
+######################################################"
+
+# Import
+for u in ${HOME}/.utils/*; do
+	source ${u}
+done
 
 # Export 
 ## Basic
@@ -74,3 +77,4 @@ alias gitcm="git commit"
 alias gitco="git checkout"
 alias gitbr="git branch"
 alias gitaa="git add --all"
+alias gitst="git status"

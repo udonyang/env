@@ -4,6 +4,8 @@ syntax on
 filetype on
 filetype plugin indent on
 
+set encoding=utf8
+set fileencoding=utf8
 set autochdir
 set foldmethod=syntax
 set incsearch

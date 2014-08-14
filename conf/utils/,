@@ -1,0 +1,23 @@
+#!/bin/bash
+# directory util
+
+CDLDB=${HOME}/.cdldb
+if [[ ! -f ${CDLDB} ]]; then
+	touch ${CDLDB}
+fi
+
+,() {
+	local DIST=..
+	for ((i = 0; i < ${#1}; i++)); do
+		DIST+="/.."
+	done
+	cd ${DIST}
+}
+
+alias ,,="cd -"
+alias ,a="pwd | todo ${CDLDB} a"
+alias ,d="todo ${CDLDB} d"
+alias ,l="todo ${CDLDB} s"
+,g() {
+	cd $(todo ${CDLDB} n ${1})
+}
