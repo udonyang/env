@@ -56,6 +56,7 @@ alias cdo="cd $HOME/Downloads"
 alias cdv="cd $HOME/Videos"
 ## Core Tools
 alias cpr="cp -rf"
+alias cprl="cp -rlf"
 alias mkdp="mkdir -p"
 alias rmr="rm -rf"
 alias pst="pstree $USER"
