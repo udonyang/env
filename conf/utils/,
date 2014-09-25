@@ -17,7 +17,15 @@ fi
 alias ,,="cd -"
 alias ,a="pwd | todo ${CDLDB} a"
 alias ,d="todo ${CDLDB} d"
-alias ,l="todo ${CDLDB} s"
-,g() {
+_,g()
+{
+	if [[ ${COMP_CWORD} == 1 ]]; then
+		local opts=$(todo ${CDLDB} s | sed 's,\t,->,g')
+		COMPREPLY=(${opts})
+	fi
+}
+complete -F _,g ,g
+,g()
+{
 	cd $(todo ${CDLDB} n ${1})
 }
