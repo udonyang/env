@@ -45,7 +45,7 @@ map <F3> <ESC>:tabe
 map <F4> <ESC>:tabp<CR>
 map <F5> <ESC>:tabn<CR>
 map <F2> <ESC>:call Browser()<CR>
-map <F8> <ESC>:call ErrorList()<CR>
+map <F7> <ESC>:call ErrorList()<CR>
 ""Make
 map <C-F8> <ESC>:call Make("debug")<CR>
 map <F9> <ESC>:call Make("")<CR>
