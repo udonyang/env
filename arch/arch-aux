@@ -16,6 +16,10 @@ package=$(cat<<__EOF__
 	wget
 	fakeroot
 	make
+	gconf
+	harfbuzz-icu
+	icu
+	opus
 __EOF__)
 
 sudo pacman -Sy ${package}
