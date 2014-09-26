@@ -29,6 +29,7 @@ main = do
 		[ ((mod4Mask, xK_l), spawn "gnome-screensaver-command -l")
 		, ((mod4Mask, xK_a), spawn "gnome-alsamixer")
 		, ((mod4Mask, xK_c), spawn "google-chrome-stable")
+		, ((mod4Mask, xK_v), spawn "chromium")
 		, ((mod4Mask, xK_e), spawn "pcmanfm")
 		, ((mod4Mask, xK_p), spawn "poweroff")
 		, ((mod4Mask, xK_o), spawn "reboot")

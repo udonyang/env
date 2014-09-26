@@ -1,0 +1,46 @@
+#!/bin/bash
+
+package=$(cat<<__EOF__
+	xmonad
+	ghc
+	ibus
+	pcmanfm
+	xmonad
+	xmonad-contrib
+	xmobar
+	nvidia
+	xorg-apps
+	mplayer
+	mupdf
+	wqy-zenhei
+	wget
+	fakeroot
+	make
+__EOF__)
+
+sudo pacman -Sy ${package}
+
+aur=$(cat<<__EOF__
+	http://lug.mtu.edu/archlinux/community/os/i686/xmonad-contrib-0.11.3-1-i686.pkg.tar.xz
+	https://aur.archlinux.org/packages/hs/hsetroot/hsetroot.tar.gz
+	https://aur.archlinux.org/packages/go/google-chrome/google-chrome.tar.gz
+)
+
+for i in ${aur}; do
+	wget ${i}
+done
+
+for i in *.tar.gz; do
+	tar xvf ${i}
+done
+
+for i in *; do
+	if [[ ! -d ${i} ]]; then
+		continue
+	fi
+
+	cd ${i}
+	makepkg
+	sudo pacman -U *.tar.xz
+	cd ..
+done
