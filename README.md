@@ -21,6 +21,7 @@ scrot
 xmobar
 xmonad
 xmonad-contrib
+xorg-apps
 ```
 
 ### Recommand Package
