@@ -4,6 +4,7 @@ package=$(cat<<__EOF__
 	xmonad
 	ghc
 	ibus
+	ibus-pinyin
 	pcmanfm
 	xmonad
 	xmonad-contrib
