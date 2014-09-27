@@ -20,6 +20,8 @@ package=$(cat<<__EOF__
 	harfbuzz-icu
 	icu
 	opus
+	python2-pyopenssl
+	cantarell-fonts
 __EOF__)
 
 sudo pacman -Sy ${package}
@@ -28,6 +30,7 @@ aur=$(cat<<__EOF__
 	http://lug.mtu.edu/archlinux/community/os/i686/xmonad-contrib-0.11.3-1-i686.pkg.tar.xz
 	https://aur.archlinux.org/packages/hs/hsetroot/hsetroot.tar.gz
 	https://aur.archlinux.org/packages/go/google-chrome/google-chrome.tar.gz
+	https://aur.archlinux.org/packages/tt/ttf-google-fonts-git/ttf-google-fonts-git.tar.gz
 )
 
 for i in ${aur}; do
