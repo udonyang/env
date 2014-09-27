@@ -1,6 +1,9 @@
 #!/bin/bash
 
 package=$(cat<<__EOF__
+	automake
+	autoconf
+	libtools
 	valgrind
 	xmonad
 	ghc
