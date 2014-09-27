@@ -6,6 +6,7 @@ package=$(cat<<__EOF__
 	ibus
 	ibus-pinyin
 	ibus-libpinyin
+	python2-gobject
 	pcmanfm
 	xmonad
 	xmonad-contrib
@@ -33,7 +34,7 @@ aur=$(cat<<__EOF__
 	https://aur.archlinux.org/packages/hs/hsetroot/hsetroot.tar.gz
 	https://aur.archlinux.org/packages/go/google-chrome/google-chrome.tar.gz
 	https://aur.archlinux.org/packages/tt/ttf-google-fonts-git/ttf-google-fonts-git.tar.gz
-)
+__EOF__)
 
 for i in ${aur}; do
 	wget ${i}
