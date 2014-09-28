@@ -1,34 +1,36 @@
 #!/bin/bash
 
 package=$(cat<<__EOF__
-	automake
 	autoconf
-	libtools
-	valgrind
-	xmonad
+	automake
+	cantarell-fonts
+	fakeroot
+	gconf
+	gdb
 	ghc
+	harfbuzz-icu
 	ibus
-	ibus-pinyin
 	ibus-libpinyin
-	python2-gobject
-	pcmanfm
-	xmonad
-	xmonad-contrib
-	xmobar
-	nvidia
-	xorg-apps
+	ibus-pinyin
+	icu
+	libtools
+	make
 	mplayer
 	mupdf
-	wqy-zenhei
-	wget
-	fakeroot
-	make
-	gconf
-	harfbuzz-icu
-	icu
+	nvidia
 	opus
+	pcmanfm
+	python2-gobject
 	python2-pyopenssl
-	cantarell-fonts
+	valgrind
+	wget
+	wqy-zenhei
+	xmobar
+	xmonad
+	xmonad
+	xmonad-contrib
+	xorg-apps
+	zip
 __EOF__)
 
 sudo pacman -Sy ${package}
