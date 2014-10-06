@@ -23,7 +23,7 @@ dprompt()
 		kaomoji="\e[31m(> x <)\e[0m"
 	fi
 		
-	PS1="\n\e[1m(\u@\h \$PWD \s \j \$(printf '%03d' \$?))\e[0m\n${kaomoji} >>> "
+	PS1="\n\e[0m(\u@\h \$PWD \s \j \$(printf '%03d' \$?))\e[0m\n${kaomoji} >>> "
 }
 export PROMPT_COMMAND='dprompt'
 export PS2="(! O_O) ... "
