@@ -17,13 +17,13 @@ done
 ## Basic
 dprompt()
 {
-	local retcode=$?
+	local retcode=$(printf '%03d' $?)
 	local kaomoji="(= _ =)"
-	if [[ ${retcode} != 0 ]]; then
+	if [[ ${retcode} -ne 0 ]]; then
 		kaomoji="\e[31m(> x <)\e[0m"
 	fi
 		
-	PS1="\e[0m(\u@\h \$PWD \s \j \$(printf '%03d' \$?))\e[0m\n${kaomoji} >>> "
+	PS1="\e[0m(\j ${retcode} \u@\h \$PWD)\e[0m\n${kaomoji} >>> "
 }
 export PROMPT_COMMAND='dprompt'
 export PS2="(! O_O) ... "
