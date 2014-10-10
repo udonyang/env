@@ -19,6 +19,9 @@ dprompt()
 {
 	local retcode=$(printf '%03d' $?)
 	local kaomoji="(= _ =)"
+	if [[ -n $(jobs) ]]; then
+		kaomoji="(> 3 <)"
+	fi
 	if [[ ${retcode} -ne 0 ]]; then
 		kaomoji="\e[31m(> x <)\e[0m"
 	fi
@@ -91,3 +94,12 @@ alias gitco="git checkout"
 alias gitbr="git branch"
 alias gitaa="git add --all"
 alias gitst="git status"
+
+##
+# Your previous /Users/dwylkz/.profile file was backed up as /Users/dwylkz/.profile.macports-saved_2014-10-10_at_02:58:36
+##
+
+# MacPorts Installer addition on 2014-10-10_at_02:58:36: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
