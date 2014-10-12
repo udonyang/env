@@ -47,10 +47,10 @@ map <F5> <ESC>:tabn<CR>
 map <F2> <ESC>:call Browser()<CR>
 map <F7> <ESC>:call ErrorList()<CR>
 ""Make
-map <C-F8> <ESC>:call Make("debug")<CR>
+map <F8> <ESC>:call Make("debug")<CR>
 map <F9> <ESC>:call Make("")<CR>
-map <C-F9> <ESC>:call Make("run")<CR>
-map <F10> <ESC>:call Make("test")<CR>
+map <F10> <ESC>:call Make("run")<CR>
+map <F11> <ESC>:call Make("test")<CR>
 
 "Abbreviate
 autocmd BufReadPre,BufRead,BufNew *.qml :set filetype=qml
