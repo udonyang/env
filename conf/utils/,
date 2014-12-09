@@ -20,7 +20,7 @@ alias ,d="todo ${CDLDB} d"
 _,g()
 {
 	if [[ ${COMP_CWORD} == 1 ]]; then
-		local opts=$(todo ${CDLDB} s | sed 's,\t,->,g')
+		local opts=$(todo ${CDLDB} s | awk '{print $1"."$2}')
 		COMPREPLY=(${opts})
 	fi
 }
