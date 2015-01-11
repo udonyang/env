@@ -60,9 +60,10 @@ export PATH=$PATH:$TEXHOME/bin/i386-linux
 
 # Alias
 alias ..="cd .."
-alias ...="cd ..; cd .."
+alias ...="cd ../.."
 alias ll="ls -lh"
 alias la="ls -lah"
+alias m=make
 ## Directory
 alias cde="cd $HOME/env"
 alias cdp="cd $HOME/project"

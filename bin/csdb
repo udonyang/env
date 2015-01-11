@@ -40,7 +40,7 @@ default()
 		echo 'ctags $(cat cscope.files)' >> ${REFER}
 		echo '' >> ${REFER}
 		echo '# gen cscope.out' >> ${REFER}
-		echo "sed -i 's/\"/\\\"/g;s/\\\\/\\\\\\\\/g;s/^/\"/g;s/$/\"/g' cscope.files" >> ${REFER}
+		echo "sed -i '' 's/\"/\\\"/g;s/\\\\/\\\\\\\\/g;s/^/\"/g;s/$/\"/g' cscope.files" >> ${REFER}
 		echo 'cscope -bq' >> ${REFER}
 		chmod +x ${REFER}
 		echo "install vim plugin"
