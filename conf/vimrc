@@ -16,6 +16,7 @@ set tabstop=2
 set autoindent
 set smartindent
 set expandtab
+set hlsearch
 
 ""Browser
 let g:netrw_liststyle=3
@@ -29,7 +30,7 @@ func! ErrorList()
 	exec "clist"
 endfunc
 func! Make(target)
-	exec "w"
+	exec "wa"
 	exec "make!" a:target
 endfunc
 func! Browser()
@@ -42,16 +43,15 @@ imap jj <ESC>
 map <C-a> ggVG
 vmap <C-y> "+y
 map <C-p> "+p
+map <F2> <ESC>:call Browser()<CR>
 map <F3> <ESC>:tabe  
 map <F4> <ESC>:tabp<CR>
 map <F5> <ESC>:tabn<CR>
-map <F2> <ESC>:call Browser()<CR>
 map <F7> <ESC>:call ErrorList()<CR>
 ""Make
 map <F8> <ESC>:call Make("debug")<CR>
 map <F9> <ESC>:call Make("")<CR>
 map <F10> <ESC>:call Make("run")<CR>
-map <F11> <ESC>:call Make("test")<CR>
 
 "Abbreviate
 autocmd BufReadPre,BufRead,BufNew *.qml :set filetype=qml
