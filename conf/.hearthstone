@@ -1,0 +1,29 @@
+#!/usr/bin/python
+
+NAXXRAMAS = 'Curse of Naxxramas'
+BLACKROCK = 'Blackrock Moutain'
+
+CLASSIC = 'Classic'
+TGT = 'The Grand Tournament'
+GVG = 'Goblins vs Gnomes'
+
+TOTAL = 'Total'
+
+history = [
+    (128, NAXXRAMAS),
+    (128, BLACKROCK), 
+
+    (328, TGT),
+    (328, CLASSIC),
+    (328, GVG), 
+    (328, CLASSIC), 
+    (328, CLASSIC), 
+
+    (388, TGT), 
+    (388, TGT), 
+    (388, CLASSIC), 
+    ]
+
+history.append((reduce(lambda x, y: x+y[0], history, 0), TOTAL))
+
+print '\n'.join(map(lambda x: '{: >5} RMB on {}'.format(x[0], x[1]), history))

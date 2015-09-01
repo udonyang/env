@@ -30,9 +30,8 @@ dprompt()
 }
 export PROMPT_COMMAND='dprompt'
 export PS2="(! O_O) ... "
-export LC_ALL=C
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
+export LC_ALL=zh_CN.UTF-8
+export LANG=zh_CN.UTF-8
 export EDITOR=vim
 export PATH=$HOME/.local/bin:$PATH
 export GTK_IM_MODULE=ibus
@@ -64,6 +63,7 @@ alias ...="cd ../.."
 alias ll="ls -lh"
 alias la="ls -lah"
 alias m=make
+alias ue=". ~/.profile"
 ## Directory
 alias cde="cd $HOME/env"
 alias cdp="cd $HOME/project"
@@ -84,6 +84,7 @@ alias dush="du -sh"
 alias mpgl="mpg123 -C -z *"
 alias vi="vim"
 ### Git
+DGIT=https://dwylkz@github.com/dwylkz
 alias gitcl="git clone"
 alias tgitcl="tsocks git clone"
 alias gitpl="git pull -v"
