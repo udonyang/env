@@ -1,3 +1,4 @@
+#!/bin/bash
 # Init
 echo -e "\
 #######################################################\n\
@@ -96,6 +97,16 @@ alias gitco="git checkout"
 alias gitbr="git branch"
 alias gitaa="git add --all"
 alias gitst="git status"
+function gitci()
+{
+  local wording="up"
+  if [[ -n ${1} ]]; then
+    wording="${1}"
+  fi
+  git add --all
+  git commit -m ${wording}
+  git push -v
+}
 
 . ~/.bashrc
 
