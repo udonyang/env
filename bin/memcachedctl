@@ -1,0 +1,40 @@
+#!/bin/bash
+
+function do_nc()
+{
+  nc localhost 11211
+}
+
+function start()
+{
+  memcached -d -m 32 -t 2
+  return 0
+}
+
+function look()
+{
+  echo "stats" | do_nc
+  return 0
+}
+
+function stop()
+{
+  local pid=$(look | grep pid | grep "[0-9]*" -o)
+  echo ${pid}
+  kill -9 ${pid}
+  return 0
+}
+
+function main()
+{
+  local cmd=${1}
+  if [[ -n ${cmd} ]]; then
+    shift 1
+    ${cmd} ${*}
+  else 
+    echo "no cmd"
+  fi 
+  return 0
+}
+
+main ${*}
