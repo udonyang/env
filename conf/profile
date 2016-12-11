@@ -31,8 +31,7 @@ dprompt()
 }
 export PROMPT_COMMAND='dprompt'
 export PS2="(! O_O) ... "
-export LC_ALL=zh_CN.UTF-8
-export LANG=zh_CN.UTF-8
+export LC_ALL=C
 export EDITOR=vim
 export PATH=$HOME/.local/bin:$PATH
 export GTK_IM_MODULE=ibus
