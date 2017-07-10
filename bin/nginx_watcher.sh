@@ -18,11 +18,11 @@ function main()
 
         local files=$(find ${root} -type f -name nginx.conf)
         ps aux | grep inotifywait | grep nginx.conf | grep -v grep | awk '{print $2}' | xargs kill -9 
-        nohup inotifywait -me move_self ${files} | 
+        inotifywait -me move_self ${files} | 
         while read file sig; do
                 echo "- $(date) - ${file} ${sig}"
                 /usr/sbin/nginx -s reload
-        done > ${log} 2>&1&
+        done >> ${log} 2>&1&
 }
 
 main ${*}
