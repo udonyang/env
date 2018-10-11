@@ -28,6 +28,7 @@ set autoindent
 set smartindent
 set expandtab
 set hlsearch
+set t_Co=256
 
 ""Browser
 let g:netrw_liststyle=3
