@@ -15,6 +15,7 @@ syntax on
 filetype on
 filetype plugin indent on
 
+set encoding=utf-8
 set autochdir
 set foldmethod=syntax
 set incsearch
@@ -32,12 +33,18 @@ set t_Co=256
 
 ""Browser
 let g:netrw_liststyle=3
-let mapleader=","
 ""Html
 let g:html_indent_script1="inc"
 let g:html_indent_style1="inc"
-let g:airline_theme="atomic"
-"let g:airline#extensions#tabline#enabled=1
+let g:airline_theme="jellybeans"
+let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts = 1
+let g:airline_highlighting_cache = 1
+"let g:airline#extensions#tabline#left_sep = '>'
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_left_sep='>'
+let g:airline_right_sep='<'
+"let g:airline_detect_modified=1
 
 "Function
 func! ErrorList()
