@@ -48,19 +48,20 @@ endfunc
 
 "Map
 ""Basic
+let mapleader="\\"
 imap jj <ESC>
 map <C-a> ggVG
 vmap <C-y> "+y
 map <C-p> "+p
-map <F2> <ESC>:call Browser()<CR>
-map <F3> <ESC>:tabe  
-map <F4> <ESC>:tabp<CR>
-map <F5> <ESC>:tabn<CR>
-map <F7> <ESC>:call ErrorList()<CR>
+map <leader>2 <ESC>:call Browser()<CR>
+map <leader>3 <ESC>:tabe  
+map <leader>4 <ESC>:tabp<CR>
+map <leader>5 <ESC>:tabn<CR>
+map <leader>7 <ESC>:call ErrorList()<CR>
 ""Make
-map <F8> <ESC>:call Make("debug")<CR>
-map <F9> <ESC>:call Make("")<CR>
-map <F10> <ESC>:call Make("run")<CR>
+map <leader>8 <ESC>:call Make("debug")<CR>
+map <leader>9 <ESC>:call Make("")<CR>
+map <leader>10 <ESC>:call Make("run")<CR>
 
 "Abbreviate
 autocmd BufReadPre,BufRead,BufNew *.qml :set filetype=qml
