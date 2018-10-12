@@ -29,11 +29,12 @@ dprompt()
 		
 	PS1="\e[0m(\j ${retcode} \u@\h \w)\e[0m\n${kaomoji} >>> "
 }
-export PROMPT_COMMAND='dprompt'
+export POWERLINE=$HOME/.vim/bundle/powerline
+export PYTHONPATH=$PYTHONPATH:${POWERLINE}
 export PS2="(! O_O) ... "
 export LC_ALL=C
 export EDITOR=vim
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH:${POWERLINE}/scripts
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
@@ -51,6 +52,12 @@ export CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar
 export TEXHOME=/usr/local/texlive/2013
 export MANPATH=$MANPATH:$TEXHOME/texmf-dist/doc/man
 export PATH=$PATH:$TEXHOME/bin/i386-linux
+if [[ -f ${POWERLINE}/scripts/powerline-daemon ]]; then
+  powerline-daemon -q
+  source ${POWERLINE}/powerline/bindings/bash/powerline.sh
+else
+  export PROMPT_COMMAND='dprompt'
+fi
 
 # if [[ -n $(pidof xbindkeys) ]]; then
 # 	killall xbindkeys
@@ -108,3 +115,17 @@ function gitci()
 }
 
 #. ~/.bashrc
+
+##
+# Your previous /Users/yangwudong/.profile file was backed up as /Users/yangwudong/.profile.macports-saved_2018-10-10_at_17:55:21
+##
+
+# MacPorts Installer addition on 2018-10-10_at_17:55:21: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
+
+# MacPorts Installer addition on 2018-10-10_at_17:55:21: adding an appropriate MANPATH variable for use with MacPorts.
+export MANPATH="/opt/local/share/man:$MANPATH"
+# Finished adapting your MANPATH environment variable for use with MacPorts.
+
