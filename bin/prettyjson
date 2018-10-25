@@ -1,0 +1,7 @@
+#!/usr/bin/python
+
+import json.tool, sys
+
+json_data = json.loads(sys.stdin.read())
+#print isinstance(unicode(json.dumps(json_data, indent=4)), str)
+sys.stdout.write(unicode(json.dumps(json_data, indent=4)).encode('utf-8'))
