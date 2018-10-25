@@ -32,7 +32,7 @@ dprompt()
 export POWERLINE=$HOME/.vim/bundle/powerline
 export PYTHONPATH=$PYTHONPATH:${POWERLINE}
 export PS2="(! O_O) ... "
-export LC_ALL=C
+#export LC_ALL=C
 export EDITOR=vim
 export PATH=$HOME/.local/bin:$PATH:${POWERLINE}/scripts
 export GTK_IM_MODULE=ibus
@@ -129,3 +129,5 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 export MANPATH="/opt/local/share/man:$MANPATH"
 # Finished adapting your MANPATH environment variable for use with MacPorts.
 
+export http_proxy=***REMOVED***
+export https_proxy=https://dev-proxy.oa.com:8080
