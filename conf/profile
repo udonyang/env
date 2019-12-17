@@ -130,4 +130,9 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 export MANPATH="/opt/local/share/man:$MANPATH"
 # Finished adapting your MANPATH environment variable for use with MacPorts.
 
+<<<<<<< HEAD
 export ALL_PROXY=***REMOVED***
+=======
+#export http_proxy=***REMOVED***
+#export https_proxy=https://dev-proxy.oa.com:8080
+>>>>>>> 2703e97b01ec7a38d37939e73fc05d3713921e71
