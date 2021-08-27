@@ -32,7 +32,7 @@ dprompt()
 export POWERLINE=$HOME/.vim/bundle/powerline
 export PYTHONPATH=$PYTHONPATH:${POWERLINE}
 export PS2="(! O_O) ... "
-#export LC_ALL=C
+#export LC_ALL=zh_CN.UTF8
 export EDITOR=vim
 export PATH=$HOME/.local/bin:$PATH:${POWERLINE}/scripts
 export GTK_IM_MODULE=ibus
@@ -45,8 +45,9 @@ export LD_RUN_PATH=$HOME/.local/lib:$LD_RUN_PATH
 export C_INCLUDE_PATH=$HOME/.local/include:$C_INCLUDE_PATH
 export CPLUS_INCLUDE_PATH=$HOME/.local/include:$C_INCLUDE_PATH
 ## Java
-export JAVA_HOME=$HOME/Downloads/jdk
-export PATH=$PATH:$JAVA_HOME/bin
+export JAVA_HOME=/Applications/Android\ Studio.app/Contents/jre/jdk/Contents/Home/
+export JAVA_SDK=$JAVA_HOME/bin:${HOME}/Library/Android/sdk
+export PATH=$PATH:$JAVA_HOME/bin:${JAVA_SDK}/tools/bin/:${JAVA_SDK}/platform-tools:${JAVA_SDK}/build-tools/28.0.3:${JAVA_SDK}/dex2jar-2.0
 export CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar
 ## TeX
 export TEXHOME=/usr/local/texlive/2013
@@ -128,6 +129,3 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # MacPorts Installer addition on 2018-10-10_at_17:55:21: adding an appropriate MANPATH variable for use with MacPorts.
 export MANPATH="/opt/local/share/man:$MANPATH"
 # Finished adapting your MANPATH environment variable for use with MacPorts.
-
-#export http_proxy=***REMOVED***
-#export https_proxy=https://dev-proxy.oa.com:8080

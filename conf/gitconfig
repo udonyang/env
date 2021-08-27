@@ -3,3 +3,7 @@
 	name = Dwylkz
 [push]
 	default = simple
+[http "***REMOVED***"]
+      proxy = http://127.0.0.1:12639
+[http "***REMOVED***"]
+      proxy = http://127.0.0.1:12639
