@@ -73,6 +73,8 @@ map <leader>3 <ESC>:tabe
 map <leader>4 <ESC>:tabp<CR>
 map <leader>5 <ESC>:tabn<CR>
 map <leader>7 <ESC>:call ErrorList()<CR>
+vmap <leader>j :!prettyjson<cr>
+vmap <leader>c :!column -t -s' '<cr>
 ""Make
 map <leader>8 <ESC>:call Make("debug")<CR>
 map <leader>9 <ESC>:call Make("")<CR>
