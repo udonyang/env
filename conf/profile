@@ -52,12 +52,12 @@ export CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar
 export TEXHOME=/usr/local/texlive/2013
 export MANPATH=$MANPATH:$TEXHOME/texmf-dist/doc/man
 export PATH=$PATH:$TEXHOME/bin/i386-linux
-if [[ -f ${POWERLINE}/scripts/powerline-daemon ]]; then
-  powerline-daemon -q
-  source ${POWERLINE}/powerline/bindings/bash/powerline.sh
-else
-  export PROMPT_COMMAND='dprompt'
-fi
+# if [[ -f ${POWERLINE}/scripts/powerline-daemon ]]; then
+#   powerline-daemon -q
+#   source ${POWERLINE}/powerline/bindings/bash/powerline.sh
+# else
+#   export PROMPT_COMMAND='dprompt'
+# fi
 
 # if [[ -n $(pidof xbindkeys) ]]; then
 # 	killall xbindkeys
