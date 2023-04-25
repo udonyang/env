@@ -65,7 +65,7 @@ endfunc
 ""Basic
 let mapleader="\\"
 imap jj <ESC>
-map <C-a> ggVG
+"map <C-a> ggVG
 vmap <C-y> "+y
 map <C-p> "+p
 map <leader>2 <ESC>:call Browser()<CR>
