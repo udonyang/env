@@ -1,0 +1,76 @@
+#!/usr/bin/python3
+
+import requests
+import json
+from datetime import datetime
+import argparse
+import socket, struct
+import sys
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-f', choices=['info', 'slist', 'cmd'], required=True)
+parser.add_argument('-p', help="cmd para")
+parser.add_argument('-k', help="api key", required=True)
+args = {}
+
+"""
+https://api.64clouds.com/v1/restart?
+https://api.64clouds.com/v1/updateSshKeys?ssh_keys=
+https://api.64clouds.com/v1/getAuditLog?
+https://api.64clouds.com/v1/basicShell/exec?command=
+https://api.64clouds.com/v1/basicShell/shellScript/exec?script=
+
+https://api.64clouds.com/v1/snapshot/create?description=
+https://api.64clouds.com/v1/snapshot/list?
+https://api.64clouds.com/v1/snapshot/delete?snapshot=
+https://api.64clouds.com/v1/snapshot/restore?snapshot=
+"""
+
+kPrefix = "https://api.64clouds.com/v1"
+
+def Get(url):
+    url= kPrefix + url + "&veid=1082343&api_key="+args.k
+
+    r = requests.get(url)
+    return json.loads(r.content)
+
+def GetAuditLog():
+    resp = Get("/getAuditLog?")
+    for entry in resp['log_entries'][0:3]:
+        time = datetime.fromtimestamp(int(entry['timestamp']))
+        summary = entry['summary']
+        ipv4 = socket.inet_ntoa(struct.pack("!I", int(entry['requestor_ipv4'])))
+        print("login log: %s %s %s"%(time, ipv4, summary))
+
+def GetInfo():
+    resp = Get("/getServiceInfo?")
+
+    data_counter =  resp['data_counter']
+    plan_monthly_data =  resp['plan_monthly_data']
+    print("ip: %s"%(resp['ip_addresses']))
+    print("brandwidth: %.3f / %.3f (%.2f)"%(data_counter/2**30, plan_monthly_data/2**30, data_counter / plan_monthly_data))
+    print("reset time: %s"%(datetime.fromtimestamp(resp['data_next_reset'])))
+
+def Command(cmd):
+    resp = Get("/basicShell/exec?command="+cmd)
+    print(resp)
+
+def SnapshotList():
+    for snapshot in Get("/snapshot/list?")['snapshots']:
+        print("snapshot: %s"%(snapshot))
+
+def main():
+    global args
+    args = parser.parse_args()
+    if args.f == 'info':
+        GetAuditLog()
+        GetInfo()
+    elif args.f == 'slist':
+        SnapshotList()
+    elif args.f == 'cmd':
+        Command(args.p)
+    else:
+        return -1
+
+if __name__ == '__main__':
+    main()
