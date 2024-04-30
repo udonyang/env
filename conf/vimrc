@@ -31,6 +31,7 @@ set smartindent
 set expandtab
 set hlsearch
 set t_Co=256
+set cscopetag
 
 ""Browser
 let g:netrw_liststyle=3
