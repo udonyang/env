@@ -104,6 +104,7 @@ alias gitco="git checkout"
 alias gitbr="git branch"
 alias gitaa="git add --all"
 alias gitst="git status"
+alias cs="cscope -d -f ${HOME}/.csdb/cscope.out"
 function gitci()
 {
   local wording="up"
